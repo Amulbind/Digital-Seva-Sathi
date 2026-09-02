@@ -1,0 +1,1074 @@
+<!DOCTYPE html>
+<html lang="en" data-lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Digital Seva Sathi — Learn Government Portals</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500&family=Work+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500;600&family=Noto+Serif+Devanagari:wght@500;600;700&family=Noto+Sans+Devanagari:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#F2F5F1;
+    --surface:#FFFFFF;
+    --surface-alt:#E8EDE6;
+    --ink:#132033;
+    --ink-soft:#4C5C6E;
+    --primary:#12314F;
+    --primary-soft:#265079;
+    --accent-saffron:#D6862A;
+    --accent-green:#1C7A54;
+    --accent-red:#B23A34;
+    --border:#D7DED4;
+    --shadow: 0 10px 30px -14px rgba(18,41,63,0.25);
+    --font-display:'Fraunces', serif;
+    --font-body:'Work Sans', sans-serif;
+    --font-mono:'IBM Plex Mono', monospace;
+    color-scheme: light;
+  }
+  html[data-theme="dark"]{
+    --bg:#0B1626;
+    --surface:#101F34;
+    --surface-alt:#16283F;
+    --ink:#EAF0F6;
+    --ink-soft:#9FB2C7;
+    --primary:#8FB3E0;
+    --primary-soft:#B9D2EE;
+    --accent-saffron:#F0A94A;
+    --accent-green:#3FBE8B;
+    --accent-red:#E2827A;
+    --border:#25384F;
+    --shadow: 0 10px 34px -12px rgba(0,0,0,0.55);
+    color-scheme: dark;
+  }
+  html[data-lang="hi"],html[data-lang="mr"]{
+    --font-display:'Noto Serif Devanagari', serif;
+    --font-body:'Noto Sans Devanagari', sans-serif;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0; background:var(--bg); color:var(--ink);
+    font-family:var(--font-body);
+    -webkit-font-smoothing:antialiased;
+    transition:background .25s ease, color .25s ease;
+  }
+  img,svg{display:block;}
+  a{color:inherit;}
+  .wrap{max-width:1120px; margin:0 auto; padding:0 24px;}
+  .eyebrow{
+    font-family:var(--font-mono); font-size:12px; letter-spacing:.14em; text-transform:uppercase;
+    color:var(--accent-saffron); font-weight:600; display:flex; align-items:center; gap:8px;
+  }
+  .eyebrow::before{content:""; width:18px; height:2px; background:var(--accent-saffron); display:inline-block;}
+  h1,h2,h3{font-family:var(--font-display); margin:0; color:var(--ink); line-height:1.12;}
+  p{margin:0; color:var(--ink-soft); line-height:1.6;}
+
+  /* ---------- HEADER ---------- */
+  .site-header{
+    position:sticky; top:0; z-index:40;
+    background:color-mix(in srgb, var(--bg) 88%, transparent);
+    backdrop-filter: blur(10px);
+    border-bottom:1px solid var(--border);
+  }
+  .site-header .wrap{
+    display:flex; align-items:center; justify-content:space-between; gap:16px;
+    padding-top:14px; padding-bottom:14px;
+  }
+  .brand{display:flex; align-items:center; gap:12px; text-decoration:none;}
+  .brand-mark{
+    width:42px; height:42px; border-radius:10px;
+    background:var(--primary); color:#F4F1E8;
+    display:flex; align-items:center; justify-content:center;
+    font-family:var(--font-mono); font-weight:600; font-size:11px; letter-spacing:.02em;
+    position:relative; flex:none;
+  }
+  .brand-mark::after{
+    content:""; position:absolute; inset:4px; border:1px dashed rgba(244,241,232,.45); border-radius:6px;
+  }
+  .brand-text{display:flex; flex-direction:column; line-height:1.2;}
+  .brand-text b{font-family:var(--font-display); font-size:18px; font-weight:700; color:var(--ink);}
+  .brand-text span{font-size:11.5px; color:var(--ink-soft); font-family:var(--font-mono); letter-spacing:.02em;}
+  nav.main-nav{display:flex; gap:22px;}
+  nav.main-nav a{font-size:14.5px; font-weight:600; text-decoration:none; color:var(--ink-soft); transition:color .15s;}
+  nav.main-nav a:hover{color:var(--primary-soft);}
+  .controls{display:flex; align-items:center; gap:10px;}
+  .lang-switch{display:flex; border:1px solid var(--border); border-radius:999px; padding:3px; background:var(--surface); gap:2px;}
+  .lang-switch button{
+    border:none; background:transparent; padding:6px 12px; border-radius:999px; cursor:pointer;
+    font-family:var(--font-mono); font-size:12.5px; font-weight:600; color:var(--ink-soft);
+    transition:background .15s, color .15s;
+  }
+  .lang-switch button.active{background:var(--primary); color:#F4F1E8;}
+  .theme-toggle{
+    width:38px; height:38px; border-radius:50%; border:1px solid var(--border); background:var(--surface);
+    display:flex; align-items:center; justify-content:center; cursor:pointer; flex:none; color:var(--ink);
+  }
+  .theme-toggle svg{width:18px; height:18px;}
+  .icon-sun{display:none;} html[data-theme="dark"] .icon-sun{display:block;} html[data-theme="dark"] .icon-moon{display:none;}
+  .menu-toggle{display:none; border:1px solid var(--border); background:var(--surface); border-radius:8px; width:38px; height:38px; align-items:center; justify-content:center; cursor:pointer;}
+
+  /* ---------- HERO ---------- */
+  .hero{padding:64px 0 40px;}
+  .hero-grid{display:grid; grid-template-columns:1.15fr .85fr; gap:48px; align-items:center;}
+  .hero h1{font-size:44px; font-weight:700; margin:14px 0 18px; letter-spacing:-.01em;}
+  .hero p.lead{font-size:17px; max-width:52ch;}
+  .hero-ctas{display:flex; gap:14px; margin-top:28px; flex-wrap:wrap;}
+  .btn{
+    font-family:var(--font-body); font-weight:600; font-size:14.5px; padding:13px 22px; border-radius:9px;
+    text-decoration:none; display:inline-flex; align-items:center; gap:8px; cursor:pointer; border:1px solid transparent;
+    transition:transform .12s ease, box-shadow .12s ease;
+  }
+  .btn:active{transform:translateY(1px);}
+  .btn-primary{background:var(--primary); color:#F4F1E8; box-shadow:var(--shadow);}
+  .btn-secondary{background:transparent; color:var(--ink); border-color:var(--border);}
+  .btn-secondary:hover{border-color:var(--primary-soft);}
+  .btn-outline-sm{
+    font-family:var(--font-mono); font-size:12.5px; font-weight:600; padding:9px 14px; border-radius:7px;
+    border:1px solid var(--border); text-decoration:none; display:inline-flex; align-items:center; gap:6px;
+    color:var(--primary-soft); background:var(--surface-alt);
+  }
+  .btn-outline-sm:hover{border-color:var(--primary-soft);}
+
+  .hero-token{
+    background:var(--surface); border:1px solid var(--border); border-radius:16px; padding:26px;
+    box-shadow:var(--shadow); position:relative;
+  }
+  .hero-token .tok-row{display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:18px;}
+  .hero-token .tok-num{font-family:var(--font-mono); font-size:12px; color:var(--accent-saffron); font-weight:600;}
+  .hero-token .tok-badge{
+    width:34px; height:34px; border-radius:50%; border:1.5px dashed var(--accent-green); color:var(--accent-green);
+    display:flex; align-items:center; justify-content:center; font-size:15px;
+  }
+  .hero-token ul{list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:14px;}
+  .hero-token li{display:flex; gap:12px; align-items:flex-start; font-size:14px; color:var(--ink-soft);}
+  .hero-token li .n{
+    font-family:var(--font-mono); font-weight:600; color:var(--primary); font-size:12.5px;
+    width:22px; height:22px; border-radius:50%; background:var(--surface-alt); flex:none;
+    display:flex; align-items:center; justify-content:center;
+  }
+  .hero-token .stub{border-top:2px dashed var(--border); margin:18px -26px 18px; position:relative;}
+  .hero-token .stub::before,.hero-token .stub::after{
+    content:""; position:absolute; top:-9px; width:18px; height:18px; border-radius:50%;
+    background:var(--bg); border:1px solid var(--border);
+  }
+  .hero-token .stub::before{left:-9px;} .hero-token .stub::after{right:-9px;}
+
+  /* ---------- TRUST STRIP ---------- */
+  .trust-strip{
+    border-top:1px dashed var(--border); border-bottom:1px dashed var(--border);
+    background:var(--surface-alt);
+  }
+  .trust-strip .wrap{
+    display:flex; align-items:center; gap:12px; padding:14px 24px; font-family:var(--font-mono);
+    font-size:12.5px; color:var(--ink-soft); flex-wrap:wrap;
+  }
+  .trust-strip .dot{width:6px; height:6px; border-radius:50%; background:var(--accent-green); flex:none;}
+
+  /* ---------- SECTION HEADS ---------- */
+  section{padding:64px 0;}
+  .section-head{max-width:640px; margin-bottom:36px;}
+  .section-head h2{font-size:30px; margin-top:10px;}
+  .section-head p{margin-top:12px; font-size:15.5px;}
+
+  /* ---------- FEATURED PORTAL CARDS ---------- */
+  .portal-grid{display:grid; grid-template-columns:1fr 1fr; gap:26px;}
+  .portal-card{
+    background:var(--surface); border:1px solid var(--border); border-radius:16px; padding:26px;
+    box-shadow:var(--shadow); position:relative; overflow:visible; display:flex; flex-direction:column;
+  }
+  .portal-card .p-top{display:flex; justify-content:space-between; align-items:flex-start; gap:14px;}
+  .portal-icon{
+    width:56px; height:56px; border-radius:12px; background:var(--surface-alt);
+    display:flex; align-items:center; justify-content:center; flex:none; color:var(--primary-soft);
+  }
+  .portal-icon svg{width:30px; height:30px; stroke:currentColor; fill:none; stroke-width:2; stroke-linecap:round; stroke-linejoin:round;}
+
+  /* ---------- PORTAL BANNERS ---------- */
+  .portal-banner{
+    width:calc(100% + 52px); margin:-26px -26px 22px; height:128px; border-radius:16px 16px 0 0;
+    position:relative; display:flex; align-items:center; justify-content:center;
+    background-size:16px 16px;
+  }
+  .portal-banner .banner-dots{
+    position:absolute; inset:0; border-radius:16px 16px 0 0;
+    background-image:radial-gradient(rgba(255,255,255,.16) 1px, transparent 1px);
+    background-size:14px 14px;
+  }
+  .portal-banner .banner-icon{
+    position:relative; width:76px; height:76px; border-radius:14px; background:#FFFFFF;
+    display:flex; align-items:center; justify-content:center; padding:10px; box-shadow:0 6px 18px -6px rgba(0,0,0,.35);
+  }
+  .portal-banner .banner-icon img{width:100%; height:100%; object-fit:contain;}
+  .portal-banner .banner-label{
+    position:absolute; left:16px; bottom:12px; font-family:var(--font-mono); font-size:10.5px; font-weight:600;
+    letter-spacing:.08em; text-transform:uppercase; color:rgba(244,241,232,.85);
+  }
+  .portal-banner .banner-corner{
+    position:absolute; right:14px; top:12px; width:26px; height:26px; border-radius:50%;
+    border:1.5px dashed rgba(244,241,232,.55); display:flex; align-items:center; justify-content:center;
+    font-size:12px; color:#F4F1E8;
+  }
+  .banner-aadhaar{background:linear-gradient(135deg,#12314F,#3A6796);}
+  .banner-pan{background:linear-gradient(135deg,#8A5A1D,#E0972E);}
+  .banner-digilocker{background:linear-gradient(135deg,#173C57,#3E7CA6);}
+  .banner-ayushman{background:linear-gradient(135deg,#124A34,#218F63);}
+
+  .portal-token-num{font-family:var(--font-mono); font-size:11.5px; color:var(--accent-saffron); font-weight:600; letter-spacing:.03em;}
+  .portal-card h3{font-size:21px; margin-top:16px;}
+  .portal-card p.desc{margin-top:8px; font-size:14.5px;}
+  .portal-card .p-actions{display:flex; gap:10px; margin-top:18px; flex-wrap:wrap;}
+
+  .stub-divider{position:relative; border-top:2px dashed var(--border); margin:20px 2px 16px;}
+  .stub-divider::before,.stub-divider::after{
+    content:""; position:absolute; top:-9px; width:18px; height:18px; border-radius:50%;
+    background:var(--bg); border:1px solid var(--border);
+  }
+  .stub-divider::before{left:-29px;} .stub-divider::after{right:-29px;}
+
+  details.steps{margin-top:2px;}
+  details.steps summary{
+    cursor:pointer; list-style:none; font-family:var(--font-mono); font-size:12.5px; font-weight:600;
+    color:var(--primary-soft); display:flex; align-items:center; gap:8px; user-select:none;
+  }
+  details.steps summary::-webkit-details-marker{display:none;}
+  details.steps summary::before{content:"+"; font-size:16px; line-height:1; width:16px;}
+  details.steps[open] summary::before{content:"–";}
+  .step-list{list-style:none; margin:14px 0 0; padding:0; display:flex; flex-direction:column; gap:12px;}
+  .step-list li{display:flex; gap:12px; align-items:flex-start; font-size:14px; color:var(--ink-soft);}
+  .step-list li .n{
+    font-family:var(--font-mono); font-weight:600; color:var(--primary); font-size:12px;
+    width:20px; height:20px; border-radius:50%; background:var(--surface-alt); flex:none;
+    display:flex; align-items:center; justify-content:center; margin-top:1px;
+  }
+
+  /* ---------- MORE PORTALS ---------- */
+  .more-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:16px;}
+  .more-card{
+    background:var(--surface); border:1px solid var(--border); border-radius:12px; padding:18px;
+    display:flex; gap:12px; align-items:flex-start; text-decoration:none; transition:border-color .15s, transform .12s;
+  }
+  .more-card:hover{border-color:var(--primary-soft); transform:translateY(-2px);}
+  .more-icon{
+    width:38px; height:38px; border-radius:9px; background:var(--surface-alt); flex:none;
+    display:flex; align-items:center; justify-content:center; color:var(--accent-green);
+  }
+  .more-icon svg{width:20px; height:20px; stroke:currentColor; fill:none; stroke-width:2; stroke-linecap:round; stroke-linejoin:round;}
+  .more-card .m-title{font-weight:700; font-size:14.5px; color:var(--ink); font-family:var(--font-body);}
+  .more-card .m-desc{font-size:12.5px; margin-top:4px; color:var(--ink-soft); line-height:1.45;}
+  .more-card .m-link{font-family:var(--font-mono); font-size:11px; color:var(--primary-soft); margin-top:6px; display:inline-block;}
+
+  /* ---------- ABOUT ---------- */
+  .about-box{
+    background:var(--surface); border:1px solid var(--border); border-radius:16px; padding:34px;
+    display:grid; grid-template-columns:auto 1fr; gap:24px; align-items:flex-start;
+  }
+  .about-box .a-mark{
+    width:52px; height:52px; border-radius:50%; border:1.5px dashed var(--accent-saffron); color:var(--accent-saffron);
+    display:flex; align-items:center; justify-content:center; font-family:var(--font-mono); font-weight:700;
+  }
+  .about-box p{font-size:14.5px; margin-top:10px;}
+
+  /* ---------- COMMENTS ---------- */
+  .comments-box{
+    background:var(--surface); border:1px solid var(--border); border-radius:16px; padding:30px;
+  }
+  .comment-form{display:grid; grid-template-columns:1fr; gap:12px; margin-top:20px;}
+  .comment-form input, .comment-form textarea{
+    font-family:var(--font-body); font-size:14.5px; padding:12px 14px; border-radius:9px;
+    border:1px solid var(--border); background:var(--bg); color:var(--ink); resize:vertical;
+  }
+  .comment-form textarea{min-height:84px;}
+  .comment-form label{font-size:12.5px; font-weight:600; color:var(--ink-soft); font-family:var(--font-mono); margin-bottom:-4px;}
+  .comment-form .row2{display:flex; justify-content:space-between; align-items:center; gap:12px; flex-wrap:wrap;}
+  .comment-note{font-size:12px; color:var(--ink-soft); font-family:var(--font-mono);}
+  .comment-list{list-style:none; margin:26px 0 0; padding:0; display:flex; flex-direction:column; gap:14px;}
+  .comment-item{border-top:1px dashed var(--border); padding-top:14px;}
+  .comment-item .c-head{display:flex; justify-content:space-between; gap:10px; align-items:baseline;}
+  .comment-item .c-name{font-weight:700; font-size:14px;}
+  .comment-item .c-date{font-family:var(--font-mono); font-size:11px; color:var(--ink-soft);}
+  .comment-item .c-text{font-size:14px; margin-top:6px; color:var(--ink-soft);}
+  .comment-empty{font-size:14px; color:var(--ink-soft); font-style:italic;}
+  .comment-error{font-size:13px; color:var(--accent-red); margin-top:8px; display:none;}
+  .storage-note{font-size:11.5px; color:var(--ink-soft); font-family:var(--font-mono); margin-top:10px;}
+
+  /* ---------- FOOTER ---------- */
+  footer{border-top:1px solid var(--border); padding:36px 0 40px;}
+  footer .wrap{display:flex; justify-content:space-between; gap:24px; flex-wrap:wrap;}
+  footer .f-brand{font-family:var(--font-display); font-weight:700; font-size:16px;}
+  footer .f-disclaimer{font-size:12.5px; max-width:56ch; margin-top:8px; color:var(--ink-soft);}
+  footer .f-meta{font-family:var(--font-mono); font-size:11.5px; color:var(--ink-soft); text-align:right;}
+
+  @media (max-width:900px){
+    .hero-grid{grid-template-columns:1fr;}
+    .portal-grid{grid-template-columns:1fr;}
+    .more-grid{grid-template-columns:1fr 1fr;}
+    nav.main-nav{display:none;}
+    .about-box{grid-template-columns:1fr;}
+    footer .wrap{flex-direction:column;}
+    footer .f-meta{text-align:left;}
+  }
+  @media (max-width:560px){
+    .hero h1{font-size:32px;}
+    .more-grid{grid-template-columns:1fr;}
+  }
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto;}
+    *{transition:none !important;}
+  }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap">
+    <a href="#home" class="brand">
+      <span class="brand-mark">सेवा</span>
+      <span class="brand-text">
+        <b data-i18n="brand_name">Digital Seva Sathi</b>
+        <span data-i18n="brand_tag">Citizen's guide to government portals</span>
+      </span>
+    </a>
+    <nav class="main-nav">
+      <a href="#home" data-i18n="nav_home">Home</a>
+      <a href="#featured" data-i18n="nav_featured">Portals</a>
+      <a href="#more" data-i18n="nav_more">All services</a>
+      <a href="#about" data-i18n="nav_about">About</a>
+      <a href="#comments" data-i18n="nav_comments">Feedback</a>
+    </nav>
+    <div class="controls">
+      <div class="lang-switch" role="group" aria-label="Language / भाषा / भाषा">
+        <button data-lang-btn="en" class="active">EN</button>
+        <button data-lang-btn="hi">हि</button>
+        <button data-lang-btn="mr">मर</button>
+      </div>
+      <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode" title="Toggle dark mode">
+        <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
+        <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main>
+
+  <!-- HERO -->
+  <section class="hero" id="home">
+    <div class="wrap hero-grid">
+      <div>
+        <div class="eyebrow" data-i18n="hero_eyebrow">Public digital-literacy initiative</div>
+        <h1 data-i18n="hero_title">Government services shouldn't feel like a maze.</h1>
+        <p class="lead" data-i18n="hero_sub">Step by step, in your own language, at your own pace — learn to use Aadhaar, PAN, DigiLocker, Ayushman Bharat and more official portals with confidence.</p>
+        <div class="hero-ctas">
+          <a href="#featured" class="btn btn-primary" data-i18n="hero_cta_primary">Start learning</a>
+          <a href="#more" class="btn btn-secondary" data-i18n="hero_cta_secondary">See all services</a>
+        </div>
+      </div>
+      <div class="hero-token">
+        <div class="tok-row">
+          <div>
+            <div class="tok-num" data-i18n="hero_token_num">TOKEN · GEN-01</div>
+            <h3 style="font-size:18px; margin-top:6px;" data-i18n="hero_token_title">How this site helps</h3>
+          </div>
+          <div class="tok-badge">✓</div>
+        </div>
+        <ul>
+          <li><span class="n">1</span><span data-i18n="hero_token_1">Pick a portal you need — Aadhaar, PAN, DigiLocker, Ayushman Bharat, or others.</span></li>
+          <li><span class="n">2</span><span data-i18n="hero_token_2">Follow the numbered steps written in plain language.</span></li>
+        </ul>
+        <div class="stub"></div>
+        <ul>
+          <li><span class="n">3</span><span data-i18n="hero_token_3">Click through to the real official portal — we never collect your documents or data.</span></li>
+          <li><span class="n">4</span><span data-i18n="hero_token_4">Get it done yourself, without depending on an agent or middleman.</span></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- TRUST STRIP -->
+  <div class="trust-strip">
+    <div class="wrap">
+      <span class="dot"></span>
+      <span data-i18n="trust_strip">Independent awareness initiative — not an official government website. Every link on this page leads to a verified official portal.</span>
+    </div>
+  </div>
+
+  <!-- FEATURED PORTALS -->
+  <section id="featured">
+    <div class="wrap">
+      <div class="section-head">
+        <div class="eyebrow" data-i18n="featured_eyebrow">Start here</div>
+        <h2 data-i18n="featured_title">Four portals every citizen should know</h2>
+        <p data-i18n="featured_sub">These are the services people ask about most. Tap "Steps" on any card to see the walkthrough, or go straight to the official site.</p>
+      </div>
+
+      <div class="portal-grid">
+
+        <!-- AADHAAR -->
+        <article class="portal-card">
+          <div class="portal-banner banner-aadhaar">
+            <div class="banner-dots"></div>
+            <div class="banner-icon"><img src="Aadhar Services2.png" alt="Aadhaar"></div>
+            <span class="banner-corner">✓</span>
+            <span class="banner-label" data-i18n="card_aadhaar_name">Aadhaar Services</span>
+          </div>
+          <div class="p-top">
+            <div class="portal-icon">
+              <svg viewBox="0 0 48 48"><path d="M24 8c-9 0-16 7-16 16 0 5 2 8 4 8"/><path d="M24 14c-6 0-10 4-10 10 0 4 1 7 3 9"/><path d="M24 20c-3 0-4 2-4 4 0 6 3 10 8 12"/><path d="M32 16c2 3 3 6 3 8 0 8-4 13-9 15"/></svg>
+            </div>
+            <span class="portal-token-num">AAD · 01</span>
+          </div>
+          <h3 data-i18n="card_aadhaar_name">Aadhaar Services</h3>
+          <p class="desc" data-i18n="card_aadhaar_desc">Log in to the myAadhaar portal with your Aadhaar number and OTP to download e-Aadhaar, update your details, or order a PVC card.</p>
+          <div class="stub-divider"></div>
+          <details class="steps">
+            <summary data-i18n="btn_view_steps">View the steps</summary>
+            <ol class="step-list">
+              <li><span class="n">1</span><span data-i18n="aadhaar_step1">Go to myaadhaar.uidai.gov.in and click "Login" — Aadhaar doesn't use a separate signup, your Aadhaar number is your ID.</span></li>
+              <li><span class="n">2</span><span data-i18n="aadhaar_step2">Enter your 12-digit Aadhaar number (or Virtual ID) and the captcha shown.</span></li>
+              <li><span class="n">3</span><span data-i18n="aadhaar_step3">Click "Send OTP" and enter the OTP sent to your Aadhaar-linked mobile number.</span></li>
+              <li><span class="n">4</span><span data-i18n="aadhaar_step4">From the dashboard, download e-Aadhaar, order a PVC card, or update your address/mobile number.</span></li>
+              <li><span class="n">5</span><span data-i18n="aadhaar_step5">Never enrolled before, or lost your mobile link? Visit your nearest Aadhaar Seva Kendra — enrolment itself needs an in-person biometric visit.</span></li>
+            </ol>
+          </details>
+          <div class="p-actions">
+            <a class="btn-outline-sm" href="https://myaadhaar.uidai.gov.in/" target="_blank" rel="noopener">
+              <span data-i18n="btn_official">Official portal</span> ↗
+            </a>
+          </div>
+        </article>
+
+        <!-- PAN -->
+        <article class="portal-card">
+          <div class="portal-banner banner-pan">
+            <div class="banner-dots"></div>
+            <div class="banner-icon"><img src="Pan Card2.png" alt="PAN Card"></div>
+            <span class="banner-corner">✓</span>
+            <span class="banner-label" data-i18n="card_pan_name">PAN Card</span>
+          </div>
+          <div class="p-top">
+            <div class="portal-icon">
+              <svg viewBox="0 0 48 48"><rect x="6" y="12" width="36" height="24" rx="3"/><rect x="11" y="18" width="8" height="6" rx="1"/><line x1="23" y1="19" x2="37" y2="19"/><line x1="23" y1="24" x2="33" y2="24"/><line x1="11" y1="30" x2="37" y2="30"/></svg>
+            </div>
+            <span class="portal-token-num">PAN · 02</span>
+          </div>
+          <h3 data-i18n="card_pan_name">PAN Card</h3>
+          <p class="desc" data-i18n="card_pan_desc">Apply for a free instant e-PAN using Aadhaar OTP on the Income Tax portal — or a paid physical PAN via Protean (NSDL) / UTIITSL.</p>
+          <div class="stub-divider"></div>
+          <details class="steps">
+            <summary data-i18n="btn_view_steps">View the steps</summary>
+            <ol class="step-list">
+              <li><span class="n">1</span><span data-i18n="pan_step1">Go to incometax.gov.in and find "Instant e-PAN" under Quick Links (needs Aadhaar linked to an active mobile number).</span></li>
+              <li><span class="n">2</span><span data-i18n="pan_step2">Click "Get New e-PAN", enter your Aadhaar number, and accept the terms.</span></li>
+              <li><span class="n">3</span><span data-i18n="pan_step3">Verify the OTP sent to your Aadhaar-linked mobile and confirm your e-KYC details.</span></li>
+              <li><span class="n">4</span><span data-i18n="pan_step4">Your e-PAN (PDF with QR code) is generated in minutes — download it using your acknowledgment number.</span></li>
+              <li><span class="n">5</span><span data-i18n="pan_step5">Need a physical card, or don't have an Aadhaar-linked mobile? Apply instead via the Protean (NSDL) or UTIITSL portal (small fee applies).</span></li>
+            </ol>
+          </details>
+          <div class="p-actions">
+            <a class="btn-outline-sm" href="https://www.incometax.gov.in/" target="_blank" rel="noopener">
+              <span data-i18n="btn_official">Official portal</span> ↗
+            </a>
+          </div>
+        </article>
+
+        <!-- DIGILOCKER -->
+        <article class="portal-card">
+          <div class="portal-banner banner-digilocker">
+            <div class="banner-dots"></div>
+            <div class="banner-icon"><img src="DigiLocker2.png" alt="DigiLocker"></div>
+            <span class="banner-corner">✓</span>
+            <span class="banner-label" data-i18n="card_digilocker_name">DigiLocker</span>
+          </div>
+          <div class="p-top">
+            <div class="portal-icon">
+              <svg viewBox="0 0 48 48"><path d="M6 16v22a2 2 0 002 2h32a2 2 0 002-2V18a2 2 0 00-2-2H24l-4-4H8a2 2 0 00-2 2z"/><rect x="19" y="22" width="10" height="8" rx="1"/><path d="M21 22v-3a3 3 0 016 0v3"/></svg>
+            </div>
+            <span class="portal-token-num">DGL · 03</span>
+          </div>
+          <h3 data-i18n="card_digilocker_name">DigiLocker</h3>
+          <p class="desc" data-i18n="card_digilocker_desc">Create a free account, then fetch government-issued documents directly into your digital wallet — as legally valid as the paper original.</p>
+          <div class="stub-divider"></div>
+          <details class="steps">
+            <summary data-i18n="btn_view_steps">View the steps</summary>
+            <ol class="step-list">
+              <li><span class="n">1</span><span data-i18n="digilocker_step1">Visit digilocker.gov.in and click "Sign Up".</span></li>
+              <li><span class="n">2</span><span data-i18n="digilocker_step2">Enter your mobile number, set a 6-digit security PIN, and verify with the OTP.</span></li>
+              <li><span class="n">3</span><span data-i18n="digilocker_step3">Link your Aadhaar (optional, but unlocks auto-fetching) using Aadhaar OTP-based e-KYC.</span></li>
+              <li><span class="n">4</span><span data-i18n="digilocker_step4">Go to "Issued Documents", search the issuing department (e.g. UIDAI, CBSE, your RTO), and select the document.</span></li>
+              <li><span class="n">5</span><span data-i18n="digilocker_step5">The document is fetched into your locker instantly — share or download it any time, with a QR code for verification.</span></li>
+            </ol>
+          </details>
+          <div class="p-actions">
+            <a class="btn-outline-sm" href="https://www.digilocker.gov.in/" target="_blank" rel="noopener">
+              <span data-i18n="btn_official">Official portal</span> ↗
+            </a>
+          </div>
+        </article>
+
+        <!-- AYUSHMAN -->
+        <article class="portal-card">
+          <div class="portal-banner banner-ayushman">
+            <div class="banner-dots"></div>
+            <div class="banner-icon"><img src="Ayushman Bharat2.png" alt="Ayushman Bharat"></div>
+            <span class="banner-corner">✓</span>
+            <span class="banner-label" data-i18n="card_ayushman_name">Ayushman Bharat (PM-JAY)</span>
+          </div>
+          <div class="p-top">
+            <div class="portal-icon">
+              <svg viewBox="0 0 48 48"><path d="M24 6l14 5v11c0 10-6 17-14 20-8-3-14-10-14-20V11z"/><line x1="24" y1="18" x2="24" y2="30"/><line x1="18" y1="24" x2="30" y2="24"/></svg>
+            </div>
+            <span class="portal-token-num">AYU · 04</span>
+          </div>
+          <h3 data-i18n="card_ayushman_name">Ayushman Bharat (PM-JAY)</h3>
+          <p class="desc" data-i18n="card_ayushman_desc">Check your family's eligibility and create your Ayushman Card for cashless treatment up to ₹5 lakh a year at empanelled hospitals.</p>
+          <div class="stub-divider"></div>
+          <details class="steps">
+            <summary data-i18n="btn_view_steps">View the steps</summary>
+            <ol class="step-list">
+              <li><span class="n">1</span><span data-i18n="ayushman_step1">Go to beneficiary.nha.gov.in and choose "Beneficiary" login.</span></li>
+              <li><span class="n">2</span><span data-i18n="ayushman_step2">Enter your mobile number and captcha, then verify with the OTP.</span></li>
+              <li><span class="n">3</span><span data-i18n="ayushman_step3">Pick your state and scheme, then search using your Aadhaar, ration card, or family ID to check eligibility.</span></li>
+              <li><span class="n">4</span><span data-i18n="ayushman_step4">If eligible, complete e-KYC (Aadhaar OTP, or fingerprint at a nearby CSC/hospital) to confirm your identity.</span></li>
+              <li><span class="n">5</span><span data-i18n="ayushman_step5">Download your Ayushman Card with QR code — or get it made on the spot at any empanelled hospital's Ayushman counter with your Aadhaar.</span></li>
+            </ol>
+          </details>
+          <div class="p-actions">
+            <a class="btn-outline-sm" href="https://beneficiary.nha.gov.in/" target="_blank" rel="noopener">
+              <span data-i18n="btn_official">Official portal</span> ↗
+            </a>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- MORE PORTALS -->
+  <section id="more" style="background:var(--surface-alt);">
+    <div class="wrap">
+      <div class="section-head">
+        <div class="eyebrow" data-i18n="more_eyebrow">Beyond the basics</div>
+        <h2 data-i18n="more_title">More government digital services</h2>
+        <p data-i18n="more_sub">Detailed guides for these are coming soon. For now, here's what each one is for and the verified official link.</p>
+      </div>
+      <div class="more-grid">
+
+        <a class="more-card" href="https://voters.eci.gov.in/" target="_blank" rel="noopener">
+          <div class="more-icon"><svg viewBox="0 0 48 48"><rect x="8" y="18" width="32" height="20" rx="2"/><path d="M8 18l16-10 16 10"/><path d="M18 26l5 5 9-9"/></svg></div>
+          <div>
+            <div class="m-title" data-i18n="more_voter_name">Voter ID (ECI)</div>
+            <div class="m-desc" data-i18n="more_voter_desc">Register to vote, check your name on the roll, or download your e-EPIC.</div>
+            <span class="m-link">voters.eci.gov.in ↗</span>
+          </div>
+        </a>
+
+        <a class="more-card" href="https://www.passportindia.gov.in/" target="_blank" rel="noopener">
+          <div class="more-icon"><svg viewBox="0 0 48 48"><rect x="10" y="6" width="28" height="36" rx="3"/><circle cx="24" cy="20" r="5"/><line x1="18" y1="30" x2="30" y2="30"/><line x1="18" y1="34" x2="30" y2="34"/></svg></div>
+          <div>
+            <div class="m-title" data-i18n="more_passport_name">Passport Seva</div>
+            <div class="m-desc" data-i18n="more_passport_desc">Apply for a new passport, renewal, or police clearance certificate.</div>
+            <span class="m-link">passportindia.gov.in ↗</span>
+          </div>
+        </a>
+
+        <a class="more-card" href="https://www.epfindia.gov.in/" target="_blank" rel="noopener">
+          <div class="more-icon"><svg viewBox="0 0 48 48"><ellipse cx="24" cy="14" rx="14" ry="5"/><path d="M10 14v8c0 2.8 6.3 5 14 5s14-2.2 14-5v-8"/><path d="M10 22v8c0 2.8 6.3 5 14 5s14-2.2 14-5v-8"/><path d="M10 30v4c0 2.8 6.3 5 14 5s14-2.2 14-5v-4"/></svg></div>
+          <div>
+            <div class="m-title" data-i18n="more_epfo_name">EPFO Member Portal</div>
+            <div class="m-desc" data-i18n="more_epfo_desc">Check your PF balance, download your passbook, or file a claim.</div>
+            <span class="m-link">epfindia.gov.in ↗</span>
+          </div>
+        </a>
+
+        <a class="more-card" href="https://web.umang.gov.in/" target="_blank" rel="noopener">
+          <div class="more-icon"><svg viewBox="0 0 48 48"><rect x="8" y="8" width="12" height="12" rx="2"/><rect x="28" y="8" width="12" height="12" rx="2"/><rect x="8" y="28" width="12" height="12" rx="2"/><rect x="28" y="28" width="12" height="12" rx="2"/></svg></div>
+          <div>
+            <div class="m-title" data-i18n="more_umang_name">UMANG</div>
+            <div class="m-desc" data-i18n="more_umang_desc">One app for thousands of central and state government services.</div>
+            <span class="m-link">web.umang.gov.in ↗</span>
+          </div>
+        </a>
+
+        <a class="more-card" href="https://eshram.gov.in/" target="_blank" rel="noopener">
+          <div class="more-icon"><svg viewBox="0 0 48 48"><path d="M28 12l8 8-14 14-8-8z"/><path d="M14 34L8 40"/><path d="M24 16l4-4 4 4"/></svg></div>
+          <div>
+            <div class="m-title" data-i18n="more_eshram_name">e-Shram</div>
+            <div class="m-desc" data-i18n="more_eshram_desc">Register as an unorganised worker for social security benefits.</div>
+            <span class="m-link">eshram.gov.in ↗</span>
+          </div>
+        </a>
+
+        <a class="more-card" href="https://parivahan.gov.in/" target="_blank" rel="noopener">
+          <div class="more-icon"><svg viewBox="0 0 48 48"><circle cx="24" cy="24" r="16"/><circle cx="24" cy="24" r="4"/><line x1="24" y1="8" x2="24" y2="20"/><line x1="12" y1="32" x2="20" y2="27"/><line x1="36" y1="32" x2="28" y2="27"/></svg></div>
+          <div>
+            <div class="m-title" data-i18n="more_parivahan_name">Parivahan Sewa</div>
+            <div class="m-desc" data-i18n="more_parivahan_desc">Apply for or renew a driving licence and vehicle registration.</div>
+            <span class="m-link">parivahan.gov.in ↗</span>
+          </div>
+        </a>
+
+        <a class="more-card" href="https://scholarships.gov.in/" target="_blank" rel="noopener">
+          <div class="more-icon"><svg viewBox="0 0 48 48"><path d="M4 18l20-8 20 8-20 8z"/><path d="M14 22v8c0 3 5 6 10 6s10-3 10-6v-8"/><line x1="44" y1="18" x2="44" y2="30"/></svg></div>
+          <div>
+            <div class="m-title" data-i18n="more_scholarship_name">National Scholarship Portal</div>
+            <div class="m-desc" data-i18n="more_scholarship_desc">Apply for central and state education scholarships.</div>
+            <span class="m-link">scholarships.gov.in ↗</span>
+          </div>
+        </a>
+
+        <a class="more-card" href="https://www.myscheme.gov.in/" target="_blank" rel="noopener">
+          <div class="more-icon"><svg viewBox="0 0 48 48"><circle cx="24" cy="24" r="16"/><path d="M30 18l-4 10-10 4 4-10z"/></svg></div>
+          <div>
+            <div class="m-title" data-i18n="more_myscheme_name">MyScheme</div>
+            <div class="m-desc" data-i18n="more_myscheme_desc">Discover government welfare schemes you may be eligible for.</div>
+            <span class="m-link">myscheme.gov.in ↗</span>
+          </div>
+        </a>
+
+        <a class="more-card" href="https://www.incometax.gov.in/" target="_blank" rel="noopener">
+          <div class="more-icon"><svg viewBox="0 0 48 48"><rect x="8" y="8" width="32" height="32" rx="4"/><line x1="16" y1="18" x2="32" y2="18"/><line x1="16" y1="24" x2="32" y2="24"/><line x1="16" y1="30" x2="26" y2="30"/></svg></div>
+          <div>
+            <div class="m-title" data-i18n="more_itr_name">Income Tax e-Filing</div>
+            <div class="m-desc" data-i18n="more_itr_desc">File your income tax return and track your refund status.</div>
+            <span class="m-link">incometax.gov.in ↗</span>
+          </div>
+        </a>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="wrap">
+      <div class="about-box">
+        <div class="a-mark">i</div>
+        <div>
+          <h2 style="font-size:24px;" data-i18n="about_title">Why this site exists</h2>
+          <p data-i18n="about_body_1">Millions of citizens are entitled to services that now live only online — but the portals aren't always easy to navigate, and language is often a barrier. This is a student-built, independent awareness project that walks through the most-used government portals in plain steps, in English, Hindi, and Marathi.</p>
+          <p style="margin-top:10px;" data-i18n="about_body_2">We never ask for your Aadhaar, PAN, OTP, or any personal document — every "Official portal" button takes you to the real government website to complete the process yourself, safely.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- COMMENTS -->
+  <section id="comments">
+    <div class="wrap">
+      <div class="comments-box">
+        <div class="section-head" style="margin-bottom:0;">
+          <div class="eyebrow" data-i18n="comments_eyebrow">Feedback</div>
+          <h2 style="font-size:24px;" data-i18n="comments_title">Was this helpful?</h2>
+          <p data-i18n="comments_sub">Tell us which portal guide to build next, or where you got stuck.</p>
+        </div>
+
+        <form class="comment-form" id="commentForm">
+          <label for="cName" data-i18n="comments_name_label">Your name</label>
+          <input type="text" id="cName" data-i18n-placeholder="comments_name_placeholder" placeholder="e.g. Rahul" maxlength="60" required>
+          <label for="cText" data-i18n="comments_text_label">Your comment</label>
+          <textarea id="cText" data-i18n-placeholder="comments_text_placeholder" placeholder="Share a question, a suggestion, or which portal to cover next..." maxlength="500" required></textarea>
+          <div class="row2">
+            <span class="comment-note" id="commentNote" data-i18n="comments_shared_note">Comments are public and visible to every visitor of this site.</span>
+            <button type="submit" class="btn btn-primary" id="commentSubmitBtn" data-i18n="comments_submit">Post comment</button>
+          </div>
+          <div class="comment-error" id="commentError" data-i18n="comments_error">Couldn't save your comment. Please try again.</div>
+        </form>
+
+        <ul class="comment-list" id="commentList">
+          <li class="comment-empty" id="commentEmpty" data-i18n="comments_loading">Loading comments...</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div>
+      <div class="f-brand" data-i18n="brand_name">Digital Seva Sathi</div>
+      <p class="f-disclaimer" data-i18n="footer_disclaimer">This is an independent, student-built awareness resource. It is not affiliated with, endorsed by, or operated by the Government of India or any of its departments. All service links point to official government portals.</p>
+    </div>
+    <div class="f-meta">
+      <div data-i18n="footer_credit">Built as a public digital-literacy project</div>
+      <div data-i18n="footer_rights">Awareness content · Free to use</div>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  const translations = {
+    en: {
+      brand_name:"Digital Seva Sathi", brand_tag:"Citizen's guide to government portals",
+      nav_home:"Home", nav_featured:"Portals", nav_more:"All services", nav_about:"About", nav_comments:"Feedback",
+      hero_eyebrow:"Public digital-literacy initiative",
+      hero_title:"Government services shouldn't feel like a maze.",
+      hero_sub:"Step by step, in your own language, at your own pace — learn to use Aadhaar, PAN, DigiLocker, Ayushman Bharat and more official portals with confidence.",
+      hero_cta_primary:"Start learning", hero_cta_secondary:"See all services",
+      hero_token_num:"TOKEN · GEN-01", hero_token_title:"How this site helps",
+      hero_token_1:"Pick a portal you need — Aadhaar, PAN, DigiLocker, Ayushman Bharat, or others.",
+      hero_token_2:"Follow the numbered steps written in plain language.",
+      hero_token_3:"Click through to the real official portal — we never collect your documents or data.",
+      hero_token_4:"Get it done yourself, without depending on an agent or middleman.",
+      trust_strip:"Independent awareness initiative — not an official government website. Every link on this page leads to a verified official portal.",
+      featured_eyebrow:"Start here", featured_title:"Four portals every citizen should know",
+      featured_sub:"These are the services people ask about most. Tap \u201cSteps\u201d on any card to see the walkthrough, or go straight to the official site.",
+      card_aadhaar_name:"Aadhaar Services", card_aadhaar_desc:"Log in to the myAadhaar portal with your Aadhaar number and OTP to download e-Aadhaar, update your details, or order a PVC card.",
+      card_pan_name:"PAN Card", card_pan_desc:"Apply for a free instant e-PAN using Aadhaar OTP on the Income Tax portal — or a paid physical PAN via Protean (NSDL) / UTIITSL.",
+      card_digilocker_name:"DigiLocker", card_digilocker_desc:"Create a free account, then fetch government-issued documents directly into your digital wallet — as legally valid as the paper original.",
+      card_ayushman_name:"Ayushman Bharat (PM-JAY)", card_ayushman_desc:"Check your family's eligibility and create your Ayushman Card for cashless treatment up to \u20b95 lakh a year at empanelled hospitals.",
+      btn_official:"Official portal", btn_view_steps:"View the steps",
+      aadhaar_step1:"Go to myaadhaar.uidai.gov.in and click \u201cLogin\u201d — Aadhaar doesn't use a separate signup, your Aadhaar number is your ID.",
+      aadhaar_step2:"Enter your 12-digit Aadhaar number (or Virtual ID) and the captcha shown.",
+      aadhaar_step3:"Click \u201cSend OTP\u201d and enter the OTP sent to your Aadhaar-linked mobile number.",
+      aadhaar_step4:"From the dashboard, download e-Aadhaar, order a PVC card, or update your address/mobile number.",
+      aadhaar_step5:"Never enrolled before, or lost your mobile link? Visit your nearest Aadhaar Seva Kendra — enrolment itself needs an in-person biometric visit.",
+      pan_step1:"Go to incometax.gov.in and find \u201cInstant e-PAN\u201d under Quick Links (needs Aadhaar linked to an active mobile number).",
+      pan_step2:"Click \u201cGet New e-PAN\u201d, enter your Aadhaar number, and accept the terms.",
+      pan_step3:"Verify the OTP sent to your Aadhaar-linked mobile and confirm your e-KYC details.",
+      pan_step4:"Your e-PAN (PDF with QR code) is generated in minutes — download it using your acknowledgment number.",
+      pan_step5:"Need a physical card, or don't have an Aadhaar-linked mobile? Apply instead via the Protean (NSDL) or UTIITSL portal (small fee applies).",
+      digilocker_step1:"Visit digilocker.gov.in and click \u201cSign Up\u201d.",
+      digilocker_step2:"Enter your mobile number, set a 6-digit security PIN, and verify with the OTP.",
+      digilocker_step3:"Link your Aadhaar (optional, but unlocks auto-fetching) using Aadhaar OTP-based e-KYC.",
+      digilocker_step4:"Go to \u201cIssued Documents\u201d, search the issuing department (e.g. UIDAI, CBSE, your RTO), and select the document.",
+      digilocker_step5:"The document is fetched into your locker instantly — share or download it any time, with a QR code for verification.",
+      ayushman_step1:"Go to beneficiary.nha.gov.in and choose \u201cBeneficiary\u201d login.",
+      ayushman_step2:"Enter your mobile number and captcha, then verify with the OTP.",
+      ayushman_step3:"Pick your state and scheme, then search using your Aadhaar, ration card, or family ID to check eligibility.",
+      ayushman_step4:"If eligible, complete e-KYC (Aadhaar OTP, or fingerprint at a nearby CSC/hospital) to confirm your identity.",
+      ayushman_step5:"Download your Ayushman Card with QR code — or get it made on the spot at any empanelled hospital's Ayushman counter with your Aadhaar.",
+      more_eyebrow:"Beyond the basics", more_title:"More government digital services",
+      more_sub:"Detailed guides for these are coming soon. For now, here's what each one is for and the verified official link.",
+      more_voter_name:"Voter ID (ECI)", more_voter_desc:"Register to vote, check your name on the roll, or download your e-EPIC.",
+      more_passport_name:"Passport Seva", more_passport_desc:"Apply for a new passport, renewal, or police clearance certificate.",
+      more_epfo_name:"EPFO Member Portal", more_epfo_desc:"Check your PF balance, download your passbook, or file a claim.",
+      more_umang_name:"UMANG", more_umang_desc:"One app for thousands of central and state government services.",
+      more_eshram_name:"e-Shram", more_eshram_desc:"Register as an unorganised worker for social security benefits.",
+      more_parivahan_name:"Parivahan Sewa", more_parivahan_desc:"Apply for or renew a driving licence and vehicle registration.",
+      more_scholarship_name:"National Scholarship Portal", more_scholarship_desc:"Apply for central and state education scholarships.",
+      more_myscheme_name:"MyScheme", more_myscheme_desc:"Discover government welfare schemes you may be eligible for.",
+      more_itr_name:"Income Tax e-Filing", more_itr_desc:"File your income tax return and track your refund status.",
+      about_title:"Why this site exists",
+      about_body_1:"Millions of citizens are entitled to services that now live only online — but the portals aren't always easy to navigate, and language is often a barrier. This is a student-built, independent awareness project that walks through the most-used government portals in plain steps, in English, Hindi, and Marathi.",
+      about_body_2:"We never ask for your Aadhaar, PAN, OTP, or any personal document — every \u201cOfficial portal\u201d button takes you to the real government website to complete the process yourself, safely.",
+      comments_eyebrow:"Feedback", comments_title:"Was this helpful?",
+      comments_sub:"Tell us which portal guide to build next, or where you got stuck. Comments here are visible to every visitor.",
+      comments_name_label:"Your name", comments_name_placeholder:"e.g. Rahul",
+      comments_text_label:"Your comment", comments_text_placeholder:"Share a question, a suggestion, or which portal to cover next...",
+      comments_submit:"Post comment", comments_empty:"No comments yet — be the first to share feedback.",
+      comments_loading:"Loading comments...", comments_shared_note:"Comments are public and visible to every visitor of this site.",
+      comments_error:"Couldn't save your comment. Please try again.",
+      comments_local_note:"Storage isn't shared here, so comments are saved on this device/browser only.",
+      comments_session_note:"Storage isn't available here, so comments will only stay visible until you leave this page.",
+      footer_disclaimer:"This is an independent, student-built awareness resource. It is not affiliated with, endorsed by, or operated by the Government of India or any of its departments. All service links point to official government portals.",
+      footer_credit:"Built as a public digital-literacy project", footer_rights:"Awareness content · Free to use",
+      title_tag:"Digital Seva Sathi — Learn Government Portals"
+    },
+    hi: {
+      brand_name:"डिजिटल सेवा साथी", brand_tag:"सरकारी पोर्टल के लिए नागरिक मार्गदर्शक",
+      nav_home:"होम", nav_featured:"पोर्टल", nav_more:"सभी सेवाएं", nav_about:"परिचय", nav_comments:"प्रतिक्रिया",
+      hero_eyebrow:"सार्वजनिक डिजिटल-साक्षरता पहल",
+      hero_title:"सरकारी सेवाएं भूलभुलैया जैसी नहीं होनी चाहिए।",
+      hero_sub:"चरण-दर-चरण, अपनी भाषा में, अपनी गति से — आधार, पैन, डिजिलॉकर, आयुष्मान भारत और अन्य सरकारी पोर्टल का आत्मविश्वास से उपयोग करना सीखें।",
+      hero_cta_primary:"सीखना शुरू करें", hero_cta_secondary:"सभी सेवाएं देखें",
+      hero_token_num:"टोकन · जनरल-01", hero_token_title:"यह वेबसाइट कैसे मदद करती है",
+      hero_token_1:"अपनी जरूरत का पोर्टल चुनें — आधार, पैन, डिजिलॉकर, आयुष्मान भारत, या अन्य।",
+      hero_token_2:"सरल भाषा में लिखे गए क्रमांकित चरणों का पालन करें।",
+      hero_token_3:"असली आधिकारिक पोर्टल पर जाएं — हम कभी आपके दस्तावेज़ या डेटा नहीं लेते।",
+      hero_token_4:"बिना किसी एजेंट या बिचौलिए पर निर्भर हुए, खुद यह काम पूरा करें।",
+      trust_strip:"स्वतंत्र जागरूकता पहल — यह कोई आधिकारिक सरकारी वेबसाइट नहीं है। इस पेज का हर लिंक एक सत्यापित आधिकारिक पोर्टल तक ले जाता है।",
+      featured_eyebrow:"यहां से शुरू करें", featured_title:"चार पोर्टल जो हर नागरिक को जानने चाहिए",
+      featured_sub:"ये वे सेवाएं हैं जिनके बारे में लोग सबसे ज्यादा पूछते हैं। तरीका देखने के लिए किसी भी कार्ड पर \u201cचरण\u201d दबाएं, या सीधे आधिकारिक साइट पर जाएं।",
+      card_aadhaar_name:"आधार सेवाएं", card_aadhaar_desc:"e-आधार डाउनलोड करने, विवरण अपडेट करने या पीवीसी कार्ड मंगाने के लिए myAadhaar पोर्टल पर अपने आधार नंबर और OTP से लॉगिन करें।",
+      card_pan_name:"पैन कार्ड", card_pan_desc:"इनकम टैक्स पोर्टल पर आधार OTP से मुफ्त इंस्टेंट e-PAN के लिए आवेदन करें — या प्रोटीन (NSDL) / UTIITSL से भुगतान वाला फिजिकल पैन बनवाएं।",
+      card_digilocker_name:"डिजिलॉकर", card_digilocker_desc:"मुफ्त खाता बनाएं, फिर सरकार द्वारा जारी दस्तावेज़ सीधे अपने डिजिटल वॉलेट में लाएं — जो कागज़ी मूल जितना ही कानूनी रूप से मान्य है।",
+      card_ayushman_name:"आयुष्मान भारत (PM-JAY)", card_ayushman_desc:"अपने परिवार की पात्रता जांचें और सूचीबद्ध अस्पतालों में सालाना ₹5 लाख तक के कैशलेस इलाज के लिए आयुष्मान कार्ड बनवाएं।",
+      btn_official:"आधिकारिक पोर्टल", btn_view_steps:"चरण देखें",
+      aadhaar_step1:"myaadhaar.uidai.gov.in पर जाएं और \u201cLogin\u201d पर क्लिक करें — आधार में अलग से साइनअप नहीं होता, आपका आधार नंबर ही आपकी पहचान है।",
+      aadhaar_step2:"अपना 12 अंकों का आधार नंबर (या वर्चुअल आईडी) और दिखाया गया कैप्चा डालें।",
+      aadhaar_step3:"\u201cSend OTP\u201d पर क्लिक करें और आधार से जुड़े मोबाइल नंबर पर आए OTP को दर्ज करें।",
+      aadhaar_step4:"डैशबोर्ड से e-आधार डाउनलोड करें, पीवीसी कार्ड मंगाएं, या अपना पता/मोबाइल नंबर अपडेट करें।",
+      aadhaar_step5:"पहले कभी नामांकन नहीं हुआ, या मोबाइल लिंक खो गया? अपने नज़दीकी आधार सेवा केंद्र जाएं — नामांकन के लिए व्यक्तिगत रूप से बायोमेट्रिक देना ज़रूरी है।",
+      pan_step1:"incometax.gov.in पर जाएं और Quick Links में \u201cInstant e-PAN\u201d खोजें (आधार से जुड़ा सक्रिय मोबाइल नंबर ज़रूरी है)।",
+      pan_step2:"\u201cGet New e-PAN\u201d पर क्लिक करें, अपना आधार नंबर डालें, और नियम स्वीकार करें।",
+      pan_step3:"आधार से जुड़े मोबाइल पर आए OTP को सत्यापित करें और अपनी e-KYC जानकारी की पुष्टि करें।",
+      pan_step4:"आपका e-PAN (QR कोड सहित PDF) कुछ ही मिनटों में बन जाता है — अपने पावती नंबर से इसे डाउनलोड करें।",
+      pan_step5:"फिजिकल कार्ड चाहिए, या आधार से मोबाइल लिंक नहीं है? इसके बजाय Protean (NSDL) या UTIITSL पोर्टल से आवेदन करें (मामूली शुल्क लगता है)।",
+      digilocker_step1:"digilocker.gov.in पर जाएं और \u201cSign Up\u201d पर क्लिक करें।",
+      digilocker_step2:"अपना मोबाइल नंबर डालें, 6 अंकों का सुरक्षा पिन बनाएं, और OTP से सत्यापित करें।",
+      digilocker_step3:"आधार OTP आधारित e-KYC से अपना आधार लिंक करें (यह वैकल्पिक है, पर ऑटो-फेच अनलॉक करता है)।",
+      digilocker_step4:"\u201cIssued Documents\u201d में जाएं, जारी करने वाला विभाग खोजें (जैसे UIDAI, CBSE, आपका RTO), और दस्तावेज़ चुनें।",
+      digilocker_step5:"दस्तावेज़ तुरंत आपके लॉकर में आ जाता है — इसे कभी भी शेयर या डाउनलोड करें, सत्यापन के लिए QR कोड के साथ।",
+      ayushman_step1:"beneficiary.nha.gov.in पर जाएं और \u201cBeneficiary\u201d लॉगिन चुनें।",
+      ayushman_step2:"अपना मोबाइल नंबर और कैप्चा डालें, फिर OTP से सत्यापित करें।",
+      ayushman_step3:"अपना राज्य और योजना चुनें, फिर पात्रता जांचने के लिए आधार, राशन कार्ड, या फैमिली आईडी से खोजें।",
+      ayushman_step4:"पात्र होने पर, अपनी पहचान की पुष्टि के लिए e-KYC पूरा करें (आधार OTP, या नज़दीकी CSC/अस्पताल में फिंगरप्रिंट)।",
+      ayushman_step5:"QR कोड सहित अपना आयुष्मान कार्ड डाउनलोड करें — या आधार लेकर किसी भी सूचीबद्ध अस्पताल के आयुष्मान काउंटर पर तुरंत बनवाएं।",
+      more_eyebrow:"बुनियादी बातों से आगे", more_title:"अन्य सरकारी डिजिटल सेवाएं",
+      more_sub:"इनके विस्तृत गाइड जल्द ही आएंगे। फिलहाल, जानें हर सेवा किस काम की है और उसका सत्यापित आधिकारिक लिंक।",
+      more_voter_name:"वोटर आईडी (ECI)", more_voter_desc:"वोट के लिए पंजीकरण करें, सूची में नाम जांचें, या e-EPIC डाउनलोड करें।",
+      more_passport_name:"पासपोर्ट सेवा", more_passport_desc:"नया पासपोर्ट, नवीनीकरण, या पुलिस क्लीयरेंस प्रमाणपत्र के लिए आवेदन करें।",
+      more_epfo_name:"EPFO सदस्य पोर्टल", more_epfo_desc:"अपना पीएफ बैलेंस जांचें, पासबुक डाउनलोड करें, या क्लेम करें।",
+      more_umang_name:"UMANG", more_umang_desc:"हजारों केंद्र और राज्य सरकारी सेवाओं के लिए एक ऐप।",
+      more_eshram_name:"e-श्रम", more_eshram_desc:"सामाजिक सुरक्षा लाभ के लिए असंगठित श्रमिक के रूप में पंजीकरण करें।",
+      more_parivahan_name:"परिवहन सेवा", more_parivahan_desc:"ड्राइविंग लाइसेंस और वाहन पंजीकरण के लिए आवेदन या नवीनीकरण करें।",
+      more_scholarship_name:"राष्ट्रीय छात्रवृत्ति पोर्टल", more_scholarship_desc:"केंद्र और राज्य की शिक्षा छात्रवृत्तियों के लिए आवेदन करें।",
+      more_myscheme_name:"MyScheme", more_myscheme_desc:"अपने लिए उपयुक्त सरकारी कल्याण योजनाएं खोजें।",
+      more_itr_name:"इनकम टैक्स e-फाइलिंग", more_itr_desc:"अपना इनकम टैक्स रिटर्न भरें और रिफंड की स्थिति देखें।",
+      about_title:"यह वेबसाइट क्यों बनाई गई",
+      about_body_1:"लाखों नागरिक ऐसी सेवाओं के हकदार हैं जो अब सिर्फ ऑनलाइन उपलब्ध हैं — लेकिन पोर्टल हमेशा आसान नहीं होते, और भाषा अक्सर बाधा बनती है। यह एक विद्यार्थी द्वारा बनाई गई, स्वतंत्र जागरूकता परियोजना है जो सबसे ज्यादा इस्तेमाल होने वाले सरकारी पोर्टलों को अंग्रेज़ी, हिंदी और मराठी में सरल चरणों में समझाती है।",
+      about_body_2:"हम कभी आपका आधार, पैन, OTP या कोई भी व्यक्तिगत दस्तावेज़ नहीं मांगते — हर \u201cआधिकारिक पोर्टल\u201d बटन आपको असली सरकारी वेबसाइट पर ले जाता है, जहां आप सुरक्षित रूप से खुद प्रक्रिया पूरी करते हैं।",
+      comments_eyebrow:"प्रतिक्रिया", comments_title:"क्या यह मददगार रहा?",
+      comments_sub:"हमें बताएं कि आगे कौन-सा पोर्टल गाइड बनाएं, या आपको कहां दिक्कत आई। यहां की टिप्पणियां हर विज़िटर को दिखती हैं।",
+      comments_name_label:"आपका नाम", comments_name_placeholder:"जैसे राहुल",
+      comments_text_label:"आपकी टिप्पणी", comments_text_placeholder:"अपना सवाल, सुझाव या अगला कौन-सा पोर्टल कवर हो, यह लिखें...",
+      comments_submit:"टिप्पणी पोस्ट करें", comments_empty:"अभी तक कोई टिप्पणी नहीं — सबसे पहले आप अपनी राय दें।",
+      comments_loading:"टिप्पणियां लोड हो रही हैं...", comments_shared_note:"टिप्पणियां सार्वजनिक हैं और इस साइट के सभी विज़िटर को दिखाई देती हैं।",
+      comments_error:"आपकी टिप्पणी सेव नहीं हो सकी। कृपया दोबारा कोशिश करें।",
+      comments_local_note:"यहां साझा स्टोरेज उपलब्ध नहीं है, इसलिए टिप्पणियां सिर्फ इस डिवाइस/ब्राउज़र पर सेव होती हैं।",
+      comments_session_note:"यहां स्टोरेज उपलब्ध नहीं है, इसलिए टिप्पणियां तब तक ही दिखेंगी जब तक आप इस पेज पर हैं।",
+      footer_disclaimer:"यह एक स्वतंत्र, विद्यार्थी द्वारा बनाई गई जागरूकता सामग्री है। यह भारत सरकार या उसके किसी भी विभाग से संबद्ध, अनुमोदित या संचालित नहीं है। सभी सेवा लिंक आधिकारिक सरकारी पोर्टलों की ओर ले जाते हैं।",
+      footer_credit:"एक सार्वजनिक डिजिटल-साक्षरता परियोजना के रूप में बनाया गया", footer_rights:"जागरूकता सामग्री · उपयोग हेतु निःशुल्क",
+      title_tag:"डिजिटल सेवा साथी — सरकारी पोर्टल सीखें"
+    },
+    mr: {
+      brand_name:"डिजिटल सेवा साथी", brand_tag:"सरकारी पोर्टलसाठी नागरिकांचं मार्गदर्शक",
+      nav_home:"मुख्यपृष्ठ", nav_featured:"पोर्टल", nav_more:"सर्व सेवा", nav_about:"आमच्याविषयी", nav_comments:"अभिप्राय",
+      hero_eyebrow:"सार्वजनिक डिजिटल-साक्षरता उपक्रम",
+      hero_title:"सरकारी सेवा चक्रव्यूहासारख्या वाटू नयेत.",
+      hero_sub:"टप्प्याटप्प्याने, तुमच्या स्वतःच्या भाषेत, तुमच्या वेगाने — आधार, पॅन, डिजीलॉकर, आयुष्मान भारत आणि इतर अधिकृत पोर्टल आत्मविश्वासाने वापरायला शिका.",
+      hero_cta_primary:"शिकायला सुरुवात करा", hero_cta_secondary:"सर्व सेवा पहा",
+      hero_token_num:"टोकन · जनरल-01", hero_token_title:"ही वेबसाइट कशी मदत करते",
+      hero_token_1:"तुम्हाला हवा असलेला पोर्टल निवडा — आधार, पॅन, डिजीलॉकर, आयुष्मान भारत किंवा इतर.",
+      hero_token_2:"सोप्या भाषेत लिहिलेल्या क्रमांकित टप्प्यांचं अनुसरण करा.",
+      hero_token_3:"खऱ्या अधिकृत पोर्टलवर जा — आम्ही कधीच तुमची कागदपत्रं किंवा डेटा घेत नाही.",
+      hero_token_4:"एजंट किंवा मध्यस्थावर अवलंबून न राहता, हे काम स्वतः पूर्ण करा.",
+      trust_strip:"स्वतंत्र जनजागृती उपक्रम — ही अधिकृत सरकारी वेबसाइट नाही. या पानावरील प्रत्येक लिंक सत्यापित अधिकृत पोर्टलकडे नेते.",
+      featured_eyebrow:"इथून सुरुवात करा", featured_title:"प्रत्येक नागरिकाला माहित असावेत असे चार पोर्टल",
+      featured_sub:"लोक सर्वाधिक विचारतात अशा या सेवा आहेत. पद्धत पाहण्यासाठी कोणत्याही कार्डवरील \u201cटप्पे\u201d दाबा, किंवा थेट अधिकृत साइटवर जा.",
+      card_aadhaar_name:"आधार सेवा", card_aadhaar_desc:"e-आधार डाउनलोड करण्यासाठी, तपशील अपडेट करण्यासाठी किंवा पीव्हीसी कार्ड मागवण्यासाठी myAadhaar पोर्टलवर आधार क्रमांक आणि OTP ने लॉगिन करा.",
+      card_pan_name:"पॅन कार्ड", card_pan_desc:"इन्कम टॅक्स पोर्टलवर आधार OTP द्वारे मोफत इन्स्टंट e-PAN साठी अर्ज करा — किंवा Protean (NSDL) / UTIITSL कडून सशुल्क फिजिकल पॅन बनवा.",
+      card_digilocker_name:"डिजीलॉकर", card_digilocker_desc:"मोफत खातं तयार करा, नंतर सरकारने जारी केलेली कागदपत्रं थेट तुमच्या डिजिटल वॉलेटमध्ये आणा — जी कागदी मूळ प्रतीइतकीच कायदेशीर वैध असतात.",
+      card_ayushman_name:"आयुष्मान भारत (PM-JAY)", card_ayushman_desc:"तुमच्या कुटुंबाची पात्रता तपासा आणि सूचीबद्ध रुग्णालयांमध्ये वर्षाला ₹5 लाखांपर्यंत कॅशलेस उपचारासाठी आयुष्मान कार्ड तयार करा.",
+      btn_official:"अधिकृत पोर्टल", btn_view_steps:"टप्पे पहा",
+      aadhaar_step1:"myaadhaar.uidai.gov.in वर जा आणि \u201cLogin\u201d वर क्लिक करा — आधारसाठी वेगळं साइनअप नसतं, तुमचा आधार क्रमांक हीच तुमची ओळख आहे.",
+      aadhaar_step2:"तुमचा 12 अंकी आधार क्रमांक (किंवा व्हर्च्युअल आयडी) आणि दाखवलेला कॅप्चा टाका.",
+      aadhaar_step3:"\u201cSend OTP\u201d वर क्लिक करा आणि आधारशी जोडलेल्या मोबाइल क्रमांकावर आलेला OTP टाका.",
+      aadhaar_step4:"डॅशबोर्डवरून e-आधार डाउनलोड करा, पीव्हीसी कार्ड मागवा, किंवा तुमचा पत्ता/मोबाइल क्रमांक अपडेट करा.",
+      aadhaar_step5:"आधी कधीच नोंदणी झाली नाही, किंवा मोबाइल लिंक हरवली? तुमच्या जवळच्या आधार सेवा केंद्रात जा — नोंदणीसाठी प्रत्यक्ष बायोमेट्रिक भेट आवश्यक असते.",
+      pan_step1:"incometax.gov.in वर जा आणि Quick Links मध्ये \u201cInstant e-PAN\u201d शोधा (आधारशी जोडलेला सक्रिय मोबाइल क्रमांक आवश्यक).",
+      pan_step2:"\u201cGet New e-PAN\u201d वर क्लिक करा, आधार क्रमांक टाका, आणि अटी स्वीकारा.",
+      pan_step3:"आधारशी जोडलेल्या मोबाइलवर आलेला OTP पडताळा आणि तुमचे e-KYC तपशील निश्चित करा.",
+      pan_step4:"तुमचा e-PAN (QR कोडसह PDF) काही मिनिटांत तयार होतो — पोचपावती क्रमांकाने तो डाउनलोड करा.",
+      pan_step5:"फिजिकल कार्ड हवं आहे, किंवा आधारशी मोबाइल जोडलेला नाही? त्याऐवजी Protean (NSDL) किंवा UTIITSL पोर्टलवरून अर्ज करा (थोडं शुल्क लागतं).",
+      digilocker_step1:"digilocker.gov.in वर जा आणि \u201cSign Up\u201d वर क्लिक करा.",
+      digilocker_step2:"मोबाइल क्रमांक टाका, 6 अंकी सुरक्षा पिन तयार करा, आणि OTP ने पडताळणी करा.",
+      digilocker_step3:"आधार OTP आधारित e-KYC ने तुमचा आधार लिंक करा (हे ऐच्छिक आहे, पण ऑटो-फेच अनलॉक करतं).",
+      digilocker_step4:"\u201cIssued Documents\u201d मध्ये जा, जारी करणारा विभाग शोधा (उदा. UIDAI, CBSE, तुमचं RTO), आणि कागदपत्र निवडा.",
+      digilocker_step5:"कागदपत्र लगेच तुमच्या लॉकरमध्ये येतं — ते केव्हाही शेअर किंवा डाउनलोड करा, पडताळणीसाठी QR कोडसह.",
+      ayushman_step1:"beneficiary.nha.gov.in वर जा आणि \u201cBeneficiary\u201d लॉगिन निवडा.",
+      ayushman_step2:"मोबाइल क्रमांक आणि कॅप्चा टाका, नंतर OTP ने पडताळणी करा.",
+      ayushman_step3:"तुमचं राज्य आणि योजना निवडा, नंतर पात्रता तपासण्यासाठी आधार, रेशन कार्ड, किंवा फॅमिली आयडीने शोधा.",
+      ayushman_step4:"पात्र असल्यास, ओळख निश्चित करण्यासाठी e-KYC पूर्ण करा (आधार OTP, किंवा जवळच्या CSC/रुग्णालयात फिंगरप्रिंट).",
+      ayushman_step5:"QR कोडसह तुमचं आयुष्मान कार्ड डाउनलोड करा — किंवा आधार घेऊन कोणत्याही सूचीबद्ध रुग्णालयाच्या आयुष्मान काउंटरवर लगेच बनवा.",
+      more_eyebrow:"मूलभूत गोष्टींपलीकडे", more_title:"आणखी सरकारी डिजिटल सेवा",
+      more_sub:"यांचे सविस्तर मार्गदर्शक लवकरच येतील. सध्या, प्रत्येक सेवा कशासाठी आहे आणि तिची सत्यापित अधिकृत लिंक इथे पहा.",
+      more_voter_name:"मतदार ओळखपत्र (ECI)", more_voter_desc:"मतदानासाठी नोंदणी करा, यादीत नाव तपासा, किंवा e-EPIC डाउनलोड करा.",
+      more_passport_name:"पासपोर्ट सेवा", more_passport_desc:"नवीन पासपोर्ट, नूतनीकरण, किंवा पोलीस क्लिअरन्स प्रमाणपत्रासाठी अर्ज करा.",
+      more_epfo_name:"EPFO सदस्य पोर्टल", more_epfo_desc:"तुमची PF शिल्लक तपासा, पासबुक डाउनलोड करा, किंवा क्लेम करा.",
+      more_umang_name:"UMANG", more_umang_desc:"हजारो केंद्र आणि राज्य सरकारी सेवांसाठी एकच अ‍ॅप.",
+      more_eshram_name:"e-श्रम", more_eshram_desc:"सामाजिक सुरक्षा लाभांसाठी असंघटित कामगार म्हणून नोंदणी करा.",
+      more_parivahan_name:"परिवहन सेवा", more_parivahan_desc:"वाहन चालक परवाना आणि वाहन नोंदणीसाठी अर्ज किंवा नूतनीकरण करा.",
+      more_scholarship_name:"राष्ट्रीय शिष्यवृत्ती पोर्टल", more_scholarship_desc:"केंद्र आणि राज्याच्या शैक्षणिक शिष्यवृत्तींसाठी अर्ज करा.",
+      more_myscheme_name:"MyScheme", more_myscheme_desc:"तुम्हाला लागू होणाऱ्या सरकारी कल्याणकारी योजना शोधा.",
+      more_itr_name:"इन्कम टॅक्स e-फायलिंग", more_itr_desc:"तुमचं इन्कम टॅक्स रिटर्न भरा आणि परताव्याची स्थिती पहा.",
+      about_title:"ही वेबसाइट का बनवली",
+      about_body_1:"लाखो नागरिक अशा सेवांसाठी पात्र आहेत ज्या आता फक्त ऑनलाइन उपलब्ध आहेत — पण पोर्टल नेहमीच सोपे नसतात, आणि भाषा अनेकदा अडथळा ठरते. हा विद्यार्थ्याने तयार केलेला, स्वतंत्र जनजागृती प्रकल्प आहे जो सर्वाधिक वापरल्या जाणाऱ्या सरकारी पोर्टलचे सोप्या टप्प्यांत, इंग्रजी, हिंदी आणि मराठीत स्पष्टीकरण देतो.",
+      about_body_2:"आम्ही कधीच तुमचा आधार, पॅन, OTP किंवा कोणतंही वैयक्तिक कागदपत्र मागत नाही — प्रत्येक \u201cअधिकृत पोर्टल\u201d बटण तुम्हाला खऱ्या सरकारी वेबसाइटवर घेऊन जातं, जिथे तुम्ही सुरक्षितपणे स्वतः प्रक्रिया पूर्ण करता.",
+      comments_eyebrow:"अभिप्राय", comments_title:"हे उपयुक्त वाटलं का?",
+      comments_sub:"पुढे कोणते पोर्टल मार्गदर्शक बनवायचे किंवा तुम्हाला कुठे अडचण आली ते आम्हाला सांगा. इथल्या प्रतिक्रिया सर्व भेट देणाऱ्यांना दिसतात.",
+      comments_name_label:"तुमचं नाव", comments_name_placeholder:"उदा. राहुल",
+      comments_text_label:"तुमची प्रतिक्रिया", comments_text_placeholder:"प्रश्न, सूचना किंवा पुढे कोणता पोर्टल घ्यावा ते लिहा...",
+      comments_submit:"प्रतिक्रिया पोस्ट करा", comments_empty:"अजून कोणतीही प्रतिक्रिया नाही — सर्वात आधी तुम्ही अभिप्राय द्या.",
+      comments_loading:"प्रतिक्रिया लोड होत आहेत...", comments_shared_note:"प्रतिक्रिया सार्वजनिक असतात आणि या साइटला भेट देणाऱ्या सर्वांना दिसतात.",
+      comments_error:"तुमची प्रतिक्रिया सेव्ह होऊ शकली नाही. कृपया पुन्हा प्रयत्न करा.",
+      comments_local_note:"इथे शेअर्ड स्टोरेज उपलब्ध नाही, त्यामुळे प्रतिक्रिया फक्त या डिव्हाइस/ब्राउझरवर सेव्ह होतात.",
+      comments_session_note:"इथे स्टोरेज उपलब्ध नाही, त्यामुळे तुम्ही हे पान सोडेपर्यंतच प्रतिक्रिया दिसतील.",
+      footer_disclaimer:"हा एक स्वतंत्र, विद्यार्थ्याने तयार केलेला जनजागृती स्रोत आहे. तो भारत सरकार किंवा त्याच्या कोणत्याही विभागाशी संलग्न, मान्यताप्राप्त किंवा संचालित नाही. सर्व सेवा लिंक अधिकृत सरकारी पोर्टलकडे नेतात.",
+      footer_credit:"सार्वजनिक डिजिटल-साक्षरता प्रकल्प म्हणून तयार केलं", footer_rights:"जनजागृती मजकूर · वापरण्यास मोफत",
+      title_tag:"डिजिटल सेवा साथी — सरकारी पोर्टल शिका"
+    }
+  };
+
+  const html = document.documentElement;
+
+  function applyLang(lang){
+    html.setAttribute('data-lang', lang);
+    document.title = translations[lang].title_tag;
+    document.querySelectorAll('[data-i18n]').forEach(el=>{
+      const key = el.getAttribute('data-i18n');
+      if(translations[lang][key] !== undefined) el.textContent = translations[lang][key];
+    });
+    document.querySelectorAll('[data-i18n-placeholder]').forEach(el=>{
+      const key = el.getAttribute('data-i18n-placeholder');
+      if(translations[lang][key] !== undefined) el.setAttribute('placeholder', translations[lang][key]);
+    });
+    document.querySelectorAll('[data-lang-btn]').forEach(b=>{
+      b.classList.toggle('active', b.getAttribute('data-lang-btn')===lang);
+    });
+  }
+
+  document.querySelectorAll('[data-lang-btn]').forEach(btn=>{
+    btn.addEventListener('click', ()=>{
+      applyLang(btn.getAttribute('data-lang-btn'));
+      if(typeof updateStorageNote === 'function') updateStorageNote();
+    });
+  });
+
+  // Theme toggle (in-memory only; no storage APIs per platform rules)
+  const themeToggle = document.getElementById('themeToggle');
+  themeToggle.addEventListener('click', ()=>{
+    const current = html.getAttribute('data-theme');
+    html.setAttribute('data-theme', current === 'dark' ? 'light' : 'dark');
+  });
+  // respect system preference on first load
+  if(window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches){
+    html.setAttribute('data-theme','dark');
+  }
+
+  applyLang('en');
+
+  // ---------- COMMENTS (tiered storage: shared window.storage -> localStorage -> in-memory) ----------
+  const form = document.getElementById('commentForm');
+  const nameInput = document.getElementById('cName');
+  const textInput = document.getElementById('cText');
+  const list = document.getElementById('commentList');
+  const errorEl = document.getElementById('commentError');
+  const noteEl = document.getElementById('commentNote');
+  const submitBtn = document.getElementById('commentSubmitBtn');
+  const STORAGE_KEY = 'digital-seva-sathi:comments';
+  let memoryComments = [];
+
+  // Detect which storage tier is actually usable in this environment.
+  // window.storage only exists inside Claude's own artifact preview and is shared
+  // across everyone viewing the artifact there. Outside that preview (e.g. the file
+  // downloaded and opened directly, or hosted on its own domain) we fall back to
+  // localStorage (saved per browser/device), and finally to plain in-memory storage
+  // if even that is blocked (e.g. strict private-browsing mode).
+  let storageMode = 'none';
+  function detectStorage(){
+    if(typeof window !== 'undefined' && window.storage && typeof window.storage.set === 'function' && typeof window.storage.get === 'function'){
+      storageMode = 'shared';
+      return;
+    }
+    try{
+      const t = '__seva_test__';
+      localStorage.setItem(t,'1');
+      localStorage.removeItem(t);
+      storageMode = 'local';
+    }catch(e){
+      storageMode = 'none';
+    }
+  }
+  detectStorage();
+
+  function currentLang(){ return html.getAttribute('data-lang') || 'en'; }
+
+  function updateStorageNote(){
+    const t = translations[currentLang()];
+    if(storageMode === 'shared') noteEl.textContent = t.comments_shared_note;
+    else if(storageMode === 'local') noteEl.textContent = t.comments_local_note;
+    else noteEl.textContent = t.comments_session_note;
+  }
+
+  function renderComments(items){
+    list.innerHTML = '';
+    if(!items || items.length === 0){
+      const li = document.createElement('li');
+      li.className = 'comment-empty';
+      li.id = 'commentEmpty';
+      li.textContent = translations[currentLang()].comments_empty;
+      list.appendChild(li);
+      return;
+    }
+    items.slice().reverse().forEach(c=>{
+      const li = document.createElement('li');
+      li.className = 'comment-item';
+      const head = document.createElement('div');
+      head.className = 'c-head';
+      const nm = document.createElement('span');
+      nm.className = 'c-name';
+      nm.textContent = c.name;
+      const dt = document.createElement('span');
+      dt.className = 'c-date';
+      dt.textContent = c.date || '';
+      head.appendChild(nm); head.appendChild(dt);
+      const txt = document.createElement('div');
+      txt.className = 'c-text';
+      txt.textContent = c.text;
+      li.appendChild(head); li.appendChild(txt);
+      list.appendChild(li);
+    });
+  }
+
+  async function getAllComments(){
+    if(storageMode === 'shared'){
+      try{
+        const res = await window.storage.get(STORAGE_KEY, true);
+        return res && res.value ? JSON.parse(res.value) : [];
+      }catch(e){ return []; } // key not created yet
+    }
+    if(storageMode === 'local'){
+      try{
+        const raw = localStorage.getItem(STORAGE_KEY);
+        return raw ? JSON.parse(raw) : [];
+      }catch(e){ return []; }
+    }
+    return memoryComments;
+  }
+
+  async function persistAllComments(items){
+    if(storageMode === 'shared'){
+      await window.storage.set(STORAGE_KEY, JSON.stringify(items), true);
+    }else if(storageMode === 'local'){
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(items));
+    }else{
+      memoryComments = items;
+    }
+  }
+
+  async function loadComments(){
+    const items = await getAllComments();
+    renderComments(items);
+  }
+
+  form.addEventListener('submit', async (e)=>{
+    e.preventDefault();
+    errorEl.style.display = 'none';
+    const name = nameInput.value.trim();
+    const text = textInput.value.trim();
+    if(!name || !text) return;
+    submitBtn.disabled = true;
+    try{
+      const entry = { name, text, date: new Date().toLocaleDateString(undefined,{year:'numeric',month:'short',day:'numeric'}) };
+      const items = await getAllComments();
+      items.push(entry);
+      await persistAllComments(items);
+      renderComments(items);
+      form.reset();
+    }catch(err){
+      errorEl.style.display = 'block';
+    }finally{
+      submitBtn.disabled = false;
+    }
+  });
+
+  updateStorageNote();
+  loadComments();
+})();
+</script>
+
+</body>
+</html>
