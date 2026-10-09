@@ -106,6 +106,7 @@
   .theme-toggle svg{width:18px; height:18px;}
   .icon-sun{display:none;} html[data-theme="dark"] .icon-sun{display:block;} html[data-theme="dark"] .icon-moon{display:none;}
   .menu-toggle{display:none; border:1px solid var(--border); background:var(--surface); border-radius:8px; width:38px; height:38px; align-items:center; justify-content:center; cursor:pointer;}
+  .menu-toggle svg{width:20px; height:20px; stroke:currentColor; fill:none; stroke-width:2; stroke-linecap:round;}
 
   /* ---------- HERO ---------- */
   .hero{padding:64px 0 40px;}
@@ -128,6 +129,9 @@
     color:var(--primary-soft); background:var(--surface-alt);
   }
   .btn-outline-sm:hover{border-color:var(--primary-soft);}
+  .btn:focus-visible,.btn-outline-sm:focus-visible,button:focus-visible,a:focus-visible,summary:focus-visible{
+    outline:3px solid var(--accent-saffron); outline-offset:3px;
+  }
 
   .hero-token{
     background:var(--surface); border:1px solid var(--border); border-radius:16px; padding:26px;
@@ -199,6 +203,10 @@
     display:flex; align-items:center; justify-content:center; padding:10px; box-shadow:0 6px 18px -6px rgba(0,0,0,.35);
   }
   .portal-banner .banner-icon img{width:100%; height:100%; object-fit:contain;}
+  .portal-banner .banner-icon.wide-logo{width:min(260px,82%); height:76px; padding:10px 16px;}
+  .portal-banner .banner-icon.wide-logo img{width:100%; height:auto; max-height:100%; object-fit:contain;}
+  .banner-aadhaar .banner-icon.wide-logo{background:#12314F;}
+  .banner-pan .banner-icon.wide-logo{background:#FFFFFF;}
   .portal-banner .banner-label{
     position:absolute; left:16px; bottom:12px; font-family:var(--font-mono); font-size:10.5px; font-weight:600;
     letter-spacing:.08em; text-transform:uppercase; color:rgba(244,241,232,.85);
@@ -212,11 +220,27 @@
   .banner-pan{background:linear-gradient(135deg,#8A5A1D,#E0972E);}
   .banner-digilocker{background:linear-gradient(135deg,#173C57,#3E7CA6);}
   .banner-ayushman{background:linear-gradient(135deg,#124A34,#218F63);}
+  .service-card .portal-banner{background:linear-gradient(135deg,var(--primary),var(--primary-soft));}
+  .service-card .banner-icon{width:min(190px,72%); height:68px; padding:7px 12px;}
+  .service-card .banner-icon img{max-width:100%; max-height:100%; object-fit:contain;}
 
   .portal-token-num{font-family:var(--font-mono); font-size:11.5px; color:var(--accent-saffron); font-weight:600; letter-spacing:.03em;}
   .portal-card h3{font-size:21px; margin-top:16px;}
   .portal-card p.desc{margin-top:8px; font-size:14.5px;}
   .portal-card .p-actions{display:flex; gap:10px; margin-top:18px; flex-wrap:wrap;}
+  .portal-card .guide-trigger{font-family:var(--font-mono); font-size:12.5px; font-weight:600; padding:9px 14px; border-radius:7px; border:1px solid var(--border); color:var(--primary-soft); background:var(--surface-alt); cursor:pointer;}
+  .portal-card .guide-trigger:hover{border-color:var(--primary-soft);}
+  .portal-card.service-card{padding:20px;}
+  .service-card .portal-banner{width:calc(100% + 40px); margin:-20px -20px 18px; height:128px;}
+  .service-card .banner-icon{width:70px; height:70px;}
+  .service-card .banner-icon.wide-logo{width:min(260px,82%); height:76px; padding:10px 16px; background:#FFFFFF;}
+  .service-card .banner-icon.wide-logo img{width:auto; height:auto; max-width:100%; max-height:100%; object-fit:contain;}
+  .service-card h3{font-size:18px; margin-top:0;}
+  .service-card p.desc{font-size:13.5px;}
+  .portal-banner .banner-icon img{max-width:100%; max-height:100%; object-fit:contain;}
+  .service-card details.steps{margin-top:2px;}
+  .service-card .step-list{gap:10px;}
+  .logo-fallback{font-family:var(--font-mono); font-size:14px; font-weight:700; color:var(--primary); text-align:center;}
 
   .stub-divider{position:relative; border-top:2px dashed var(--border); margin:20px 2px 16px;}
   .stub-divider::before,.stub-divider::after{
@@ -242,20 +266,7 @@
   }
 
   /* ---------- MORE PORTALS ---------- */
-  .more-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:16px;}
-  .more-card{
-    background:var(--surface); border:1px solid var(--border); border-radius:12px; padding:18px;
-    display:flex; gap:12px; align-items:flex-start; text-decoration:none; transition:border-color .15s, transform .12s;
-  }
-  .more-card:hover{border-color:var(--primary-soft); transform:translateY(-2px);}
-  .more-icon{
-    width:38px; height:38px; border-radius:9px; background:var(--surface-alt); flex:none;
-    display:flex; align-items:center; justify-content:center; color:var(--accent-green);
-  }
-  .more-icon svg{width:20px; height:20px; stroke:currentColor; fill:none; stroke-width:2; stroke-linecap:round; stroke-linejoin:round;}
-  .more-card .m-title{font-weight:700; font-size:14.5px; color:var(--ink); font-family:var(--font-body);}
-  .more-card .m-desc{font-size:12.5px; margin-top:4px; color:var(--ink-soft); line-height:1.45;}
-  .more-card .m-link{font-family:var(--font-mono); font-size:11px; color:var(--primary-soft); margin-top:6px; display:inline-block;}
+  .more-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:20px;}
 
   /* ---------- ABOUT ---------- */
   .about-box{
@@ -268,28 +279,26 @@
   }
   .about-box p{font-size:14.5px; margin-top:10px;}
 
-  /* ---------- COMMENTS ---------- */
-  .comments-box{
-    background:var(--surface); border:1px solid var(--border); border-radius:16px; padding:30px;
-  }
-  .comment-form{display:grid; grid-template-columns:1fr; gap:12px; margin-top:20px;}
-  .comment-form input, .comment-form textarea{
-    font-family:var(--font-body); font-size:14.5px; padding:12px 14px; border-radius:9px;
-    border:1px solid var(--border); background:var(--bg); color:var(--ink); resize:vertical;
-  }
-  .comment-form textarea{min-height:84px;}
-  .comment-form label{font-size:12.5px; font-weight:600; color:var(--ink-soft); font-family:var(--font-mono); margin-bottom:-4px;}
-  .comment-form .row2{display:flex; justify-content:space-between; align-items:center; gap:12px; flex-wrap:wrap;}
-  .comment-note{font-size:12px; color:var(--ink-soft); font-family:var(--font-mono);}
-  .comment-list{list-style:none; margin:26px 0 0; padding:0; display:flex; flex-direction:column; gap:14px;}
-  .comment-item{border-top:1px dashed var(--border); padding-top:14px;}
-  .comment-item .c-head{display:flex; justify-content:space-between; gap:10px; align-items:baseline;}
-  .comment-item .c-name{font-weight:700; font-size:14px;}
-  .comment-item .c-date{font-family:var(--font-mono); font-size:11px; color:var(--ink-soft);}
-  .comment-item .c-text{font-size:14px; margin-top:6px; color:var(--ink-soft);}
-  .comment-empty{font-size:14px; color:var(--ink-soft); font-style:italic;}
-  .comment-error{font-size:13px; color:var(--accent-red); margin-top:8px; display:none;}
-  .storage-note{font-size:11.5px; color:var(--ink-soft); font-family:var(--font-mono); margin-top:10px;}
+  /* ---------- PORTAL GUIDE ---------- */
+  .guide-dialog{width:min(760px,calc(100% - 28px)); max-height:min(88vh,900px); padding:0; border:1px solid var(--border); border-radius:16px; background:var(--surface); color:var(--ink); box-shadow:0 24px 80px rgba(0,0,0,.35);}
+  .guide-dialog::backdrop{background:rgba(5,15,27,.68); backdrop-filter:blur(3px);}
+  .guide-dialog-head{position:sticky; top:0; z-index:1; display:flex; align-items:center; justify-content:space-between; gap:16px; padding:22px 26px; background:var(--surface); border-bottom:1px solid var(--border);}
+  .guide-dialog-head .eyebrow{margin-bottom:6px;}
+  .guide-dialog-head h2{font-size:26px;}
+  .guide-close{border:1px solid var(--border); border-radius:8px; background:var(--surface-alt); color:var(--ink); padding:9px 12px; font:600 13px var(--font-body); cursor:pointer; flex:none;}
+  .guide-body{padding:24px 26px 12px;}
+  .guide-intro{font-size:15px; margin-bottom:18px;}
+  .guide-note{padding:13px 15px; border-left:3px solid var(--accent-saffron); background:var(--surface-alt); border-radius:0 8px 8px 0; font-size:13.5px; margin-bottom:22px;}
+  .guide-section{padding:16px 0; border-top:1px dashed var(--border);}
+  .guide-section h3{font-size:18px; margin-bottom:10px;}
+  .guide-section p,.guide-section li{font-size:14px; line-height:1.65; color:var(--ink-soft);}
+  .guide-section ul,.guide-section ol{padding-left:22px; margin:0; display:grid; gap:7px;}
+  .guide-section a{color:var(--primary-soft); overflow-wrap:anywhere;}
+  .guide-faq{border-top:1px dashed var(--border); padding:11px 0;}
+  .guide-faq summary{cursor:pointer; font-weight:600; font-size:14px;}
+  .guide-faq p{margin-top:8px;}
+  .guide-disclaimer{font-size:12px; color:var(--ink-soft); font-family:var(--font-mono);}
+  .guide-dialog-foot{padding:16px 26px 24px; border-top:1px solid var(--border); display:flex; justify-content:space-between; gap:12px; flex-wrap:wrap;}
 
   /* ---------- FOOTER ---------- */
   footer{border-top:1px solid var(--border); padding:36px 0 40px;}
@@ -303,13 +312,35 @@
     .portal-grid{grid-template-columns:1fr;}
     .more-grid{grid-template-columns:1fr 1fr;}
     nav.main-nav{display:none;}
+    .site-header .wrap{position:relative;}
+    .menu-toggle{display:flex; flex:none;}
+    nav.main-nav.mobile-open{
+      display:flex; position:absolute; top:calc(100% + 1px); left:16px; right:16px; z-index:2;
+      flex-direction:column; gap:0; padding:8px; border:1px solid var(--border); border-radius:10px;
+      background:var(--surface); box-shadow:var(--shadow);
+    }
+    nav.main-nav.mobile-open a{padding:11px 12px; border-radius:6px;}
+    nav.main-nav.mobile-open a:hover{background:var(--surface-alt);}
     .about-box{grid-template-columns:1fr;}
     footer .wrap{flex-direction:column;}
     footer .f-meta{text-align:left;}
   }
   @media (max-width:560px){
+    .site-header .wrap{padding-left:14px; padding-right:14px; gap:8px;}
+    .brand{gap:8px; min-width:0;}
+    .brand-mark{width:36px; height:36px;}
+    .brand-text b{font-size:13px; white-space:nowrap;}
+    .brand-text span{display:none;}
+    .controls{gap:5px;}
+    .lang-switch button{padding:5px 6px; font-size:11.5px;}
+    .theme-toggle,.menu-toggle{width:34px; height:34px;}
+    nav.main-nav.mobile-open{left:10px; right:10px;}
     .hero h1{font-size:32px;}
     .more-grid{grid-template-columns:1fr;}
+    .guide-dialog-head{padding:18px;}
+    .guide-dialog-head h2{font-size:21px;}
+    .guide-body{padding:18px 18px 8px;}
+    .guide-dialog-foot{padding:14px 18px 18px;}
   }
   @media (prefers-reduced-motion: reduce){
     html{scroll-behavior:auto;}
@@ -328,12 +359,14 @@
         <span data-i18n="brand_tag">Citizen's guide to government portals</span>
       </span>
     </a>
-    <nav class="main-nav">
+    <button class="menu-toggle" id="menuToggle" type="button" aria-label="Open navigation menu" aria-expanded="false" aria-controls="mainNav">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+    </button>
+    <nav class="main-nav" id="mainNav">
       <a href="#home" data-i18n="nav_home">Home</a>
       <a href="#featured" data-i18n="nav_featured">Portals</a>
       <a href="#more" data-i18n="nav_more">All services</a>
       <a href="#about" data-i18n="nav_about">About</a>
-      <a href="#comments" data-i18n="nav_comments">Feedback</a>
     </nav>
     <div class="controls">
       <div class="lang-switch" role="group" aria-label="Language / भाषा / भाषा">
@@ -388,7 +421,7 @@
   <div class="trust-strip">
     <div class="wrap">
       <span class="dot"></span>
-      <span data-i18n="trust_strip">Independent awareness initiative — not an official government website. Every link on this page leads to a verified official portal.</span>
+      <span data-i18n="trust_strip">Independent awareness initiative — not an official government website. Official service links in the portal guides lead to verified government sites.</span>
     </div>
   </div>
 
@@ -407,7 +440,7 @@
         <article class="portal-card">
           <div class="portal-banner banner-aadhaar">
             <div class="banner-dots"></div>
-            <div class="banner-icon"><img src="Aadhar Services2.png" alt="Aadhaar"></div>
+            <div class="banner-icon wide-logo"><img src="portal-logos/aadhaar.svg" alt="Official UIDAI logo"><span class="logo-fallback" hidden>AAD</span></div>
             <span class="banner-corner">✓</span>
             <span class="banner-label" data-i18n="card_aadhaar_name">Aadhaar Services</span>
           </div>
@@ -418,7 +451,7 @@
             <span class="portal-token-num">AAD · 01</span>
           </div>
           <h3 data-i18n="card_aadhaar_name">Aadhaar Services</h3>
-          <p class="desc" data-i18n="card_aadhaar_desc">Log in to the myAadhaar portal with your Aadhaar number and OTP to download e-Aadhaar, update your details, or order a PVC card.</p>
+          <p class="desc" data-i18n="card_aadhaar_desc">Use myAadhaar to download e-Aadhaar and access supported online services. Mobile-number updates and biometric services require an authorised Aadhaar centre visit.</p>
           <div class="stub-divider"></div>
           <details class="steps">
             <summary data-i18n="btn_view_steps">View the steps</summary>
@@ -426,12 +459,13 @@
               <li><span class="n">1</span><span data-i18n="aadhaar_step1">Go to myaadhaar.uidai.gov.in and click "Login" — Aadhaar doesn't use a separate signup, your Aadhaar number is your ID.</span></li>
               <li><span class="n">2</span><span data-i18n="aadhaar_step2">Enter your 12-digit Aadhaar number (or Virtual ID) and the captcha shown.</span></li>
               <li><span class="n">3</span><span data-i18n="aadhaar_step3">Click "Send OTP" and enter the OTP sent to your Aadhaar-linked mobile number.</span></li>
-              <li><span class="n">4</span><span data-i18n="aadhaar_step4">From the dashboard, download e-Aadhaar, order a PVC card, or update your address/mobile number.</span></li>
+              <li><span class="n">4</span><span data-i18n="aadhaar_step4">From the dashboard, download e-Aadhaar or use the online services currently offered. Mobile-number updates and biometric work require an authorised Aadhaar centre visit.</span></li>
               <li><span class="n">5</span><span data-i18n="aadhaar_step5">Never enrolled before, or lost your mobile link? Visit your nearest Aadhaar Seva Kendra — enrolment itself needs an in-person biometric visit.</span></li>
             </ol>
           </details>
           <div class="p-actions">
-            <a class="btn-outline-sm" href="https://myaadhaar.uidai.gov.in/" target="_blank" rel="noopener">
+            <button class="guide-trigger" type="button" data-guide="aadhaar" aria-label="View guide for Aadhaar Services">View Guide</button>
+            <a class="btn-outline-sm" href="https://myaadhaar.uidai.gov.in/" target="_blank" rel="noopener noreferrer">
               <span data-i18n="btn_official">Official portal</span> ↗
             </a>
           </div>
@@ -441,7 +475,7 @@
         <article class="portal-card">
           <div class="portal-banner banner-pan">
             <div class="banner-dots"></div>
-            <div class="banner-icon"><img src="Pan Card2.png" alt="PAN Card"></div>
+            <div class="banner-icon wide-logo"><img src="portal-logos/income-tax.svg" alt="Official Income Tax e-Filing logo"><span class="logo-fallback" hidden>PAN</span></div>
             <span class="banner-corner">✓</span>
             <span class="banner-label" data-i18n="card_pan_name">PAN Card</span>
           </div>
@@ -452,7 +486,7 @@
             <span class="portal-token-num">PAN · 02</span>
           </div>
           <h3 data-i18n="card_pan_name">PAN Card</h3>
-          <p class="desc" data-i18n="card_pan_desc">Apply for a free instant e-PAN using Aadhaar OTP on the Income Tax portal — or a paid physical PAN via Protean (NSDL) / UTIITSL.</p>
+          <p class="desc" data-i18n="card_pan_desc">Eligible first-time applicants can use Instant e-PAN on the Income Tax portal. Other PAN applications, corrections, or physical cards use authorised provider services with fees shown there.</p>
           <div class="stub-divider"></div>
           <details class="steps">
             <summary data-i18n="btn_view_steps">View the steps</summary>
@@ -460,12 +494,13 @@
               <li><span class="n">1</span><span data-i18n="pan_step1">Go to incometax.gov.in and find "Instant e-PAN" under Quick Links (needs Aadhaar linked to an active mobile number).</span></li>
               <li><span class="n">2</span><span data-i18n="pan_step2">Click "Get New e-PAN", enter your Aadhaar number, and accept the terms.</span></li>
               <li><span class="n">3</span><span data-i18n="pan_step3">Verify the OTP sent to your Aadhaar-linked mobile and confirm your e-KYC details.</span></li>
-              <li><span class="n">4</span><span data-i18n="pan_step4">Your e-PAN (PDF with QR code) is generated in minutes — download it using your acknowledgment number.</span></li>
-              <li><span class="n">5</span><span data-i18n="pan_step5">Need a physical card, or don't have an Aadhaar-linked mobile? Apply instead via the Protean (NSDL) or UTIITSL portal (small fee applies).</span></li>
+              <li><span class="n">4</span><span data-i18n="pan_step4">Keep the acknowledgement number and use the portal's Check Status / Download PAN option when the result is available.</span></li>
+              <li><span class="n">5</span><span data-i18n="pan_step5">For a physical card, correction, or an ineligible case, follow the Income Tax portal's links to Protean or UTIITSL and check the current fee there.</span></li>
             </ol>
           </details>
           <div class="p-actions">
-            <a class="btn-outline-sm" href="https://www.incometax.gov.in/" target="_blank" rel="noopener">
+            <button class="guide-trigger" type="button" data-guide="pan" aria-label="View guide for PAN Card">View Guide</button>
+            <a class="btn-outline-sm" href="https://www.incometax.gov.in/" target="_blank" rel="noopener noreferrer">
               <span data-i18n="btn_official">Official portal</span> ↗
             </a>
           </div>
@@ -475,7 +510,7 @@
         <article class="portal-card">
           <div class="portal-banner banner-digilocker">
             <div class="banner-dots"></div>
-            <div class="banner-icon"><img src="Digilocker2.png" alt="DigiLocker"></div>
+            <div class="banner-icon wide-logo"><img src="portal-logos/digilocker.png" alt="Official DigiLocker logo"><span class="logo-fallback" hidden>DigiLocker</span></div>
             <span class="banner-corner">✓</span>
             <span class="banner-label" data-i18n="card_digilocker_name">DigiLocker</span>
           </div>
@@ -486,20 +521,21 @@
             <span class="portal-token-num">DGL · 03</span>
           </div>
           <h3 data-i18n="card_digilocker_name">DigiLocker</h3>
-          <p class="desc" data-i18n="card_digilocker_desc">Create a free account, then fetch government-issued documents directly into your digital wallet — as legally valid as the paper original.</p>
+          <p class="desc" data-i18n="card_digilocker_desc">Create an account and fetch participating government-issued documents into your digital wallet. Issuer-fetched credentials are verifiable; uploaded scans are not issuer-issued.</p>
           <div class="stub-divider"></div>
           <details class="steps">
             <summary data-i18n="btn_view_steps">View the steps</summary>
             <ol class="step-list">
               <li><span class="n">1</span><span data-i18n="digilocker_step1">Visit digilocker.gov.in and click "Sign Up".</span></li>
               <li><span class="n">2</span><span data-i18n="digilocker_step2">Enter your mobile number, set a 6-digit security PIN, and verify with the OTP.</span></li>
-              <li><span class="n">3</span><span data-i18n="digilocker_step3">Link your Aadhaar (optional, but unlocks auto-fetching) using Aadhaar OTP-based e-KYC.</span></li>
+              <li><span class="n">3</span><span data-i18n="digilocker_step3">Link Aadhaar only when the account flow or the specific issuer document requires identity verification.</span></li>
               <li><span class="n">4</span><span data-i18n="digilocker_step4">Go to "Issued Documents", search the issuing department (e.g. UIDAI, CBSE, your RTO), and select the document.</span></li>
-              <li><span class="n">5</span><span data-i18n="digilocker_step5">The document is fetched into your locker instantly — share or download it any time, with a QR code for verification.</span></li>
+              <li><span class="n">5</span><span data-i18n="digilocker_step5">After the issuer processes the request, check Issued Documents and use the official share/download option, including QR verification if provided.</span></li>
             </ol>
           </details>
           <div class="p-actions">
-            <a class="btn-outline-sm" href="https://www.digilocker.gov.in/" target="_blank" rel="noopener">
+            <button class="guide-trigger" type="button" data-guide="digilocker" aria-label="View guide for DigiLocker">View Guide</button>
+            <a class="btn-outline-sm" href="https://www.digilocker.gov.in/" target="_blank" rel="noopener noreferrer">
               <span data-i18n="btn_official">Official portal</span> ↗
             </a>
           </div>
@@ -509,7 +545,7 @@
         <article class="portal-card">
           <div class="portal-banner banner-ayushman">
             <div class="banner-dots"></div>
-            <div class="banner-icon"><img src="Ayushman Bharat2.png" alt="Ayushman Bharat"></div>
+            <div class="banner-icon wide-logo"><img src="portal-logos/health-service.svg" alt="Healthcare service illustration; not an official government logo"><span class="logo-fallback" hidden>PM-JAY</span></div>
             <span class="banner-corner">✓</span>
             <span class="banner-label" data-i18n="card_ayushman_name">Ayushman Bharat (PM-JAY)</span>
           </div>
@@ -520,7 +556,7 @@
             <span class="portal-token-num">AYU · 04</span>
           </div>
           <h3 data-i18n="card_ayushman_name">Ayushman Bharat (PM-JAY)</h3>
-          <p class="desc" data-i18n="card_ayushman_desc">Check your family's eligibility and create your Ayushman Card for cashless treatment up to ₹5 lakh a year at empanelled hospitals.</p>
+          <p class="desc" data-i18n="card_ayushman_desc">Check eligibility and complete supported Ayushman Card steps through the NHA portal. Coverage and card access depend on scheme and state rules.</p>
           <div class="stub-divider"></div>
           <details class="steps">
             <summary data-i18n="btn_view_steps">View the steps</summary>
@@ -529,11 +565,12 @@
               <li><span class="n">2</span><span data-i18n="ayushman_step2">Enter your mobile number and captcha, then verify with the OTP.</span></li>
               <li><span class="n">3</span><span data-i18n="ayushman_step3">Pick your state and scheme, then search using your Aadhaar, ration card, or family ID to check eligibility.</span></li>
               <li><span class="n">4</span><span data-i18n="ayushman_step4">If eligible, complete e-KYC (Aadhaar OTP, or fingerprint at a nearby CSC/hospital) to confirm your identity.</span></li>
-              <li><span class="n">5</span><span data-i18n="ayushman_step5">Download your Ayushman Card with QR code — or get it made on the spot at any empanelled hospital's Ayushman counter with your Aadhaar.</span></li>
+              <li><span class="n">5</span><span data-i18n="ayushman_step5">Download the Ayushman Card if it becomes available. If you need assistance, contact official scheme support or an empanelled hospital; availability depends on the beneficiary record and local process.</span></li>
             </ol>
           </details>
           <div class="p-actions">
-            <a class="btn-outline-sm" href="https://beneficiary.nha.gov.in/" target="_blank" rel="noopener">
+            <button class="guide-trigger" type="button" data-guide="ayushman" aria-label="View guide for Ayushman Bharat PM-JAY">View Guide</button>
+            <a class="btn-outline-sm" href="https://beneficiary.nha.gov.in/" target="_blank" rel="noopener noreferrer">
               <span data-i18n="btn_official">Official portal</span> ↗
             </a>
           </div>
@@ -549,92 +586,9 @@
       <div class="section-head">
         <div class="eyebrow" data-i18n="more_eyebrow">Beyond the basics</div>
         <h2 data-i18n="more_title">More government digital services</h2>
-        <p data-i18n="more_sub">Detailed guides for these are coming soon. For now, here's what each one is for and the verified official link.</p>
+        <p data-i18n="more_sub">Browse every service below for a step-by-step guide and verified official link.</p>
       </div>
-      <div class="more-grid">
-
-        <a class="more-card" href="https://voters.eci.gov.in/" target="_blank" rel="noopener">
-          <div class="more-icon"><svg viewBox="0 0 48 48"><rect x="8" y="18" width="32" height="20" rx="2"/><path d="M8 18l16-10 16 10"/><path d="M18 26l5 5 9-9"/></svg></div>
-          <div>
-            <div class="m-title" data-i18n="more_voter_name">Voter ID (ECI)</div>
-            <div class="m-desc" data-i18n="more_voter_desc">Register to vote, check your name on the roll, or download your e-EPIC.</div>
-            <span class="m-link">voters.eci.gov.in ↗</span>
-          </div>
-        </a>
-
-        <a class="more-card" href="https://www.passportindia.gov.in/" target="_blank" rel="noopener">
-          <div class="more-icon"><svg viewBox="0 0 48 48"><rect x="10" y="6" width="28" height="36" rx="3"/><circle cx="24" cy="20" r="5"/><line x1="18" y1="30" x2="30" y2="30"/><line x1="18" y1="34" x2="30" y2="34"/></svg></div>
-          <div>
-            <div class="m-title" data-i18n="more_passport_name">Passport Seva</div>
-            <div class="m-desc" data-i18n="more_passport_desc">Apply for a new passport, renewal, or police clearance certificate.</div>
-            <span class="m-link">passportindia.gov.in ↗</span>
-          </div>
-        </a>
-
-        <a class="more-card" href="https://www.epfindia.gov.in/" target="_blank" rel="noopener">
-          <div class="more-icon"><svg viewBox="0 0 48 48"><ellipse cx="24" cy="14" rx="14" ry="5"/><path d="M10 14v8c0 2.8 6.3 5 14 5s14-2.2 14-5v-8"/><path d="M10 22v8c0 2.8 6.3 5 14 5s14-2.2 14-5v-8"/><path d="M10 30v4c0 2.8 6.3 5 14 5s14-2.2 14-5v-4"/></svg></div>
-          <div>
-            <div class="m-title" data-i18n="more_epfo_name">EPFO Member Portal</div>
-            <div class="m-desc" data-i18n="more_epfo_desc">Check your PF balance, download your passbook, or file a claim.</div>
-            <span class="m-link">epfindia.gov.in ↗</span>
-          </div>
-        </a>
-
-        <a class="more-card" href="https://web.umang.gov.in/" target="_blank" rel="noopener">
-          <div class="more-icon"><svg viewBox="0 0 48 48"><rect x="8" y="8" width="12" height="12" rx="2"/><rect x="28" y="8" width="12" height="12" rx="2"/><rect x="8" y="28" width="12" height="12" rx="2"/><rect x="28" y="28" width="12" height="12" rx="2"/></svg></div>
-          <div>
-            <div class="m-title" data-i18n="more_umang_name">UMANG</div>
-            <div class="m-desc" data-i18n="more_umang_desc">One app for thousands of central and state government services.</div>
-            <span class="m-link">web.umang.gov.in ↗</span>
-          </div>
-        </a>
-
-        <a class="more-card" href="https://eshram.gov.in/" target="_blank" rel="noopener">
-          <div class="more-icon"><svg viewBox="0 0 48 48"><path d="M28 12l8 8-14 14-8-8z"/><path d="M14 34L8 40"/><path d="M24 16l4-4 4 4"/></svg></div>
-          <div>
-            <div class="m-title" data-i18n="more_eshram_name">e-Shram</div>
-            <div class="m-desc" data-i18n="more_eshram_desc">Register as an unorganised worker for social security benefits.</div>
-            <span class="m-link">eshram.gov.in ↗</span>
-          </div>
-        </a>
-
-        <a class="more-card" href="https://parivahan.gov.in/" target="_blank" rel="noopener">
-          <div class="more-icon"><svg viewBox="0 0 48 48"><circle cx="24" cy="24" r="16"/><circle cx="24" cy="24" r="4"/><line x1="24" y1="8" x2="24" y2="20"/><line x1="12" y1="32" x2="20" y2="27"/><line x1="36" y1="32" x2="28" y2="27"/></svg></div>
-          <div>
-            <div class="m-title" data-i18n="more_parivahan_name">Parivahan Sewa</div>
-            <div class="m-desc" data-i18n="more_parivahan_desc">Apply for or renew a driving licence and vehicle registration.</div>
-            <span class="m-link">parivahan.gov.in ↗</span>
-          </div>
-        </a>
-
-        <a class="more-card" href="https://scholarships.gov.in/" target="_blank" rel="noopener">
-          <div class="more-icon"><svg viewBox="0 0 48 48"><path d="M4 18l20-8 20 8-20 8z"/><path d="M14 22v8c0 3 5 6 10 6s10-3 10-6v-8"/><line x1="44" y1="18" x2="44" y2="30"/></svg></div>
-          <div>
-            <div class="m-title" data-i18n="more_scholarship_name">National Scholarship Portal</div>
-            <div class="m-desc" data-i18n="more_scholarship_desc">Apply for central and state education scholarships.</div>
-            <span class="m-link">scholarships.gov.in ↗</span>
-          </div>
-        </a>
-
-        <a class="more-card" href="https://www.myscheme.gov.in/" target="_blank" rel="noopener">
-          <div class="more-icon"><svg viewBox="0 0 48 48"><circle cx="24" cy="24" r="16"/><path d="M30 18l-4 10-10 4 4-10z"/></svg></div>
-          <div>
-            <div class="m-title" data-i18n="more_myscheme_name">MyScheme</div>
-            <div class="m-desc" data-i18n="more_myscheme_desc">Discover government welfare schemes you may be eligible for.</div>
-            <span class="m-link">myscheme.gov.in ↗</span>
-          </div>
-        </a>
-
-        <a class="more-card" href="https://www.incometax.gov.in/" target="_blank" rel="noopener">
-          <div class="more-icon"><svg viewBox="0 0 48 48"><rect x="8" y="8" width="32" height="32" rx="4"/><line x1="16" y1="18" x2="32" y2="18"/><line x1="16" y1="24" x2="32" y2="24"/><line x1="16" y1="30" x2="26" y2="30"/></svg></div>
-          <div>
-            <div class="m-title" data-i18n="more_itr_name">Income Tax e-Filing</div>
-            <div class="m-desc" data-i18n="more_itr_desc">File your income tax return and track your refund status.</div>
-            <span class="m-link">incometax.gov.in ↗</span>
-          </div>
-        </a>
-
-      </div>
+      <div class="more-grid" id="additionalPortals" aria-live="polite"></div>
     </div>
   </section>
 
@@ -652,36 +606,22 @@
     </div>
   </section>
 
-  <!-- COMMENTS -->
-  <section id="comments">
-    <div class="wrap">
-      <div class="comments-box">
-        <div class="section-head" style="margin-bottom:0;">
-          <div class="eyebrow" data-i18n="comments_eyebrow">Feedback</div>
-          <h2 style="font-size:24px;" data-i18n="comments_title">Was this helpful?</h2>
-          <p data-i18n="comments_sub">Tell us which portal guide to build next, or where you got stuck.</p>
-        </div>
-
-        <form class="comment-form" id="commentForm">
-          <label for="cName" data-i18n="comments_name_label">Your name</label>
-          <input type="text" id="cName" data-i18n-placeholder="comments_name_placeholder" placeholder="e.g. Rahul" maxlength="60" required>
-          <label for="cText" data-i18n="comments_text_label">Your comment</label>
-          <textarea id="cText" data-i18n-placeholder="comments_text_placeholder" placeholder="Share a question, a suggestion, or which portal to cover next..." maxlength="500" required></textarea>
-          <div class="row2">
-            <span class="comment-note" id="commentNote" data-i18n="comments_shared_note">Comments are public and visible to every visitor of this site.</span>
-            <button type="submit" class="btn btn-primary" id="commentSubmitBtn" data-i18n="comments_submit">Post comment</button>
-          </div>
-          <div class="comment-error" id="commentError" data-i18n="comments_error">Couldn't save your comment. Please try again.</div>
-        </form>
-
-        <ul class="comment-list" id="commentList">
-          <li class="comment-empty" id="commentEmpty" data-i18n="comments_loading">Loading comments...</li>
-        </ul>
-      </div>
-    </div>
-  </section>
-
 </main>
+
+<dialog class="guide-dialog" id="guideDialog" aria-labelledby="guideTitle">
+  <div class="guide-dialog-head">
+    <div>
+      <div class="eyebrow">Digital Seva Sathi · Independent guide</div>
+      <h2 id="guideTitle">Portal guide</h2>
+    </div>
+    <button class="guide-close" id="guideClose" type="button" aria-label="Close portal guide">Close</button>
+  </div>
+  <div class="guide-body" id="guideBody"></div>
+  <div class="guide-dialog-foot">
+    <span class="guide-disclaimer">This is educational guidance, not an official government website.</span>
+    <a class="btn btn-primary" id="guideOfficialLink" href="#" target="_blank" rel="noopener noreferrer">Open official portal ↗</a>
+  </div>
+</dialog>
 
 <footer>
   <div class="wrap">
@@ -701,7 +641,7 @@
   const translations = {
     en: {
       brand_name:"Digital Seva Sathi", brand_tag:"Citizen's guide to government portals",
-      nav_home:"Home", nav_featured:"Portals", nav_more:"All services", nav_about:"About", nav_comments:"Feedback",
+      nav_home:"Home", nav_featured:"Portals", nav_more:"All services", nav_about:"About",
       hero_eyebrow:"Public digital-literacy initiative",
       hero_title:"Government services shouldn't feel like a maze.",
       hero_sub:"Step by step, in your own language, at your own pace — learn to use Aadhaar, PAN, DigiLocker, Ayushman Bharat and more official portals with confidence.",
@@ -711,36 +651,36 @@
       hero_token_2:"Follow the numbered steps written in plain language.",
       hero_token_3:"Click through to the real official portal — we never collect your documents or data.",
       hero_token_4:"Get it done yourself, without depending on an agent or middleman.",
-      trust_strip:"Independent awareness initiative — not an official government website. Every link on this page leads to a verified official portal.",
+      trust_strip:"Independent awareness initiative — not an official government website. Official service links in the portal guides lead to verified government sites.",
       featured_eyebrow:"Start here", featured_title:"Four portals every citizen should know",
       featured_sub:"These are the services people ask about most. Tap \u201cSteps\u201d on any card to see the walkthrough, or go straight to the official site.",
-      card_aadhaar_name:"Aadhaar Services", card_aadhaar_desc:"Log in to the myAadhaar portal with your Aadhaar number and OTP to download e-Aadhaar, update your details, or order a PVC card.",
-      card_pan_name:"PAN Card", card_pan_desc:"Apply for a free instant e-PAN using Aadhaar OTP on the Income Tax portal — or a paid physical PAN via Protean (NSDL) / UTIITSL.",
-      card_digilocker_name:"DigiLocker", card_digilocker_desc:"Create a free account, then fetch government-issued documents directly into your digital wallet — as legally valid as the paper original.",
-      card_ayushman_name:"Ayushman Bharat (PM-JAY)", card_ayushman_desc:"Check your family's eligibility and create your Ayushman Card for cashless treatment up to \u20b95 lakh a year at empanelled hospitals.",
+      card_aadhaar_name:"Aadhaar Services", card_aadhaar_desc:"Use myAadhaar to download e-Aadhaar and access supported online services. Mobile-number updates and biometric services require an authorised Aadhaar centre visit.",
+      card_pan_name:"PAN Card", card_pan_desc:"Eligible first-time applicants can use Instant e-PAN on the Income Tax portal. Other PAN applications, corrections, or physical cards use authorised provider services with fees shown there.",
+      card_digilocker_name:"DigiLocker", card_digilocker_desc:"Create an account and fetch participating government-issued documents into your digital wallet. Issuer-fetched credentials are verifiable; uploaded scans are not issuer-issued.",
+      card_ayushman_name:"Ayushman Bharat (PM-JAY)", card_ayushman_desc:"Check eligibility and complete supported Ayushman Card steps through the NHA portal. Coverage and card access depend on scheme and state rules.",
       btn_official:"Official portal", btn_view_steps:"View the steps",
       aadhaar_step1:"Go to myaadhaar.uidai.gov.in and click \u201cLogin\u201d — Aadhaar doesn't use a separate signup, your Aadhaar number is your ID.",
       aadhaar_step2:"Enter your 12-digit Aadhaar number (or Virtual ID) and the captcha shown.",
       aadhaar_step3:"Click \u201cSend OTP\u201d and enter the OTP sent to your Aadhaar-linked mobile number.",
-      aadhaar_step4:"From the dashboard, download e-Aadhaar, order a PVC card, or update your address/mobile number.",
+      aadhaar_step4:"From the dashboard, download e-Aadhaar or use the online services currently offered. Mobile-number updates and biometric work require an authorised Aadhaar centre visit.",
       aadhaar_step5:"Never enrolled before, or lost your mobile link? Visit your nearest Aadhaar Seva Kendra — enrolment itself needs an in-person biometric visit.",
       pan_step1:"Go to incometax.gov.in and find \u201cInstant e-PAN\u201d under Quick Links (needs Aadhaar linked to an active mobile number).",
       pan_step2:"Click \u201cGet New e-PAN\u201d, enter your Aadhaar number, and accept the terms.",
       pan_step3:"Verify the OTP sent to your Aadhaar-linked mobile and confirm your e-KYC details.",
-      pan_step4:"Your e-PAN (PDF with QR code) is generated in minutes — download it using your acknowledgment number.",
-      pan_step5:"Need a physical card, or don't have an Aadhaar-linked mobile? Apply instead via the Protean (NSDL) or UTIITSL portal (small fee applies).",
+      pan_step4:"Keep the acknowledgement number and use the portal's Check Status / Download PAN option when the result is available.",
+      pan_step5:"For a physical card, correction, or an ineligible case, follow the Income Tax portal's links to Protean or UTIITSL and check the current fee there.",
       digilocker_step1:"Visit digilocker.gov.in and click \u201cSign Up\u201d.",
       digilocker_step2:"Enter your mobile number, set a 6-digit security PIN, and verify with the OTP.",
-      digilocker_step3:"Link your Aadhaar (optional, but unlocks auto-fetching) using Aadhaar OTP-based e-KYC.",
+      digilocker_step3:"Link Aadhaar only when the account flow or the specific issuer document requires identity verification.",
       digilocker_step4:"Go to \u201cIssued Documents\u201d, search the issuing department (e.g. UIDAI, CBSE, your RTO), and select the document.",
-      digilocker_step5:"The document is fetched into your locker instantly — share or download it any time, with a QR code for verification.",
+      digilocker_step5:"After the issuer processes the request, check Issued Documents and use the official share/download option, including QR verification if provided.",
       ayushman_step1:"Go to beneficiary.nha.gov.in and choose \u201cBeneficiary\u201d login.",
       ayushman_step2:"Enter your mobile number and captcha, then verify with the OTP.",
       ayushman_step3:"Pick your state and scheme, then search using your Aadhaar, ration card, or family ID to check eligibility.",
       ayushman_step4:"If eligible, complete e-KYC (Aadhaar OTP, or fingerprint at a nearby CSC/hospital) to confirm your identity.",
-      ayushman_step5:"Download your Ayushman Card with QR code — or get it made on the spot at any empanelled hospital's Ayushman counter with your Aadhaar.",
+      ayushman_step5:"Download the Ayushman Card if it becomes available. If you need assistance, contact official scheme support or an empanelled hospital; availability depends on the beneficiary record and local process.",
       more_eyebrow:"Beyond the basics", more_title:"More government digital services",
-      more_sub:"Detailed guides for these are coming soon. For now, here's what each one is for and the verified official link.",
+      more_sub:"Browse every service below for a step-by-step guide and verified official link.",
       more_voter_name:"Voter ID (ECI)", more_voter_desc:"Register to vote, check your name on the roll, or download your e-EPIC.",
       more_passport_name:"Passport Seva", more_passport_desc:"Apply for a new passport, renewal, or police clearance certificate.",
       more_epfo_name:"EPFO Member Portal", more_epfo_desc:"Check your PF balance, download your passbook, or file a claim.",
@@ -753,22 +693,13 @@
       about_title:"Why this site exists",
       about_body_1:"Millions of citizens are entitled to services that now live only online — but the portals aren't always easy to navigate, and language is often a barrier. This is a student-built, independent awareness project that walks through the most-used government portals in plain steps, in English, Hindi, and Marathi.",
       about_body_2:"We never ask for your Aadhaar, PAN, OTP, or any personal document — every \u201cOfficial portal\u201d button takes you to the real government website to complete the process yourself, safely.",
-      comments_eyebrow:"Feedback", comments_title:"Was this helpful?",
-      comments_sub:"Tell us which portal guide to build next, or where you got stuck. Comments here are visible to every visitor.",
-      comments_name_label:"Your name", comments_name_placeholder:"e.g. Rahul",
-      comments_text_label:"Your comment", comments_text_placeholder:"Share a question, a suggestion, or which portal to cover next...",
-      comments_submit:"Post comment", comments_empty:"No comments yet — be the first to share feedback.",
-      comments_loading:"Loading comments...", comments_shared_note:"Comments are public and visible to every visitor of this site.",
-      comments_error:"Couldn't save your comment. Please try again.",
-      comments_local_note:"Storage isn't shared here, so comments are saved on this device/browser only.",
-      comments_session_note:"Storage isn't available here, so comments will only stay visible until you leave this page.",
       footer_disclaimer:"This is an independent, student-built awareness resource. It is not affiliated with, endorsed by, or operated by the Government of India or any of its departments. All service links point to official government portals.",
       footer_credit:"Built as a public digital-literacy project", footer_rights:"Awareness content · Free to use",
       title_tag:"Digital Seva Sathi — Learn Government Portals"
     },
     hi: {
       brand_name:"डिजिटल सेवा साथी", brand_tag:"सरकारी पोर्टल के लिए नागरिक मार्गदर्शक",
-      nav_home:"होम", nav_featured:"पोर्टल", nav_more:"सभी सेवाएं", nav_about:"परिचय", nav_comments:"प्रतिक्रिया",
+      nav_home:"होम", nav_featured:"पोर्टल", nav_more:"सभी सेवाएं", nav_about:"परिचय",
       hero_eyebrow:"सार्वजनिक डिजिटल-साक्षरता पहल",
       hero_title:"सरकारी सेवाएं भूलभुलैया जैसी नहीं होनी चाहिए।",
       hero_sub:"चरण-दर-चरण, अपनी भाषा में, अपनी गति से — आधार, पैन, डिजिलॉकर, आयुष्मान भारत और अन्य सरकारी पोर्टल का आत्मविश्वास से उपयोग करना सीखें।",
@@ -778,36 +709,36 @@
       hero_token_2:"सरल भाषा में लिखे गए क्रमांकित चरणों का पालन करें।",
       hero_token_3:"असली आधिकारिक पोर्टल पर जाएं — हम कभी आपके दस्तावेज़ या डेटा नहीं लेते।",
       hero_token_4:"बिना किसी एजेंट या बिचौलिए पर निर्भर हुए, खुद यह काम पूरा करें।",
-      trust_strip:"स्वतंत्र जागरूकता पहल — यह कोई आधिकारिक सरकारी वेबसाइट नहीं है। इस पेज का हर लिंक एक सत्यापित आधिकारिक पोर्टल तक ले जाता है।",
+      trust_strip:"यह एक स्वतंत्र जागरूकता पहल है, आधिकारिक सरकारी वेबसाइट नहीं। गाइड में दिए सेवा लिंक सत्यापित सरकारी वेबसाइटों पर ले जाते हैं।",
       featured_eyebrow:"यहां से शुरू करें", featured_title:"चार पोर्टल जो हर नागरिक को जानने चाहिए",
       featured_sub:"ये वे सेवाएं हैं जिनके बारे में लोग सबसे ज्यादा पूछते हैं। तरीका देखने के लिए किसी भी कार्ड पर \u201cचरण\u201d दबाएं, या सीधे आधिकारिक साइट पर जाएं।",
-      card_aadhaar_name:"आधार सेवाएं", card_aadhaar_desc:"e-आधार डाउनलोड करने, विवरण अपडेट करने या पीवीसी कार्ड मंगाने के लिए myAadhaar पोर्टल पर अपने आधार नंबर और OTP से लॉगिन करें।",
-      card_pan_name:"पैन कार्ड", card_pan_desc:"इनकम टैक्स पोर्टल पर आधार OTP से मुफ्त इंस्टेंट e-PAN के लिए आवेदन करें — या प्रोटीन (NSDL) / UTIITSL से भुगतान वाला फिजिकल पैन बनवाएं।",
-      card_digilocker_name:"डिजिलॉकर", card_digilocker_desc:"मुफ्त खाता बनाएं, फिर सरकार द्वारा जारी दस्तावेज़ सीधे अपने डिजिटल वॉलेट में लाएं — जो कागज़ी मूल जितना ही कानूनी रूप से मान्य है।",
-      card_ayushman_name:"आयुष्मान भारत (PM-JAY)", card_ayushman_desc:"अपने परिवार की पात्रता जांचें और सूचीबद्ध अस्पतालों में सालाना ₹5 लाख तक के कैशलेस इलाज के लिए आयुष्मान कार्ड बनवाएं।",
+      card_aadhaar_name:"आधार सेवाएं", card_aadhaar_desc:"e-आधार डाउनलोड करने और उपलब्ध ऑनलाइन सेवाओं के लिए myAadhaar का उपयोग करें। मोबाइल नंबर अपडेट और बायोमेट्रिक सेवाओं के लिए अधिकृत आधार केंद्र जाएं।",
+      card_pan_name:"पैन कार्ड", card_pan_desc:"पात्र नए आवेदक आयकर पोर्टल पर Instant e-PAN उपयोग कर सकते हैं। अन्य आवेदन, सुधार या फिजिकल कार्ड की फीस अधिकृत सेवा प्रदाता पर देखें।",
+      card_digilocker_name:"डिजिलॉकर", card_digilocker_desc:"खाता बनाकर भाग लेने वाले विभागों के जारी किए दस्तावेज़ प्राप्त करें। जारीकर्ता से प्राप्त दस्तावेज़ सत्यापित हो सकते हैं; अपलोड की गई स्कैन प्रति जारीकर्ता दस्तावेज़ नहीं होती।",
+      card_ayushman_name:"आयुष्मान भारत (PM-JAY)", card_ayushman_desc:"NHA पोर्टल पर पात्रता जांचें और उपलब्ध आयुष्मान कार्ड सेवाएं उपयोग करें। कवरेज और कार्ड की उपलब्धता योजना तथा राज्य के नियमों पर निर्भर है।",
       btn_official:"आधिकारिक पोर्टल", btn_view_steps:"चरण देखें",
       aadhaar_step1:"myaadhaar.uidai.gov.in पर जाएं और \u201cLogin\u201d पर क्लिक करें — आधार में अलग से साइनअप नहीं होता, आपका आधार नंबर ही आपकी पहचान है।",
       aadhaar_step2:"अपना 12 अंकों का आधार नंबर (या वर्चुअल आईडी) और दिखाया गया कैप्चा डालें।",
       aadhaar_step3:"\u201cSend OTP\u201d पर क्लिक करें और आधार से जुड़े मोबाइल नंबर पर आए OTP को दर्ज करें।",
-      aadhaar_step4:"डैशबोर्ड से e-आधार डाउनलोड करें, पीवीसी कार्ड मंगाएं, या अपना पता/मोबाइल नंबर अपडेट करें।",
+      aadhaar_step4:"डैशबोर्ड से e-आधार डाउनलोड करें या उपलब्ध ऑनलाइन सेवाएं उपयोग करें। मोबाइल नंबर अपडेट और बायोमेट्रिक कार्य के लिए अधिकृत आधार केंद्र जाएं।",
       aadhaar_step5:"पहले कभी नामांकन नहीं हुआ, या मोबाइल लिंक खो गया? अपने नज़दीकी आधार सेवा केंद्र जाएं — नामांकन के लिए व्यक्तिगत रूप से बायोमेट्रिक देना ज़रूरी है।",
       pan_step1:"incometax.gov.in पर जाएं और Quick Links में \u201cInstant e-PAN\u201d खोजें (आधार से जुड़ा सक्रिय मोबाइल नंबर ज़रूरी है)।",
       pan_step2:"\u201cGet New e-PAN\u201d पर क्लिक करें, अपना आधार नंबर डालें, और नियम स्वीकार करें।",
       pan_step3:"आधार से जुड़े मोबाइल पर आए OTP को सत्यापित करें और अपनी e-KYC जानकारी की पुष्टि करें।",
-      pan_step4:"आपका e-PAN (QR कोड सहित PDF) कुछ ही मिनटों में बन जाता है — अपने पावती नंबर से इसे डाउनलोड करें।",
-      pan_step5:"फिजिकल कार्ड चाहिए, या आधार से मोबाइल लिंक नहीं है? इसके बजाय Protean (NSDL) या UTIITSL पोर्टल से आवेदन करें (मामूली शुल्क लगता है)।",
+      pan_step4:"पावती नंबर संभालकर रखें और परिणाम उपलब्ध होने पर पोर्टल के Check Status / Download PAN विकल्प का उपयोग करें।",
+      pan_step5:"फिजिकल कार्ड, सुधार या पात्रता से बाहर होने पर आयकर पोर्टल से Protean या UTIITSL लिंक खोलें और वर्तमान शुल्क वहीं जांचें।",
       digilocker_step1:"digilocker.gov.in पर जाएं और \u201cSign Up\u201d पर क्लिक करें।",
       digilocker_step2:"अपना मोबाइल नंबर डालें, 6 अंकों का सुरक्षा पिन बनाएं, और OTP से सत्यापित करें।",
-      digilocker_step3:"आधार OTP आधारित e-KYC से अपना आधार लिंक करें (यह वैकल्पिक है, पर ऑटो-फेच अनलॉक करता है)।",
+      digilocker_step3:"आधार तभी लिंक करें जब खाता प्रक्रिया या चुने गए जारीकर्ता दस्तावेज़ के लिए पहचान सत्यापन आवश्यक हो।",
       digilocker_step4:"\u201cIssued Documents\u201d में जाएं, जारी करने वाला विभाग खोजें (जैसे UIDAI, CBSE, आपका RTO), और दस्तावेज़ चुनें।",
-      digilocker_step5:"दस्तावेज़ तुरंत आपके लॉकर में आ जाता है — इसे कभी भी शेयर या डाउनलोड करें, सत्यापन के लिए QR कोड के साथ।",
+      digilocker_step5:"जारीकर्ता के अनुरोध पर कार्रवाई करने के बाद Issued Documents देखें और आधिकारिक शेयर/डाउनलोड विकल्प उपयोग करें; QR सत्यापन उपलब्ध होने पर करें।",
       ayushman_step1:"beneficiary.nha.gov.in पर जाएं और \u201cBeneficiary\u201d लॉगिन चुनें।",
       ayushman_step2:"अपना मोबाइल नंबर और कैप्चा डालें, फिर OTP से सत्यापित करें।",
       ayushman_step3:"अपना राज्य और योजना चुनें, फिर पात्रता जांचने के लिए आधार, राशन कार्ड, या फैमिली आईडी से खोजें।",
       ayushman_step4:"पात्र होने पर, अपनी पहचान की पुष्टि के लिए e-KYC पूरा करें (आधार OTP, या नज़दीकी CSC/अस्पताल में फिंगरप्रिंट)।",
-      ayushman_step5:"QR कोड सहित अपना आयुष्मान कार्ड डाउनलोड करें — या आधार लेकर किसी भी सूचीबद्ध अस्पताल के आयुष्मान काउंटर पर तुरंत बनवाएं।",
+      ayushman_step5:"आयुष्मान कार्ड उपलब्ध होने पर डाउनलोड करें। सहायता के लिए आधिकारिक योजना सहायता या सूचीबद्ध अस्पताल से संपर्क करें; उपलब्धता लाभार्थी रिकॉर्ड और स्थानीय प्रक्रिया पर निर्भर है।",
       more_eyebrow:"बुनियादी बातों से आगे", more_title:"अन्य सरकारी डिजिटल सेवाएं",
-      more_sub:"इनके विस्तृत गाइड जल्द ही आएंगे। फिलहाल, जानें हर सेवा किस काम की है और उसका सत्यापित आधिकारिक लिंक।",
+      more_sub:"नीचे हर सेवा के लिए चरण-दर-चरण गाइड और सत्यापित आधिकारिक लिंक देखें।",
       more_voter_name:"वोटर आईडी (ECI)", more_voter_desc:"वोट के लिए पंजीकरण करें, सूची में नाम जांचें, या e-EPIC डाउनलोड करें।",
       more_passport_name:"पासपोर्ट सेवा", more_passport_desc:"नया पासपोर्ट, नवीनीकरण, या पुलिस क्लीयरेंस प्रमाणपत्र के लिए आवेदन करें।",
       more_epfo_name:"EPFO सदस्य पोर्टल", more_epfo_desc:"अपना पीएफ बैलेंस जांचें, पासबुक डाउनलोड करें, या क्लेम करें।",
@@ -820,22 +751,13 @@
       about_title:"यह वेबसाइट क्यों बनाई गई",
       about_body_1:"लाखों नागरिक ऐसी सेवाओं के हकदार हैं जो अब सिर्फ ऑनलाइन उपलब्ध हैं — लेकिन पोर्टल हमेशा आसान नहीं होते, और भाषा अक्सर बाधा बनती है। यह एक विद्यार्थी द्वारा बनाई गई, स्वतंत्र जागरूकता परियोजना है जो सबसे ज्यादा इस्तेमाल होने वाले सरकारी पोर्टलों को अंग्रेज़ी, हिंदी और मराठी में सरल चरणों में समझाती है।",
       about_body_2:"हम कभी आपका आधार, पैन, OTP या कोई भी व्यक्तिगत दस्तावेज़ नहीं मांगते — हर \u201cआधिकारिक पोर्टल\u201d बटन आपको असली सरकारी वेबसाइट पर ले जाता है, जहां आप सुरक्षित रूप से खुद प्रक्रिया पूरी करते हैं।",
-      comments_eyebrow:"प्रतिक्रिया", comments_title:"क्या यह मददगार रहा?",
-      comments_sub:"हमें बताएं कि आगे कौन-सा पोर्टल गाइड बनाएं, या आपको कहां दिक्कत आई। यहां की टिप्पणियां हर विज़िटर को दिखती हैं।",
-      comments_name_label:"आपका नाम", comments_name_placeholder:"जैसे राहुल",
-      comments_text_label:"आपकी टिप्पणी", comments_text_placeholder:"अपना सवाल, सुझाव या अगला कौन-सा पोर्टल कवर हो, यह लिखें...",
-      comments_submit:"टिप्पणी पोस्ट करें", comments_empty:"अभी तक कोई टिप्पणी नहीं — सबसे पहले आप अपनी राय दें।",
-      comments_loading:"टिप्पणियां लोड हो रही हैं...", comments_shared_note:"टिप्पणियां सार्वजनिक हैं और इस साइट के सभी विज़िटर को दिखाई देती हैं।",
-      comments_error:"आपकी टिप्पणी सेव नहीं हो सकी। कृपया दोबारा कोशिश करें।",
-      comments_local_note:"यहां साझा स्टोरेज उपलब्ध नहीं है, इसलिए टिप्पणियां सिर्फ इस डिवाइस/ब्राउज़र पर सेव होती हैं।",
-      comments_session_note:"यहां स्टोरेज उपलब्ध नहीं है, इसलिए टिप्पणियां तब तक ही दिखेंगी जब तक आप इस पेज पर हैं।",
       footer_disclaimer:"यह एक स्वतंत्र, विद्यार्थी द्वारा बनाई गई जागरूकता सामग्री है। यह भारत सरकार या उसके किसी भी विभाग से संबद्ध, अनुमोदित या संचालित नहीं है। सभी सेवा लिंक आधिकारिक सरकारी पोर्टलों की ओर ले जाते हैं।",
       footer_credit:"एक सार्वजनिक डिजिटल-साक्षरता परियोजना के रूप में बनाया गया", footer_rights:"जागरूकता सामग्री · उपयोग हेतु निःशुल्क",
       title_tag:"डिजिटल सेवा साथी — सरकारी पोर्टल सीखें"
     },
     mr: {
       brand_name:"डिजिटल सेवा साथी", brand_tag:"सरकारी पोर्टलसाठी नागरिकांचं मार्गदर्शक",
-      nav_home:"मुख्यपृष्ठ", nav_featured:"पोर्टल", nav_more:"सर्व सेवा", nav_about:"आमच्याविषयी", nav_comments:"अभिप्राय",
+      nav_home:"मुख्यपृष्ठ", nav_featured:"पोर्टल", nav_more:"सर्व सेवा", nav_about:"आमच्याविषयी",
       hero_eyebrow:"सार्वजनिक डिजिटल-साक्षरता उपक्रम",
       hero_title:"सरकारी सेवा चक्रव्यूहासारख्या वाटू नयेत.",
       hero_sub:"टप्प्याटप्प्याने, तुमच्या स्वतःच्या भाषेत, तुमच्या वेगाने — आधार, पॅन, डिजीलॉकर, आयुष्मान भारत आणि इतर अधिकृत पोर्टल आत्मविश्वासाने वापरायला शिका.",
@@ -845,36 +767,36 @@
       hero_token_2:"सोप्या भाषेत लिहिलेल्या क्रमांकित टप्प्यांचं अनुसरण करा.",
       hero_token_3:"खऱ्या अधिकृत पोर्टलवर जा — आम्ही कधीच तुमची कागदपत्रं किंवा डेटा घेत नाही.",
       hero_token_4:"एजंट किंवा मध्यस्थावर अवलंबून न राहता, हे काम स्वतः पूर्ण करा.",
-      trust_strip:"स्वतंत्र जनजागृती उपक्रम — ही अधिकृत सरकारी वेबसाइट नाही. या पानावरील प्रत्येक लिंक सत्यापित अधिकृत पोर्टलकडे नेते.",
+      trust_strip:"हा स्वतंत्र जनजागृती उपक्रम आहे, अधिकृत सरकारी वेबसाइट नाही. मार्गदर्शकांतील सेवा लिंक सत्यापित सरकारी वेबसाइटवर नेतात.",
       featured_eyebrow:"इथून सुरुवात करा", featured_title:"प्रत्येक नागरिकाला माहित असावेत असे चार पोर्टल",
       featured_sub:"लोक सर्वाधिक विचारतात अशा या सेवा आहेत. पद्धत पाहण्यासाठी कोणत्याही कार्डवरील \u201cटप्पे\u201d दाबा, किंवा थेट अधिकृत साइटवर जा.",
-      card_aadhaar_name:"आधार सेवा", card_aadhaar_desc:"e-आधार डाउनलोड करण्यासाठी, तपशील अपडेट करण्यासाठी किंवा पीव्हीसी कार्ड मागवण्यासाठी myAadhaar पोर्टलवर आधार क्रमांक आणि OTP ने लॉगिन करा.",
-      card_pan_name:"पॅन कार्ड", card_pan_desc:"इन्कम टॅक्स पोर्टलवर आधार OTP द्वारे मोफत इन्स्टंट e-PAN साठी अर्ज करा — किंवा Protean (NSDL) / UTIITSL कडून सशुल्क फिजिकल पॅन बनवा.",
-      card_digilocker_name:"डिजीलॉकर", card_digilocker_desc:"मोफत खातं तयार करा, नंतर सरकारने जारी केलेली कागदपत्रं थेट तुमच्या डिजिटल वॉलेटमध्ये आणा — जी कागदी मूळ प्रतीइतकीच कायदेशीर वैध असतात.",
-      card_ayushman_name:"आयुष्मान भारत (PM-JAY)", card_ayushman_desc:"तुमच्या कुटुंबाची पात्रता तपासा आणि सूचीबद्ध रुग्णालयांमध्ये वर्षाला ₹5 लाखांपर्यंत कॅशलेस उपचारासाठी आयुष्मान कार्ड तयार करा.",
+      card_aadhaar_name:"आधार सेवा", card_aadhaar_desc:"e-आधार डाउनलोड करण्यासाठी आणि उपलब्ध ऑनलाइन सेवांसाठी myAadhaar वापरा. मोबाइल क्रमांक अपडेट आणि बायोमेट्रिक सेवांसाठी अधिकृत आधार केंद्राला भेट द्या.",
+      card_pan_name:"पॅन कार्ड", card_pan_desc:"पात्र नवीन अर्जदार आयकर पोर्टलवरील Instant e-PAN वापरू शकतात. इतर अर्ज, दुरुस्ती किंवा फिजिकल कार्डचे शुल्क अधिकृत सेवा प्रदात्याकडे तपासा.",
+      card_digilocker_name:"डिजीलॉकर", card_digilocker_desc:"खाते तयार करून सहभागी विभागांकडून जारी केलेली कागदपत्रे मिळवा. जारीकर्त्याकडून मिळालेली कागदपत्रे पडताळता येतात; अपलोड केलेली स्कॅन प्रत जारीकर्त्याने दिलेली नसते.",
+      card_ayushman_name:"आयुष्मान भारत (PM-JAY)", card_ayushman_desc:"NHA पोर्टलवर पात्रता तपासा आणि उपलब्ध आयुष्मान कार्ड सेवा वापरा. कव्हरेज व कार्डची उपलब्धता योजना आणि राज्याच्या नियमांवर अवलंबून असते.",
       btn_official:"अधिकृत पोर्टल", btn_view_steps:"टप्पे पहा",
       aadhaar_step1:"myaadhaar.uidai.gov.in वर जा आणि \u201cLogin\u201d वर क्लिक करा — आधारसाठी वेगळं साइनअप नसतं, तुमचा आधार क्रमांक हीच तुमची ओळख आहे.",
       aadhaar_step2:"तुमचा 12 अंकी आधार क्रमांक (किंवा व्हर्च्युअल आयडी) आणि दाखवलेला कॅप्चा टाका.",
       aadhaar_step3:"\u201cSend OTP\u201d वर क्लिक करा आणि आधारशी जोडलेल्या मोबाइल क्रमांकावर आलेला OTP टाका.",
-      aadhaar_step4:"डॅशबोर्डवरून e-आधार डाउनलोड करा, पीव्हीसी कार्ड मागवा, किंवा तुमचा पत्ता/मोबाइल क्रमांक अपडेट करा.",
+      aadhaar_step4:"डॅशबोर्डवरून e-आधार डाउनलोड करा किंवा सध्या उपलब्ध ऑनलाइन सेवा वापरा. मोबाइल क्रमांक अपडेट आणि बायोमेट्रिक कामासाठी अधिकृत आधार केंद्राला भेट द्या.",
       aadhaar_step5:"आधी कधीच नोंदणी झाली नाही, किंवा मोबाइल लिंक हरवली? तुमच्या जवळच्या आधार सेवा केंद्रात जा — नोंदणीसाठी प्रत्यक्ष बायोमेट्रिक भेट आवश्यक असते.",
       pan_step1:"incometax.gov.in वर जा आणि Quick Links मध्ये \u201cInstant e-PAN\u201d शोधा (आधारशी जोडलेला सक्रिय मोबाइल क्रमांक आवश्यक).",
       pan_step2:"\u201cGet New e-PAN\u201d वर क्लिक करा, आधार क्रमांक टाका, आणि अटी स्वीकारा.",
       pan_step3:"आधारशी जोडलेल्या मोबाइलवर आलेला OTP पडताळा आणि तुमचे e-KYC तपशील निश्चित करा.",
-      pan_step4:"तुमचा e-PAN (QR कोडसह PDF) काही मिनिटांत तयार होतो — पोचपावती क्रमांकाने तो डाउनलोड करा.",
-      pan_step5:"फिजिकल कार्ड हवं आहे, किंवा आधारशी मोबाइल जोडलेला नाही? त्याऐवजी Protean (NSDL) किंवा UTIITSL पोर्टलवरून अर्ज करा (थोडं शुल्क लागतं).",
+      pan_step4:"पोचपावती क्रमांक जतन करा आणि निकाल उपलब्ध झाल्यावर पोर्टलवरील Check Status / Download PAN पर्याय वापरा.",
+      pan_step5:"फिजिकल कार्ड, दुरुस्ती किंवा पात्रता पूर्ण होत नसल्यास आयकर पोर्टलवरील Protean किंवा UTIITSL लिंक उघडा आणि सध्याचे शुल्क तिथे तपासा.",
       digilocker_step1:"digilocker.gov.in वर जा आणि \u201cSign Up\u201d वर क्लिक करा.",
       digilocker_step2:"मोबाइल क्रमांक टाका, 6 अंकी सुरक्षा पिन तयार करा, आणि OTP ने पडताळणी करा.",
-      digilocker_step3:"आधार OTP आधारित e-KYC ने तुमचा आधार लिंक करा (हे ऐच्छिक आहे, पण ऑटो-फेच अनलॉक करतं).",
+      digilocker_step3:"खाते प्रक्रिया किंवा निवडलेल्या जारीकर्ता दस्तऐवजासाठी ओळख पडताळणी आवश्यक असेल तेव्हाच आधार लिंक करा.",
       digilocker_step4:"\u201cIssued Documents\u201d मध्ये जा, जारी करणारा विभाग शोधा (उदा. UIDAI, CBSE, तुमचं RTO), आणि कागदपत्र निवडा.",
-      digilocker_step5:"कागदपत्र लगेच तुमच्या लॉकरमध्ये येतं — ते केव्हाही शेअर किंवा डाउनलोड करा, पडताळणीसाठी QR कोडसह.",
+      digilocker_step5:"जारीकर्त्याने विनंतीवर प्रक्रिया केल्यावर Issued Documents तपासा आणि अधिकृत शेअर/डाउनलोड पर्याय वापरा; QR पडताळणी उपलब्ध असल्यास करा.",
       ayushman_step1:"beneficiary.nha.gov.in वर जा आणि \u201cBeneficiary\u201d लॉगिन निवडा.",
       ayushman_step2:"मोबाइल क्रमांक आणि कॅप्चा टाका, नंतर OTP ने पडताळणी करा.",
       ayushman_step3:"तुमचं राज्य आणि योजना निवडा, नंतर पात्रता तपासण्यासाठी आधार, रेशन कार्ड, किंवा फॅमिली आयडीने शोधा.",
       ayushman_step4:"पात्र असल्यास, ओळख निश्चित करण्यासाठी e-KYC पूर्ण करा (आधार OTP, किंवा जवळच्या CSC/रुग्णालयात फिंगरप्रिंट).",
-      ayushman_step5:"QR कोडसह तुमचं आयुष्मान कार्ड डाउनलोड करा — किंवा आधार घेऊन कोणत्याही सूचीबद्ध रुग्णालयाच्या आयुष्मान काउंटरवर लगेच बनवा.",
+      ayushman_step5:"आयुष्मान कार्ड उपलब्ध झाल्यावर डाउनलोड करा. मदतीसाठी अधिकृत योजना सहाय्य किंवा सूचीबद्ध रुग्णालयाशी संपर्क साधा; उपलब्धता लाभार्थी नोंद आणि स्थानिक प्रक्रियेवर अवलंबून असते.",
       more_eyebrow:"मूलभूत गोष्टींपलीकडे", more_title:"आणखी सरकारी डिजिटल सेवा",
-      more_sub:"यांचे सविस्तर मार्गदर्शक लवकरच येतील. सध्या, प्रत्येक सेवा कशासाठी आहे आणि तिची सत्यापित अधिकृत लिंक इथे पहा.",
+      more_sub:"प्रत्येक सेवेसाठी टप्प्याटप्प्याने मार्गदर्शक आणि सत्यापित अधिकृत लिंक खाली पहा.",
       more_voter_name:"मतदार ओळखपत्र (ECI)", more_voter_desc:"मतदानासाठी नोंदणी करा, यादीत नाव तपासा, किंवा e-EPIC डाउनलोड करा.",
       more_passport_name:"पासपोर्ट सेवा", more_passport_desc:"नवीन पासपोर्ट, नूतनीकरण, किंवा पोलीस क्लिअरन्स प्रमाणपत्रासाठी अर्ज करा.",
       more_epfo_name:"EPFO सदस्य पोर्टल", more_epfo_desc:"तुमची PF शिल्लक तपासा, पासबुक डाउनलोड करा, किंवा क्लेम करा.",
@@ -887,15 +809,6 @@
       about_title:"ही वेबसाइट का बनवली",
       about_body_1:"लाखो नागरिक अशा सेवांसाठी पात्र आहेत ज्या आता फक्त ऑनलाइन उपलब्ध आहेत — पण पोर्टल नेहमीच सोपे नसतात, आणि भाषा अनेकदा अडथळा ठरते. हा विद्यार्थ्याने तयार केलेला, स्वतंत्र जनजागृती प्रकल्प आहे जो सर्वाधिक वापरल्या जाणाऱ्या सरकारी पोर्टलचे सोप्या टप्प्यांत, इंग्रजी, हिंदी आणि मराठीत स्पष्टीकरण देतो.",
       about_body_2:"आम्ही कधीच तुमचा आधार, पॅन, OTP किंवा कोणतंही वैयक्तिक कागदपत्र मागत नाही — प्रत्येक \u201cअधिकृत पोर्टल\u201d बटण तुम्हाला खऱ्या सरकारी वेबसाइटवर घेऊन जातं, जिथे तुम्ही सुरक्षितपणे स्वतः प्रक्रिया पूर्ण करता.",
-      comments_eyebrow:"अभिप्राय", comments_title:"हे उपयुक्त वाटलं का?",
-      comments_sub:"पुढे कोणते पोर्टल मार्गदर्शक बनवायचे किंवा तुम्हाला कुठे अडचण आली ते आम्हाला सांगा. इथल्या प्रतिक्रिया सर्व भेट देणाऱ्यांना दिसतात.",
-      comments_name_label:"तुमचं नाव", comments_name_placeholder:"उदा. राहुल",
-      comments_text_label:"तुमची प्रतिक्रिया", comments_text_placeholder:"प्रश्न, सूचना किंवा पुढे कोणता पोर्टल घ्यावा ते लिहा...",
-      comments_submit:"प्रतिक्रिया पोस्ट करा", comments_empty:"अजून कोणतीही प्रतिक्रिया नाही — सर्वात आधी तुम्ही अभिप्राय द्या.",
-      comments_loading:"प्रतिक्रिया लोड होत आहेत...", comments_shared_note:"प्रतिक्रिया सार्वजनिक असतात आणि या साइटला भेट देणाऱ्या सर्वांना दिसतात.",
-      comments_error:"तुमची प्रतिक्रिया सेव्ह होऊ शकली नाही. कृपया पुन्हा प्रयत्न करा.",
-      comments_local_note:"इथे शेअर्ड स्टोरेज उपलब्ध नाही, त्यामुळे प्रतिक्रिया फक्त या डिव्हाइस/ब्राउझरवर सेव्ह होतात.",
-      comments_session_note:"इथे स्टोरेज उपलब्ध नाही, त्यामुळे तुम्ही हे पान सोडेपर्यंतच प्रतिक्रिया दिसतील.",
       footer_disclaimer:"हा एक स्वतंत्र, विद्यार्थ्याने तयार केलेला जनजागृती स्रोत आहे. तो भारत सरकार किंवा त्याच्या कोणत्याही विभागाशी संलग्न, मान्यताप्राप्त किंवा संचालित नाही. सर्व सेवा लिंक अधिकृत सरकारी पोर्टलकडे नेतात.",
       footer_credit:"सार्वजनिक डिजिटल-साक्षरता प्रकल्प म्हणून तयार केलं", footer_rights:"जनजागृती मजकूर · वापरण्यास मोफत",
       title_tag:"डिजिटल सेवा साथी — सरकारी पोर्टल शिका"
@@ -903,6 +816,8 @@
   };
 
   const html = document.documentElement;
+
+  function currentLang(){ return html.getAttribute('data-lang') || 'en'; }
 
   function applyLang(lang){
     html.setAttribute('data-lang', lang);
@@ -923,7 +838,6 @@
   document.querySelectorAll('[data-lang-btn]').forEach(btn=>{
     btn.addEventListener('click', ()=>{
       applyLang(btn.getAttribute('data-lang-btn'));
-      if(typeof updateStorageNote === 'function') updateStorageNote();
     });
   });
 
@@ -938,135 +852,466 @@
     html.setAttribute('data-theme','dark');
   }
 
+  const menuToggle = document.getElementById('menuToggle');
+  const mainNav = document.getElementById('mainNav');
+  function closeMobileNav(){
+    mainNav.classList.remove('mobile-open');
+    menuToggle.setAttribute('aria-expanded','false');
+    menuToggle.setAttribute('aria-label','Open navigation menu');
+  }
+  menuToggle.addEventListener('click',()=>{
+    const isOpen=menuToggle.getAttribute('aria-expanded')==='true';
+    menuToggle.setAttribute('aria-expanded',String(!isOpen));
+    menuToggle.setAttribute('aria-label',isOpen?'Open navigation menu':'Close navigation menu');
+    mainNav.classList.toggle('mobile-open',!isOpen);
+  });
+  mainNav.querySelectorAll('a').forEach(link=>link.addEventListener('click',closeMobileNav));
+  menuToggle.addEventListener('keydown',event=>{
+    if(event.key==='Escape') closeMobileNav();
+  });
+  window.addEventListener('resize',()=>{
+    if(window.innerWidth>900) closeMobileNav();
+  });
+
   applyLang('en');
 
-  // ---------- COMMENTS (tiered storage: shared window.storage -> localStorage -> in-memory) ----------
-  const form = document.getElementById('commentForm');
-  const nameInput = document.getElementById('cName');
-  const textInput = document.getElementById('cText');
-  const list = document.getElementById('commentList');
-  const errorEl = document.getElementById('commentError');
-  const noteEl = document.getElementById('commentNote');
-  const submitBtn = document.getElementById('commentSubmitBtn');
-  const STORAGE_KEY = 'digital-seva-sathi:comments';
-  let memoryComments = [];
+  const portalGuides = [
+    {
+      id:"aadhaar", name:"Aadhaar Services", token:"AAD · 01", image:"portal-logos/aadhaar.svg", imageAlt:"Official UIDAI logo", short:"Use UIDAI's myAadhaar portal for supported online Aadhaar services, and visit an authorised centre for services that require biometrics.",
+      official:"https://myaadhaar.uidai.gov.in/", officialLabel:"UIDAI myAadhaar",
+      intro:"UIDAI's myAadhaar portal lets residents use eligible online services such as downloading e-Aadhaar and checking requests. Some updates and enrolment require an in-person visit.",
+      eligibility:["Aadhaar services are for the Aadhaar holder. The service page explains any additional eligibility for each request."],
+      documents:["Aadhaar number or Enrolment ID, depending on the service.","A mobile number registered with Aadhaar for OTP-based services.","For an update, use the specific supporting document list shown by UIDAI; an online service may not accept every type of update."],
+      registration:["There is no separate account sign-up for myAadhaar. Use the Aadhaar number or Enrolment ID offered on the sign-in page."],
+      login:["Open the official myAadhaar site, choose Login, enter the requested Aadhaar/Enrolment ID and captcha, then verify the OTP sent to the registered mobile."],
+      steps:["Choose the task from the official myAadhaar dashboard (for example, download Aadhaar or check an update request).","Read the on-screen service conditions and document requirements before continuing.","Enter the requested details only on the UIDAI website and complete OTP verification there.","Save the acknowledgement or Service Request Number shown after submitting a request.","For enrolment, biometric capture, or an update not offered online, locate an authorised Aadhaar centre from UIDAI."],
+      access:["Download e-Aadhaar from the download service. For address or document updates, use only the options currently displayed by UIDAI. Mobile-number updates and biometric work require an authorised centre; do not assume they can be completed online."],
+      status:["Use the status option linked from UIDAI with the Enrolment ID, Update Request Number, or Service Request Number printed on your receipt."],
+      troubleshooting:["OTP does not arrive: confirm that the mobile is registered with Aadhaar and retry after checking network coverage.","Request is not available online: use the official centre locator and visit an authorised centre.","A downloaded PDF asks for a password: follow UIDAI's current instructions shown with the download; do not send the file or password to anyone."],
+      faqs:[["Can I enrol for Aadhaar online?","No. New enrolment requires an in-person visit for demographic details and biometrics at an authorised enrolment centre."],["Can I update my mobile number online?","UIDAI requires an authorised centre visit for mobile-number update. Check the current myAadhaar service list for other online updates."],["Does this guidance site need my Aadhaar or OTP?","No. Never enter either on Digital Seva Sathi; use them only on UIDAI's official website or at an authorised centre."]],
+      help:"Use UIDAI's Contact & Support and Aadhaar centre locator from uidai.gov.in. Current fees, accepted documents, and available online updates are shown by UIDAI."
+    },
+    {
+      id:"pan", name:"PAN Card Services", token:"PAN · 02", image:"portal-logos/income-tax.svg", imageAlt:"Official Income Tax e-Filing logo", short:"Apply for eligible instant e-PAN, or use the authorised PAN service providers for other PAN applications and corrections.",
+      official:"https://www.incometax.gov.in/iec/foportal/", officialLabel:"Income Tax e-Filing",
+      intro:"The Income Tax Department e-Filing portal provides the Instant e-PAN service for eligible first-time applicants. Physical PAN applications and many corrections are handled through the authorised Protean or UTIITSL services linked from official government pages.",
+      eligibility:["Instant e-PAN is intended for eligible individuals who do not already have a PAN and meet the Aadhaar/e-KYC conditions shown on the portal.","If you already have a PAN, do not apply for another one. Use the official correction/reprint route instead.","Applicants who do not meet Instant e-PAN conditions should use the authorised PAN application route."],
+      documents:["For Instant e-PAN, an Aadhaar number with an active Aadhaar-linked mobile for OTP-based e-KYC.","For other applications or corrections, use the proof-of-identity, address, and date-of-birth documents specified by the selected authorised provider."],
+      registration:["For portal account registration, use the Income Tax e-Filing site's Register link and follow the category-specific identity verification prompts. Instant e-PAN can be accessed through its service page without treating this guidance site as an application form."],
+      login:["For an e-Filing account, sign in with the user ID requested by the portal (usually PAN for an individual) and your password, then complete any additional verification requested."],
+      steps:["Open the official Income Tax e-Filing portal and find Instant e-PAN under its services/Quick Links.","Choose the new e-PAN request option and read the current eligibility declaration.","Enter Aadhaar and complete OTP/e-KYC on the official portal; review the displayed details before submitting.","Keep the acknowledgement number. Use the portal's Check Status/Download PAN option to retrieve the result.","For physical PAN, reprint, or correction services, follow the Income Tax portal's links to an authorised Protean or UTIITSL service and check its current fee before payment."],
+      access:["Use Instant e-PAN for an eligible first application. Use the official linked Protean/UTIITSL routes for physical card delivery, corrections, or cases the instant facility does not support."],
+      status:["Open Instant e-PAN and choose Check Status/Download PAN. Enter the acknowledgement details requested by the portal. For applications through Protean or UTIITSL, use that provider's official acknowledgement tracking."],
+      troubleshooting:["Aadhaar already linked to a PAN: do not request a second PAN; check the existing PAN through the official portal.","OTP issue: confirm Aadhaar/mobile availability and retry from the official portal.","Application not eligible or service unavailable: use the official provider links; do not pay an agent promising guaranteed allotment."],
+      faqs:[["Is an e-PAN application always free?","The Income Tax Department describes Instant e-PAN as a free service for eligible applicants. Other application/card services may charge; confirm the current amount on the authorised provider's official page before paying."],["Can I hold two PANs?","No. Do not apply for a duplicate PAN. Follow the department's official surrender/correction instructions if you discover duplicate records."],["Where do I download it?","Use the same Instant e-PAN service's status/download option with the acknowledgement details."]],
+      help:"Use the Help/Contact Us links on incometax.gov.in. For provider applications, contact Protean or UTIITSL only through links from an official Income Tax Department page."
+    },
+    {
+      id:"digilocker", name:"DigiLocker", token:"DGL · 03", image:"portal-logos/digilocker.png", imageAlt:"Official DigiLocker app mark", short:"Create a DigiLocker account, then fetch documents issued by participating government departments into your digital wallet.",
+      official:"https://www.digilocker.gov.in/", officialLabel:"DigiLocker",
+      intro:"DigiLocker is a Government of India digital-document platform. Documents fetched directly from an issuer are verifiable digital credentials; a scanned upload is not the same as an issuer-issued document.",
+      eligibility:["Any citizen who can meet the account verification requirements shown on the official service can create an account.","Aadhaar linking or identity verification may be needed for specific issuer documents; requirements differ by document."],
+      documents:["An active mobile number for account verification.","Aadhaar or other identity details only when required by the official account flow or the issuing department."],
+      registration:["Choose Sign Up on digilocker.gov.in, enter the requested profile information and mobile number, verify the OTP, then create the login credentials requested by DigiLocker. Follow the live form because the exact fields can change."],
+      login:["Choose Sign In and use the username/mobile or other sign-in option offered on the current official page. Complete OTP or PIN verification as prompted."],
+      steps:["Sign in and open Search Documents or the relevant Issued Documents section.","Find the issuing authority (such as UIDAI, CBSE, or an RTO) and choose the exact document type.","Enter the reference details requested by that issuer and confirm the fetch request.","Check Issued Documents after the issuer responds. Use the official share/verification function when presenting the credential."],
+      access:["Use Issued Documents to fetch records from connected issuers. Uploaded files appear in the personal drive but are not issuer-verified merely because they are stored in DigiLocker."],
+      status:["Check the requested document under Issued Documents or the request/activity status shown in your account. For an issuer-side delay or correction, contact that issuing department."],
+      troubleshooting:["Document not found: check the issuing authority, document type, and record details; only supported issuers can provide records.","OTP or sign-in problem: use DigiLocker's official account recovery/support options.","An organisation rejects a document: show the issuer-issued digital document and its verification link/QR; acceptance depends on the applicable rules and service."],
+      faqs:[["Do I have to link Aadhaar?","Not necessarily for every account or document. Some issuer services need verified identity; follow the requirement shown by DigiLocker for that particular document."],["Is every uploaded PDF an official document?","No. Issuer-fetched credentials have issuer verification. A user-uploaded scan is simply a stored file."],["Can I share my OTP or PIN for help?","No. DigiLocker support will not need you to disclose your OTP or password."]],
+      help:"Use Help & Support/FAQs on digilocker.gov.in and the issuer contact shown for a missing or incorrect source record."
+    },
+    {
+      id:"ayushman", name:"Ayushman Bharat (PM-JAY)", token:"AYU · 04", image:"portal-logos/health-service.svg", imageAlt:"Healthcare service illustration; not an official government logo", short:"Check scheme eligibility and complete beneficiary verification through the National Health Authority's official beneficiary portal.",
+      official:"https://beneficiary.nha.gov.in/", officialLabel:"PM-JAY Beneficiary Portal",
+      intro:"The PM-JAY Beneficiary Portal helps people search for eligible beneficiaries and complete supported Ayushman Card steps. Eligibility is based on official scheme/state records; this site cannot decide eligibility or issue a card.",
+      eligibility:["Eligibility depends on the PM-JAY beneficiary database and state implementation. Search the official portal or ask an empanelled hospital/official helpline to confirm.","Do not assume every resident is eligible. The portal will show whether a record is available and what verification is required."],
+      documents:["A mobile number for beneficiary-portal OTP sign-in.","Aadhaar or other family/beneficiary search details as accepted by the portal and applicable state scheme.","For in-person assistance, carry the identity/family documents the official helpdesk or empanelled hospital asks for."],
+      registration:["Beneficiary access uses mobile OTP sign-in on beneficiary.nha.gov.in; there is no separate Digital Seva Sathi registration."],
+      login:["Select Beneficiary login, enter your mobile number and captcha, then submit the OTP received on that number."],
+      steps:["Sign in to the official beneficiary portal and select your state and the scheme shown for your area.","Search using one of the search methods currently offered (for example, beneficiary/family record details).","Review the matching record carefully; do not select another person's record.","If the portal shows e-KYC pending, follow its official verification method. Where online verification is unavailable, ask an empanelled hospital or authorised assistance centre.","After approval, use the portal's download option for the Ayushman Card and confirm the beneficiary details."],
+      access:["Use the portal to search eligibility, complete supported e-KYC, and download an available card. Treatment is through eligible empanelled hospitals and subject to scheme package/rules."],
+      status:["Sign in and check the beneficiary/card status on the same portal. For treatment or record mismatch, contact the hospital's Ayushman Mitra/helpdesk or the official NHA support channel."],
+      troubleshooting:["No record found: try the supported search options and contact the state scheme helpdesk; a failed search is not proof that an agent can add eligibility.","e-KYC fails: check the portal's current supported verification methods or seek assistance at an authorised centre/hospital.","Card details are wrong: request correction through the official scheme channel before using the card."],
+      faqs:[["Does this card guarantee that every treatment is covered?","No. Coverage depends on scheme rules, approved package, hospital empanelment, and eligibility. Confirm with the official hospital helpdesk."],["Is an Ayushman Card sold by an agent?","Be cautious. Use only the official beneficiary portal, authorised centres, or empanelled hospitals; never pay an unofficial person to promise eligibility."],["Where can I ask for help?","Use the contact/helpline information published by NHA or your state health agency. The official portal currently identifies its support options."]],
+      help:"Use Contact/Help from nha.gov.in, the beneficiary portal, or an Ayushman Mitra at an empanelled hospital. Check current state-specific rules there."
+    },
+    {
+      id:"voter", name:"Voter ID Services (ECI)", token:"ECI · 05", image:"portal-logos/voter.png", imageAlt:"Official Election Commission of India service-portal mark", short:"Register as a voter, request an electoral-roll correction, search the roll, or use the e-EPIC services available to you.",
+      official:"https://voters.eci.gov.in/", officialLabel:"ECI Voters' Service Portal",
+      intro:"The Election Commission of India's Voters' Service Portal provides online electoral registration and voter services. Registration in the electoral roll and possession of a voter card are related but distinct; check your roll entry and application result.",
+      eligibility:["For new registration, the applicant must be an Indian citizen, ordinarily resident in the constituency, and satisfy the current age/qualifying-date rules shown by ECI.","Use the portal's correction, shifting, deletion, or replacement form only for the relevant situation."],
+      documents:["A current photograph and proof of age/address from the evidence accepted in the portal's Form 6 or relevant service.","Mobile/email for account verification and an application reference for later status checks.","The exact document list depends on the form and current ECI instructions."],
+      registration:["Create/sign in to an account through the Voters' Service Portal using the available mobile/email verification flow. Account registration does not itself register you in the electoral roll."],
+      login:["Use the sign-in method presented by voters.eci.gov.in, then open the service needed: new registration (Form 6), correction/shifting (Form 8), or the relevant other form."],
+      steps:["Choose the correct form for your request; do not file a new-registration form to correct an existing entry.","Enter the applicant's details and constituency information as requested in the official form.","Upload the listed evidence, review all entries, and submit on the ECI portal.","Save the application/reference number and any acknowledgement.","Respond to any verification or notice shown by the portal/electoral registration officer."],
+      access:["Search your name in the electoral roll, submit the appropriate voter form, and use e-EPIC download if the portal confirms that your record is eligible for it."],
+      status:["Use Track Application Status on the portal with the reference number. Check the electoral-roll search separately to confirm that a registration or correction has taken effect."],
+      troubleshooting:["Cannot find a name: try the official roll search using alternate search fields, then contact the Electoral Registration Officer if needed.","Form rejected or returned: read the reason and submit the corrected evidence through the official route.","e-EPIC not available: confirm the roll entry and eligibility on the portal; not every record/status may offer the same download option."],
+      faqs:[["Does submitting Form 6 mean I am already enrolled?","No. The electoral registration authority must process the application. Track it and verify your name in the roll."],["Which form changes address or details?","ECI currently uses Form 8 for correction/shifting/replacement-related requests; confirm the precise use in the live form instructions."],["Can an agent guarantee enrolment?","No. Decisions are made by the electoral registration authority. Use the official portal and keep your acknowledgement."]],
+      help:"Use the portal's Contact/Help links or contact your Electoral Registration Officer/District Election Office through ECI's official directory."
+    },
+    {
+      id:"passport", name:"Passport Seva", token:"PSP · 06", image:"portal-logos/passport.ico", imageAlt:"Official Passport Seva emblem", short:"Submit a passport or related-service application online, pay the displayed fee, and attend the appointment with original documents.",
+      official:"https://www.passportindia.gov.in/psp/", officialLabel:"Passport Seva Online Portal",
+      intro:"Passport Seva is the Ministry of External Affairs online portal for passport and related services. Applicants complete the online form and then follow the appointment, document-verification, and police-verification instructions applicable to their case.",
+      eligibility:["Passport services are for Indian citizens. The correct service and evidence depend on whether this is a fresh, re-issue, minor, Tatkaal, or other application."],
+      documents:["Use the portal's Document Advisor for your exact application category.","Commonly requested evidence may include proof of present address, date of birth, and identity/citizenship records; do not treat this list as complete.","Bring originals and copies as instructed in the appointment confirmation."],
+      registration:["Open the official portal, select New User Registration, choose the Passport Office applicable to your address, enter the requested details, and activate the account using the portal's instructions."],
+      login:["Sign in using the registered login ID and password. Start a fresh or re-issue application as appropriate; do not submit duplicate applications for the same request."],
+      steps:["Choose the correct application category and complete the online form carefully.","Submit the form and use Pay and Schedule Appointment for the available Passport Seva Kendra/POPSK slot.","Save/print the appointment receipt and review the Document Advisor for your exact case.","Attend in person with originals and any required copies for document verification, photographs/biometrics as directed.","Follow the application tracker and any police-verification or clarification instructions."],
+      access:["Use the portal for new passport, re-issue, and the other services currently listed. Fees, Tatkaal eligibility, appointment availability, and documents vary by service; rely on the live portal, not estimates."],
+      status:["Use Track Application Status with the file number and date of birth requested by the portal. Keep the file number from the acknowledgement."],
+      troubleshooting:["Appointment not available: check the portal again for current slots; do not buy a slot from a broker.","Application returned for clarification: follow the official message and contact the Passport Office if it is unclear.","Payment/appointment issue: use the portal's official payment or grievance instructions and avoid paying twice until the transaction status is clear."],
+      faqs:[["Can the entire passport process be completed online?","No. Online form submission is followed by an in-person appointment, and police verification may apply."],["Which documents should I bring?","Use the Passport Seva Document Advisor for your application type and take the originals requested on your appointment instructions."],["How much does a passport cost?","Fees vary by service, booklet, age, and Tatkaal selection. The official portal displays the payable amount before payment."]],
+      help:"Use Contact Us, FAQs, and grievance links from passportindia.gov.in. Use only the file number and details requested through official channels."
+    },
+    {
+      id:"epfo", name:"EPFO Member Services", token:"EPF · 07", image:"portal-logos/epfo.svg", imageAlt:"Official EPFO logo", short:"Use EPFO's member services for UAN-based account information, passbook access, and eligible online claims.",
+      official:"https://unifiedportal-mem.epfindia.gov.in/memberinterface/", officialLabel:"EPFO Member e-Sewa",
+      intro:"EPFO member services let covered employees access their provident-fund account using a Universal Account Number (UAN). Service availability depends on UAN activation, KYC, employer records, and claim rules.",
+      eligibility:["You need an EPF member account/UAN for member e-Sewa services. A claim is available only when the relevant EPF scheme conditions are met.","New UAN generation or activation instructions can change; EPFO currently directs members to UMANG for some UAN actions. Follow the live EPFO notice."],
+      documents:["UAN and the registered mobile for OTP.","For claims, ensure the member profile/KYC and bank details meet the portal's current requirements; the portal will list documents or validation needed for your claim."],
+      registration:["If you do not have a UAN, ask your employer or follow the current UAN generation instructions linked by EPFO. The EPFO member portal may direct UAN activation to UMANG; do not use a third-party activation site."],
+      login:["Open Member e-Sewa and sign in with UAN, password, and captcha. Complete the OTP/verification step shown by the official portal."],
+      steps:["Check that the name, date of birth, Aadhaar/KYC, and bank details in your member profile are accurate.","Use View/Download Passbook for contribution history; the passbook service may open on a separate official EPFO portal.","For a supported withdrawal/transfer/pension request, choose the correct online claim and review the eligibility shown.","Verify bank and claim details before submitting. Save the tracking/claim reference.","Monitor the claim status and respond to employer/EPFO requests through the official service."],
+      access:["Use member e-Sewa for profile, passbook, transfer, and claim services offered to your account. For passbook access, follow EPFO's linked member passbook site."],
+      status:["Use Track Claim Status/Online Services in the member portal with UAN and the claim reference if requested. Also check the EPFO passbook after a processed contribution/claim."],
+      troubleshooting:["Cannot log in: use the official password reset/forgot UAN route and check that your mobile number can receive OTP.","Claim blocked by KYC or employer verification: correct the source record through your employer/EPFO as instructed; do not upload bank credentials to an agent.","Passbook unavailable: use EPFO's official passbook link and check any service notice/eligibility restriction."],
+      faqs:[["Can I use someone else's UAN?","No. A UAN is personal. Never share its password or OTP."],["Can I activate a new UAN on an unofficial app?","No. Follow only the method currently announced on epfindia.gov.in, including UMANG where the official notice directs members there."],["Why is a claim not available?","Claim options depend on service, account status, KYC, and applicable EPF rules. Check the eligibility message or ask EPFO/employer support."]],
+      help:"Use EPFO's Help/Contact and grievance links at epfindia.gov.in. Member services and passbook links are listed there."
+    },
+    {
+      id:"umang", name:"UMANG", token:"UMG · 08", image:"portal-logos/umang.png", imageAlt:"UMANG icon with a blue phone outline and orange hand symbol", short:"Access participating central and state government services through the UMANG web portal or official mobile app.",
+      official:"https://web.umang.gov.in/", officialLabel:"UMANG",
+      intro:"UMANG brings participating government services into one platform. Each department controls its own service rules, documents, fees, and processing; UMANG does not replace the department's official record.",
+      eligibility:["Citizens can browse services. A particular service may require its own eligibility, account, identity check, or state selection."],
+      documents:["An active mobile number for account verification.","Service-specific reference numbers or documents only when the selected department service asks for them."],
+      registration:["Choose Register/Sign Up in the official UMANG app or web portal, enter the mobile number and details requested, and verify using the OTP. Set the app's security PIN if prompted."],
+      login:["Sign in using the current mobile/MPIN/OTP options shown by UMANG. Do not reuse a bank or government password as an app PIN."],
+      steps:["Search the exact department or service by name in UMANG.","Open its official service description and read eligibility, documents, and charges, if any.","Sign in if required and enter information only in the UMANG service screen.","Save the acknowledgement/reference number after submitting.","Use the same department service's tracking option, or follow its official redirect for status."],
+      access:["Service catalog and available features vary by department and state. If a service is unavailable, use the department's official site reached from UMANG or its own government directory."],
+      status:["Open the relevant service inside UMANG and choose Track/Status if offered. Some departments require their own portal and application number."],
+      troubleshooting:["Service not listed: update the official app or use the department's linked portal; service coverage varies.","OTP/MPIN issue: use UMANG's own recovery/help function and do not share the OTP with support callers.","Transaction pending: check the service provider's status before resubmitting or paying again."],
+      faqs:[["Does UMANG cover every government service?","No. It includes participating services; availability differs by department and state."],["Will a UMANG login work on every department portal?","Not necessarily. A service may require a separate official account or verification."],["Where should I check a service's exact fee?","Read the department service page in UMANG and confirm the amount on the official payment screen before paying."]],
+      help:"Use Help/Support in the official UMANG app or web portal. For a department-specific decision, use the service provider's official contact channel."
+    },
+    {
+      id:"eshram", name:"e-Shram", token:"ESR · 09", image:"portal-logos/eshram.png", imageAlt:"Official e-Shram logo", short:"Eligible unorganised workers can register on the Ministry of Labour and Employment's e-Shram portal and manage their profile.",
+      official:"https://eshram.gov.in/", officialLabel:"e-Shram",
+      intro:"e-Shram is the Ministry of Labour and Employment's national database/portal for unorganised workers. Registration creates an e-Shram record/card; it does not by itself guarantee a cash benefit or enrolment in every welfare scheme.",
+      eligibility:["It is intended for eligible unorganised workers. Age, occupation, and exclusions are scheme-controlled; check the portal's current eligibility declaration before registering."],
+      documents:["Aadhaar and a mobile number linked to Aadhaar for self-registration OTP/e-KYC.","Bank account details may be requested for the profile. Enter them only on the official e-Shram service; do not disclose a PIN, CVV, or OTP."],
+      registration:["Choose Register on e-Shram and follow the current self-registration flow. If Aadhaar-linked mobile verification is not possible, check the portal for the authorised CSC/assisted registration route."],
+      login:["Use the Update Profile/Already Registered service and the identity/mobile verification method offered by the official portal."],
+      steps:["Read the live eligibility declaration and select self-registration or the authorised assisted route.","Complete Aadhaar/mobile verification on the official site.","Enter occupation and profile information accurately, using the categories the portal provides.","Review the declaration and submit. Save the acknowledgement and download the card if the portal offers it.","Use the official profile-update function if details change."],
+      access:["Use e-Shram to register/update the worker profile and access services currently offered there. Check the relevant welfare scheme separately for its own eligibility and application."],
+      status:["Sign back in through the portal's update/profile service to see the registered profile/card status. Use the acknowledgement or registered mobile requested there."],
+      troubleshooting:["Aadhaar OTP does not arrive: check the Aadhaar-linked mobile and use an authorised CSC route if the portal permits.","Occupation or eligibility not listed: contact the official helpdesk/CSC rather than selecting an inaccurate category.","An agent asks for a fee or OTP: stop and verify with the portal; never share authentication codes."],
+      faqs:[["Does e-Shram registration guarantee a pension or payment?","No. Benefits depend on the separate scheme's conditions and government approval."],["Can my record be updated?","Use the official update service and follow the current identity verification steps."],["Can someone else complete self-registration for me?","Use only an authorised CSC/assisted route and stay present. Never hand over your OTP or account password."]],
+      help:"Use Contact Us/FAQs on eshram.gov.in or ask at an authorised Common Service Centre. Verify any current eligibility and assistance charges there."
+    },
+    {
+      id:"parivahan", name:"Parivahan Services", token:"PAR · 10", image:"portal-logos/parivahan.svg", imageAlt:"Official emblem used in the Parivahan portal header", short:"Find the correct Sarathi driving-licence or Vahan vehicle service, then follow your state's application and appointment requirements.",
+      official:"https://parivahan.gov.in/", officialLabel:"Parivahan Sewa",
+      intro:"Parivahan links to two major systems: Sarathi for driving-licence services and Vahan for vehicle registration services. The exact menu, documents, tests, and fee depend on the state and requested service.",
+      eligibility:["Eligibility depends on the selected service (learner's licence, driving licence, renewal, vehicle registration, permit, or another service) and applicable transport rules.","Choose the state where the vehicle/driver record is maintained."],
+      documents:["Use the service's official document checklist. Depending on the request it may ask for identity/address evidence, age/medical evidence, vehicle details, or an existing licence/registration number.","Keep the application number and any appointment/test receipt."],
+      registration:["Most services begin by selecting the relevant state and service in Sarathi or Vahan; account creation may not be needed for every task. Follow the prompt shown for your selected service."],
+      login:["Use the application number/date of birth or the login method requested on the official service. Do not enter driving-licence details on an unofficial agent page."],
+      steps:["Open parivahan.gov.in and choose Driving Licence (Sarathi) or Vehicle Related Services (Vahan).","Select your state and the exact service. Read its eligibility and document list before starting.","Enter the existing record/application details requested and complete the form.","Pay only the fee shown on the official payment screen; book an appointment/test if the service requires it.","Save the application number and follow the status, document check, test, or RTO instructions."],
+      access:["Use Sarathi for learner/driver licence tasks and Vahan for vehicle-related services. Some cases require a visit to the local RTO, document verification, or a driving test."],
+      status:["Choose Application Status in Sarathi or Vahan and provide the application number and other requested details. For a local-office hold, contact the relevant RTO shown by the official service."],
+      troubleshooting:["Wrong state selected: return to the service and choose the state that holds the record; avoid creating a duplicate application.","Payment deducted but receipt missing: check payment/transaction status before paying again.","Service unavailable online: use the portal's RTO instructions; a visit may be required for that service."],
+      faqs:[["Can I renew or replace any licence online?","Online availability and in-person requirements depend on state and service; use the options shown after selecting your state."],["Are fees the same across India?","The portal displays the applicable charges and state-specific service details; check them before payment."],["Is a driving test always required?","Requirements depend on licence type and rules. Follow the official Sarathi/RTO instructions for your application."]],
+      help:"Use the Sarathi/Vahan Help/Contact section or contact the RTO selected in your application. Only use payment links shown by the official Parivahan service."
+    },
+    {
+      id:"nsp", name:"National Scholarship Portal", token:"NSP · 11", image:"portal-logos/nsp.png", imageAlt:"Official National Scholarship Portal icon", short:"Complete the required student OTR, find an open scholarship scheme, and submit the application through NSP.",
+      official:"https://scholarships.gov.in/", officialLabel:"National Scholarship Portal",
+      intro:"NSP provides scholarship application and tracking services. Eligibility, deadlines, documents, and verification stages differ by scheme and academic year; the official scheme guidelines and portal notices control.",
+      eligibility:["Eligibility is scheme-specific (for example, course/class, institution, income, category, and academic results). Read the current scheme guidelines before applying.","The portal's current notices say an OTR is required for student applications. Follow the live OTR identity-authentication instructions."],
+      documents:["OTR details and identity authentication as instructed by NSP.","Scheme-specific documents may include admission/course details, marks, income/category certificates, bank account information, and institution verification details; use the selected scheme's checklist."],
+      registration:["Generate the One Time Registration (OTR) through the official NSP flow and complete the Aadhaar/identity authentication method currently required. If you need assistance, NSP publishes CSC instructions and charges on its official notices."],
+      login:["Sign in to the student portal using the OTR/application credentials and verification method shown by NSP. Do not share login OTPs with an institute or agent."],
+      steps:["Read NSP's current announcements and confirm that the intended scheme is open for the relevant academic year.","Complete OTR and the required authentication, then sign in to the student portal.","Select only a scheme for which you meet the current eligibility; check the official guidelines and closing date.","Fill the application using matching records and upload the requested documents.","Submit, save the application/OTR reference, and complete any institute/department verification requested."],
+      access:["Use the portal's scheme list, student application, and institute/verification status tools. One student may apply only as permitted by the current scheme rules; confirm any limits in the live guidelines."],
+      status:["Sign in to the student dashboard and review application and verification status. A submitted form may still require institute or department verification."],
+      troubleshooting:["OTR face authentication fails: follow NSP's current official advice, including the linked Aadhaar biometric status/app instructions if displayed.","Application not visible: check academic year, scheme opening dates, and the correct login/OTR.","Verification pending or rejected: read the reason and contact the institute nodal officer or NSP helpdesk using the official contacts."],
+      faqs:[["Does OTR mean my scholarship is approved?","No. OTR is registration/identity setup. Each scholarship application is checked against scheme criteria and verification."],["Can I use the same documents for every scheme?","No. Requirements differ; use the selected scheme's guidelines and document checklist."],["Are deadlines fixed each year?","No. Dates vary by academic year and scheme. Check NSP announcements; never rely on an old screenshot or forwarded message."]],
+      help:"Use the official NSP Helpdesk/Contact links, scheme guidelines, and dated announcements on scholarships.gov.in. The site lists any current CSC service charges; confirm them before using assisted service."
+    },
+    {
+      id:"myscheme", name:"myScheme", token:"MSC · 12", image:"portal-logos/myscheme.png", imageAlt:"Official myScheme logo", short:"Discover central and state welfare schemes by using myScheme's scheme-finder and follow its official application link.",
+      official:"https://www.myscheme.gov.in/", officialLabel:"myScheme",
+      intro:"myScheme is a government scheme discovery platform. It helps users identify potentially relevant schemes and directs them to the department responsible for application; it does not itself approve benefits.",
+      eligibility:["There is no single myScheme eligibility rule. Eligibility is defined separately by each scheme's official guidelines."],
+      documents:["Browsing and searching do not require identity documents. The scheme finder may ask profile questions such as age, state, or occupation.","Only the responsible department's official application site should collect supporting documents."],
+      registration:["You can browse and use Find Schemes for You without treating myScheme as an application form. Answer only the profile questions you are comfortable entering on the official site."],
+      login:["Many discovery features can be used without signing in. If the current site offers an account or asks for login, follow its official prompts; an account does not mean a scheme application is submitted."],
+      steps:["Open Find Schemes for You and choose the profile filters relevant to you.","Review the matching scheme cards and open the official eligibility, benefit, and document details.","Check the scheme's issuing department and confirm its latest guidelines and application window.","Select the official Apply/Visit Website link to continue on the responsible department's site.","Submit documents and track status only through that department's official application service."],
+      access:["Use myScheme to discover and understand schemes. The application, fees, and status are handled by the department linked from each scheme."],
+      status:["myScheme is not the status authority for most applications. Use the application number and tracking link on the scheme's implementing department portal."],
+      troubleshooting:["No matching schemes: adjust profile filters and browse categories, then verify eligibility with the department.","Apply link is unavailable: open the scheme's department/official guidelines and check the current application window.","Details conflict with a forwarded message: rely on the latest notification from the scheme's responsible government department."],
+      faqs:[["Does myScheme guarantee eligibility?","No. Its results are discovery suggestions. The implementing department makes the final eligibility decision."],["Can I apply directly on myScheme?","The platform primarily helps discover schemes and links to implementing department services; follow the specific scheme's official application route."],["Must I enter sensitive information in the finder?","Only provide profile information the official finder asks for and that you choose to share. Do not enter Aadhaar, PAN, OTP, passwords, or documents on this guidance website."]],
+      help:"Use the Help/Contact and feedback options on myscheme.gov.in. For application, benefit, or payment questions, contact the implementing department named on the scheme page."
+    },
+    {
+      id:"income-tax", name:"Income Tax e-Filing", token:"ITD · 13", image:"portal-logos/income-tax.svg", imageAlt:"Official Income Tax e-Filing logo", short:"Register or sign in to file an income-tax return, complete e-verification, and check return/refund status.",
+      official:"https://www.incometax.gov.in/iec/foportal/", officialLabel:"Income Tax e-Filing",
+      intro:"The Income Tax Department e-Filing portal supports online return filing and related taxpayer services. Which return and documents apply depends on income sources, taxpayer type, and the relevant assessment year.",
+      eligibility:["Tax-return filing obligations and the applicable form depend on the taxpayer's facts and current law. Use the official guidance or a qualified tax professional if unsure.","Use only your own taxpayer account; a PAN is a login identifier and must be kept private."],
+      documents:["PAN and an active mobile/email for account verification.","Income and tax records relevant to your case (for example, Form 16, interest/capital-gains statements, tax-payment details, and bank-account information).","Check the selected assessment year's official return instructions; not every document applies to every taxpayer."],
+      registration:["Choose Register on the official portal, select the taxpayer category, enter the PAN/details requested, and complete OTP/email verification. Use the portal's account recovery if you already registered."],
+      login:["Sign in with the user ID requested by the portal (for individuals, PAN is commonly used), password, and any OTP/verification step."],
+      steps:["Confirm the correct assessment year and choose the return form that matches your situation.","Review pre-filled information against your own records; do not assume every pre-filled item is complete or correct.","Enter income, deductions, tax paid, and bank details as relevant; validate the return on the portal.","Submit/e-file the return and complete e-Verification using one of the methods currently offered.","Save the acknowledgement and check the portal for processing, notice, or refund updates."],
+      access:["Use e-File/Income Tax Returns for filing, e-Verify for verification, and the portal's services for notices, tax payments, and profile/bank validation. Labels may change with portal updates."],
+      status:["Open the filed-return status page in your account and select the assessment year/acknowledgement. Refund status is associated with return processing and verified bank details; follow the status shown by the department."],
+      troubleshooting:["Return not verified: complete e-Verification using the portal's permitted method; filing and verification are separate steps.","Refund not credited: check the official status, bank-account validation, and any notice/action required in your account.","Pre-filled data differs from records: reconcile it with source statements and official guidance before submission; amend only as allowed."],
+      faqs:[["Is uploading Form 16 the same as filing a return?","No. You must complete and submit the return, then e-Verify it through an allowed method."],["When will a refund arrive?","Processing time varies. Check the live portal status and do not rely on an estimated date from an unofficial source."],["Should I pay someone to guarantee a refund?","No one can guarantee a tax refund. Use the official portal and respond to department notices there."]],
+      help:"Use Help/Contact Us, FAQs, and e-Filing manuals on incometax.gov.in. For legal/tax advice specific to your situation, consult a qualified tax professional."
+    }
+  ];
 
-  // Detect which storage tier is actually usable in this environment.
-  // window.storage only exists inside Claude's own artifact preview and is shared
-  // across everyone viewing the artifact there. Outside that preview (e.g. the file
-  // downloaded and opened directly, or hosted on its own domain) we fall back to
-  // localStorage (saved per browser/device), and finally to plain in-memory storage
-  // if even that is blocked (e.g. strict private-browsing mode).
-  let storageMode = 'none';
-  function detectStorage(){
-    if(typeof window !== 'undefined' && window.storage && typeof window.storage.set === 'function' && typeof window.storage.get === 'function'){
-      storageMode = 'shared';
-      return;
+  const guideDialog = document.getElementById('guideDialog');
+  const guideTitle = document.getElementById('guideTitle');
+  const guideBody = document.getElementById('guideBody');
+  const guideOfficialLink = document.getElementById('guideOfficialLink');
+  const guideIds = new Set(portalGuides.map(guide=>guide.id));
+  const additionalTranslationKeys = {
+    voter:{name:'more_voter_name',description:'more_voter_desc'},
+    passport:{name:'more_passport_name',description:'more_passport_desc'},
+    epfo:{name:'more_epfo_name',description:'more_epfo_desc'},
+    umang:{name:'more_umang_name',description:'more_umang_desc'},
+    eshram:{name:'more_eshram_name',description:'more_eshram_desc'},
+    parivahan:{name:'more_parivahan_name',description:'more_parivahan_desc'},
+    nsp:{name:'more_scholarship_name',description:'more_scholarship_desc'},
+    myscheme:{name:'more_myscheme_name',description:'more_myscheme_desc'},
+    'income-tax':{name:'more_itr_name',description:'more_itr_desc'}
+  };
+
+  function appendGuideSection(title, content, ordered){
+    const section = document.createElement('section');
+    section.className = 'guide-section';
+    const heading = document.createElement('h3');
+    heading.textContent = title;
+    section.appendChild(heading);
+    if(Array.isArray(content)){
+      const list = document.createElement(ordered ? 'ol' : 'ul');
+      content.forEach(item=>{
+        const li = document.createElement('li');
+        li.textContent = item;
+        list.appendChild(li);
+      });
+      section.appendChild(list);
+    }else{
+      const paragraph = document.createElement('p');
+      paragraph.textContent = content;
+      section.appendChild(paragraph);
     }
-    try{
-      const t = '__seva_test__';
-      localStorage.setItem(t,'1');
-      localStorage.removeItem(t);
-      storageMode = 'local';
-    }catch(e){
-      storageMode = 'none';
-    }
+    guideBody.appendChild(section);
   }
-  detectStorage();
 
-  function currentLang(){ return html.getAttribute('data-lang') || 'en'; }
+  function openGuide(id, addHistory){
+    const guide = portalGuides.find(item=>item.id===id);
+    if(!guide) return;
+    guideTitle.textContent = guide.name + ' — complete guide';
+    guideBody.replaceChildren();
+    const intro = document.createElement('p');
+    intro.className = 'guide-intro';
+    intro.textContent = guide.intro;
+    guideBody.appendChild(intro);
+    const note = document.createElement('p');
+    note.className = 'guide-note';
+    note.textContent = 'Digital Seva Sathi is an independent educational guide, not a government website. Procedures, eligibility, available services, fees, and dates can change. Confirm the latest instructions on the official portal before applying. This site never asks for or stores your Aadhaar, PAN, password, OTP, or identity documents.';
+    guideBody.appendChild(note);
 
-  function updateStorageNote(){
-    const t = translations[currentLang()];
-    if(storageMode === 'shared') noteEl.textContent = t.comments_shared_note;
-    else if(storageMode === 'local') noteEl.textContent = t.comments_local_note;
-    else noteEl.textContent = t.comments_session_note;
+    const official = document.createElement('section');
+    official.className = 'guide-section';
+    const officialHeading = document.createElement('h3');
+    officialHeading.textContent = 'Official website';
+    const officialPara = document.createElement('p');
+    const officialAnchor = document.createElement('a');
+    officialAnchor.href = guide.official;
+    officialAnchor.target = '_blank';
+    officialAnchor.rel = 'noopener noreferrer';
+    officialAnchor.textContent = guide.official;
+    officialPara.appendChild(officialAnchor);
+    official.append(officialHeading,officialPara);
+    guideBody.appendChild(official);
+    appendGuideSection('Eligibility',guide.eligibility);
+    appendGuideSection('Documents and information to prepare',guide.documents);
+    appendGuideSection('Registration',guide.registration);
+    appendGuideSection('Login',guide.login);
+    appendGuideSection('Step-by-step instructions',guide.steps,true);
+    appendGuideSection('Accessing the service',guide.access);
+    appendGuideSection('Checking status',guide.status);
+    appendGuideSection('Common problems and troubleshooting',guide.troubleshooting);
+
+    const faqSection = document.createElement('section');
+    faqSection.className = 'guide-section';
+    const faqHeading = document.createElement('h3');
+    faqHeading.textContent = 'Frequently asked questions';
+    faqSection.appendChild(faqHeading);
+    guide.faqs.forEach(([question,answer])=>{
+      const details = document.createElement('details');
+      details.className = 'guide-faq';
+      const summary = document.createElement('summary');
+      summary.textContent = question;
+      const answerText = document.createElement('p');
+      answerText.textContent = answer;
+      details.append(summary,answerText);
+      faqSection.appendChild(details);
+    });
+    guideBody.appendChild(faqSection);
+    appendGuideSection('Official help and support',guide.help);
+    appendGuideSection('Digital safety',[
+      'Check the address bar carefully. Government services in this guide use the verified official domains shown above; a .gov.in domain alone does not make an unexpected link safe.',
+      'Never share passwords or OTPs with callers, agents, or anyone claiming they can speed up a service. Enter them only on the official page you opened yourself.',
+      'Do not send Aadhaar, PAN, bank details, or identity documents through chat or social media. This guidance site does not collect them.',
+      "Use a trusted device and network, sign out on shared devices, and verify fees, eligibility, required documents, and deadlines on the department's current official page before submitting."
+    ]);
+    guideOfficialLink.href = guide.official;
+    guideOfficialLink.setAttribute('aria-label','Open official '+guide.name+' portal in a new tab');
+    if(addHistory && window.location.hash !== '#guide-'+id){
+      history.pushState({guide:id},'', '#guide-'+id);
+    }
+    if(!guideDialog.open) guideDialog.showModal();
   }
 
-  function renderComments(items){
-    list.innerHTML = '';
-    if(!items || items.length === 0){
-      const li = document.createElement('li');
-      li.className = 'comment-empty';
-      li.id = 'commentEmpty';
-      li.textContent = translations[currentLang()].comments_empty;
-      list.appendChild(li);
-      return;
-    }
-    items.slice().reverse().forEach(c=>{
-      const li = document.createElement('li');
-      li.className = 'comment-item';
-      const head = document.createElement('div');
-      head.className = 'c-head';
-      const nm = document.createElement('span');
-      nm.className = 'c-name';
-      nm.textContent = c.name;
-      const dt = document.createElement('span');
-      dt.className = 'c-date';
-      dt.textContent = c.date || '';
-      head.appendChild(nm); head.appendChild(dt);
-      const txt = document.createElement('div');
-      txt.className = 'c-text';
-      txt.textContent = c.text;
-      li.appendChild(head); li.appendChild(txt);
-      list.appendChild(li);
+  function renderAdditionalPortals(){
+    const grid = document.getElementById('additionalPortals');
+    portalGuides.slice(4).forEach(guide=>{
+      const card = document.createElement('article');
+      card.className = 'portal-card service-card';
+      const banner = document.createElement('div');
+      banner.className = 'portal-banner banner-additional';
+      const dots = document.createElement('div');
+      dots.className = 'banner-dots';
+      dots.setAttribute('aria-hidden','true');
+      const imageWrap = document.createElement('div');
+      imageWrap.className = 'banner-icon wide-logo';
+      const image = document.createElement('img');
+      image.src = guide.image;
+      image.alt = guide.imageAlt;
+      image.loading = 'lazy';
+      const fallback = document.createElement('span');
+      fallback.className = 'logo-fallback';
+      fallback.hidden = true;
+      fallback.textContent = guide.token.split(' ')[0];
+      fallback.setAttribute('role','img');
+      fallback.setAttribute('aria-label',guide.name+' image unavailable; text fallback');
+      image.addEventListener('error',()=>{
+        image.hidden = true;
+        fallback.hidden = false;
+      },{once:true});
+      imageWrap.append(image,fallback);
+      const label = document.createElement('span');
+      label.className = 'banner-label';
+      label.textContent = guide.name;
+      label.dataset.i18n = additionalTranslationKeys[guide.id].name;
+      banner.append(dots,imageWrap,label);
+
+      const token = document.createElement('div');
+      token.className = 'p-top';
+      const tokenNum = document.createElement('span');
+      tokenNum.className = 'portal-token-num';
+      tokenNum.textContent = guide.token;
+      token.appendChild(tokenNum);
+      const title = document.createElement('h3');
+      title.textContent = guide.name;
+      title.dataset.i18n = additionalTranslationKeys[guide.id].name;
+      const description = document.createElement('p');
+      description.className = 'desc';
+      description.textContent = guide.short;
+      description.dataset.i18n = additionalTranslationKeys[guide.id].description;
+      const divider = document.createElement('div');
+      divider.className = 'stub-divider';
+      const stepsDetails = document.createElement('details');
+      stepsDetails.className = 'steps';
+      const stepsSummary = document.createElement('summary');
+      stepsSummary.dataset.i18n = 'btn_view_steps';
+      stepsSummary.textContent = translations[currentLang()].btn_view_steps;
+      const stepList = document.createElement('ol');
+      stepList.className = 'step-list';
+      guide.steps.forEach((step,index)=>{
+        const item = document.createElement('li');
+        const number = document.createElement('span');
+        number.className = 'n';
+        number.textContent = String(index+1);
+        const instruction = document.createElement('span');
+        instruction.textContent = step;
+        item.append(number,instruction);
+        stepList.appendChild(item);
+      });
+      stepsDetails.append(stepsSummary,stepList);
+      const actions = document.createElement('div');
+      actions.className = 'p-actions';
+      const viewButton = document.createElement('button');
+      viewButton.className = 'guide-trigger';
+      viewButton.type = 'button';
+      viewButton.dataset.guide = guide.id;
+      viewButton.textContent = 'View Guide';
+      viewButton.setAttribute('aria-label','View guide for '+guide.name);
+      const official = document.createElement('a');
+      official.className = 'btn-outline-sm';
+      official.href = guide.official;
+      official.target = '_blank';
+      official.rel = 'noopener noreferrer';
+      const officialLabel = document.createElement('span');
+      officialLabel.dataset.i18n = 'btn_official';
+      officialLabel.textContent = 'Official portal';
+      official.append(officialLabel,document.createTextNode(' ↗'));
+      actions.append(viewButton,official);
+      card.append(banner,token,title,description,divider,stepsDetails,actions);
+      grid.appendChild(card);
     });
   }
 
-  async function getAllComments(){
-    if(storageMode === 'shared'){
-      try{
-        const res = await window.storage.get(STORAGE_KEY, true);
-        return res && res.value ? JSON.parse(res.value) : [];
-      }catch(e){ return []; } // key not created yet
-    }
-    if(storageMode === 'local'){
-      try{
-        const raw = localStorage.getItem(STORAGE_KEY);
-        return raw ? JSON.parse(raw) : [];
-      }catch(e){ return []; }
-    }
-    return memoryComments;
-  }
-
-  async function persistAllComments(items){
-    if(storageMode === 'shared'){
-      await window.storage.set(STORAGE_KEY, JSON.stringify(items), true);
-    }else if(storageMode === 'local'){
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(items));
-    }else{
-      memoryComments = items;
-    }
-  }
-
-  async function loadComments(){
-    const items = await getAllComments();
-    renderComments(items);
-  }
-
-  form.addEventListener('submit', async (e)=>{
-    e.preventDefault();
-    errorEl.style.display = 'none';
-    const name = nameInput.value.trim();
-    const text = textInput.value.trim();
-    if(!name || !text) return;
-    submitBtn.disabled = true;
-    try{
-      const entry = { name, text, date: new Date().toLocaleDateString(undefined,{year:'numeric',month:'short',day:'numeric'}) };
-      const items = await getAllComments();
-      items.push(entry);
-      await persistAllComments(items);
-      renderComments(items);
-      form.reset();
-    }catch(err){
-      errorEl.style.display = 'block';
-    }finally{
-      submitBtn.disabled = false;
+  renderAdditionalPortals();
+  applyLang(html.getAttribute('data-lang')||'en');
+  document.querySelectorAll('[data-guide]').forEach(button=>{
+    button.addEventListener('click',()=>openGuide(button.dataset.guide,true));
+  });
+  document.getElementById('guideClose').addEventListener('click',()=>guideDialog.close());
+  guideDialog.addEventListener('cancel',event=>{
+    event.preventDefault();
+    guideDialog.close();
+  });
+  document.addEventListener('keydown',event=>{
+    if(event.key==='Escape' && guideDialog.open){
+      event.preventDefault();
+      guideDialog.close();
     }
   });
+  guideDialog.addEventListener('click',event=>{
+    if(event.target===guideDialog) guideDialog.close();
+  });
+  guideDialog.addEventListener('close',()=>{
+    if(guideIds.has(history.state && history.state.guide)){
+      history.back();
+    }else if(guideIds.has(window.location.hash.slice(7))){
+      history.replaceState(history.state,'',window.location.pathname+window.location.search);
+    }
+  });
+  window.addEventListener('popstate',()=>{
+    const id=window.location.hash.slice(7);
+    if(guideIds.has(id)){
+      openGuide(id,false);
+    }else if(guideDialog.open){
+      guideDialog.close();
+    }
+  });
+  document.querySelectorAll('.portal-banner img').forEach(image=>{
+    image.addEventListener('error',()=>{
+      image.hidden=true;
+      const fallback=image.nextElementSibling;
+      if(fallback) fallback.hidden=false;
+    },{once:true});
+  });
+  const initialGuide=window.location.hash.slice(7);
+  if(guideIds.has(initialGuide)) openGuide(initialGuide,false);
 
-  updateStorageNote();
-  loadComments();
 })();
 </script>
 
